@@ -6,6 +6,7 @@ app-emulation/vmware
 mail-client/davmail
 media-gfx/iscan-plugin-gt-f670
 x11-drivers/xf86-video-sis671
+media-video/v4l2ucp
 
 
 best regards.
