@@ -1,0 +1,10 @@
+<layman>
+<overlay type="git" src="git://github.com/rasdark/rasdarkus.git" contact="andrew.senik@gmail.com" status="unofficial" name="rasdark">
+<link>
+https://github.com/rasdark/rasdarkus
+</link>
+<description>
+Gentoo overlay by rasdark
+</description>
+</overlay>
+</layman>
