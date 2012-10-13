@@ -9,5 +9,8 @@ net-misc/teamviewer
 x11-drivers/xf86-video-sis671
 media-video/v4l2ucp
 
+Now you may add the overlay in Gentoo.
+Just: layman -o https://raw.github.com/rasdark/rasdarkus/master/layman.overlay -f -a rasdark
+
 best regards.
 
