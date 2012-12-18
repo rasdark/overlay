@@ -13,15 +13,11 @@ SRC_URI="http://dspam.nuclearelephant.com/sources/dspam-${PV}.tar.gz"
 LICENSE="AGPL-3"
 KEYWORDS="amd64 ~ppc x86"
 IUSE=""
-REQUIRED_USE="^^ ( "
 
 LANGS="en cs de es_es fr he pt_br ro ru"
 for X in ${LANGS} ; do
     IUSE="${IUSE} linguas_${X}"
-    REQUIRED_USE="${REQUIRED_USE} linguas_${X}"
 done
-
-REQUIRED_USE="${REQUIRED_USE} )"
 
 RDEPEND=">=mail-filter/dspam-${PV}[-user-homedirs]
 	dev-perl/GD[png]
@@ -56,15 +52,16 @@ src_install() {
 	insinto "${MY_HTDOCSDIR}"
 	insopts -m644
 	doins htdocs/*.{css,gif,ico,js}
-	insinto "${MY_CGIBINDIR}/templates"
 	for lang in ${LANGS}; do
                 use_if_iuse linguas_${lang} || continue
 
                 # for english we provide just helppack, as translation is always there
                 if [[ ${lang} != en ]]; then
-			 doins cgi-bin/templates/${lang}/{*.html,strings.pl}
+			insinto "${MY_CGIBINDIR}/templates/${lang}"
+			doins cgi-bin/templates/${lang}/{*.html,strings.pl}
 		else
-			 doins cgi-bin/templates/{*.html,strings.pl}
+			insinto "${MY_CGIBINDIR}/templates"
+			doins cgi-bin/templates/{*.html,strings.pl}
 		fi
 	done
 	insinto "${MY_CGIBINDIR}"
