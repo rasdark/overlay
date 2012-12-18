@@ -1,6 +1,7 @@
 For lighttpd
 alias 'spam'
 
+in /etc/lighttpd/lighttpd.conf
 ...
 alias.url += ( "/spam" => "/usr/share/webapps/dspam-web/${version}/htdocs/" )
 $HTTP["url"] =~ "^/spam/cgi-bin/" {
@@ -15,6 +16,9 @@ sample auth would be here
 /usr/share/webapps/dspam-web/${version}/htdocs
 # ln -s ../hostroot/cgi-bin .
 #
+
+in /usr/share/webapps/dspam-web/${version}/hostroot/cgi-bin/configure.pl
+$CONFIG{'WEB_ROOT'} = "/spam"
 
 
 For Apache.
