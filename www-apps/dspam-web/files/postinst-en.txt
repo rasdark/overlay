@@ -1,3 +1,24 @@
+For lighttpd
+alias 'spam'
+
+...
+alias.url += ( "/spam" => "/usr/share/webapps/dspam-web/${version}/htdocs/" )
+$HTTP["url"] =~ "^/spam/cgi-bin/" {
+      cgi.assign = ( ".cgi" => "/usr/bin/perl" )
+}
+url.redirect += ("^/spam.$" => "/spam/cgi-bin/dspam.cgi")
+...
+sample auth would be here
+...
+
+# pwd
+/usr/share/webapps/dspam-web/${version}/htdocs
+# ln -s ../hostroot/cgi-bin .
+#
+
+
+For Apache.
+
 Define your virtual host like this:
 <VirtualHost *:80>
 	DocumentRoot ${VHOST_HTDOCSDIR}

@@ -55,7 +55,7 @@ src_install() {
 	cd webui
 	insinto "${MY_HTDOCSDIR}"
 	insopts -m644
-	doins htdocs/*.{css,gif}
+	doins htdocs/*.{css,gif,ico,js}
 	insinto "${MY_CGIBINDIR}/templates"
 	for lang in ${LANGS}; do
                 use_if_iuse linguas_${lang} || continue
