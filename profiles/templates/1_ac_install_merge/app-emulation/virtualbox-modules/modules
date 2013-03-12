@@ -1,0 +1,2 @@
+# Calculate format=openrc
+modules_3="vboxdrv vboxnetadp vboxnetflt"

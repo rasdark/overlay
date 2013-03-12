@@ -1,0 +1,4 @@
+# Calculate comment=# chmod=0440
+
+%vboxusers ALL=NOPASSWD:/sbin/modprobe vboxdrv
+%wheel ALL=(ALL) NOPASSWD: ALL
