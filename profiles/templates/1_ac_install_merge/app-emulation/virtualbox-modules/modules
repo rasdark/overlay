@@ -1,2 +1,2 @@
 # Calculate format=openrc
-modules_3="vboxdrv vboxnetadp vboxnetflt"
+modules_3="acpi-cpufreq cpufreq_conservative cpufreq_powersave cpufreq_userspace mperf speedstep-lib vboxdrv vboxnetadp vboxnetflt"
