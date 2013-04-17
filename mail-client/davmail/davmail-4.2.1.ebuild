@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: mail-client/davmail-4.0.0 $
+# $Header: mail-client/davmail-4.2.1 $
 
 EAPI=3
 inherit eutils
 
-MY_VER="2016"
+MY_VER="2089"
 
 DESCRIPTION="POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway"
 HOMEPAGE="http://davmail.sourceforge.net/"
@@ -34,7 +34,6 @@ src_install() {
 
 	dodir "/opt/bin"
 	dosym "/opt/$PN/davmail.sh" "/opt/bin/davmail.sh"
-
 	domenu "${FILESDIR}"/davmail.desktop
 	doicon "${FILESDIR}"/davmail.png
 
