@@ -2,5 +2,6 @@
 
 Defaults	env_reset
 
+%plugdev ALL=NOPASSWD: /usr/sbin/lspci, /usr/sbin/hddtemp
 %vboxusers ALL=NOPASSWD:/sbin/modprobe vboxdrv
 %wheel ALL=(ALL) NOPASSWD: ALL
