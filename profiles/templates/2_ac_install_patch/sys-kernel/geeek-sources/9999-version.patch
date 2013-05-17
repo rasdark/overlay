@@ -1,0 +1,6 @@
+# Calculate format=diff
+--- Makefile	2013-05-15 14:54:23.000000000 +0400
++++ /root/patches/Makefile	2013-05-15 20:48:36.277129313 +0400
+@@ -4 +4 @@
+-EXTRAVERSION = -geek
++EXTRAVERSION = -darkus-geek
