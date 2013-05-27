@@ -1,11 +1,11 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: mail-client/davmail-4.2.0 $
+# $Header: mail-client/davmail-4.3.0 $
 
 EAPI=3
 inherit eutils
 
-MY_VER="2066"
+MY_VER="2125"
 
 DESCRIPTION="POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway"
 HOMEPAGE="http://davmail.sourceforge.net/"
