@@ -5,18 +5,18 @@
 EAPI=3
 
 PYTHON_DEPEND="2:2.6:2.7"
-
+BLD="a1"
 SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
 DESCRIPTION="Lightweight and feature full microblogging client"
 HOMEPAGE="http://turpial.org.ve/"
-SRC_URI="http://files.turpial.org.ve/sources/stable/${P}.tar.gz"
+SRC_URI="http://files.turpial.org.ve/sources/development/${P}-${BLD}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="x86 amd64"
+KEYWORDS="~x86 ~amd64"
 IUSE=""
 
 DEPEND=">=dev-python/Babel-0.9.5
