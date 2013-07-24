@@ -1,1 +1,1 @@
-# Calculate append=skip merge(sys-kernel/geek-sources)<3.10
+# Calculate append=skip merge(sys-kernel/geek-sources)!=
