@@ -1,0 +1,11 @@
+--- libturpial-0.8.5/setup.py
++++ libturpial-0.8.5/setup.py
+@@ -18,7 +18,7 @@
+ """
+ 
+ data_files=[
+-    ('./', ['ChangeLog', 'AUTHORS', 'COPYING']),
++    
+ ]
+ 
+ setup(name="libturpial",
