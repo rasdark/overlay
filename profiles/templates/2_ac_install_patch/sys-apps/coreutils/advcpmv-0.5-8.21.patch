@@ -1,4 +1,4 @@
-# Calculate format=diff
+# Calculate format=diff merge(sys-apps/coreutils)==8.21
 diff -crB coreutils-8.21/src/copy.c coreutils-8.21-patch0.5/src/copy.c
 *** coreutils-8.21/src/copy.c	2013-02-07 10:37:05.000000000 +0100
 --- coreutils-8.21-patch0.5/src/copy.c	2013-02-23 12:53:51.000000000 +0100
