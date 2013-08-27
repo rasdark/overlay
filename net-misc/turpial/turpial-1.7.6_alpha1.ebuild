@@ -23,6 +23,8 @@ RDEPEND="${PYTHON_DEPS}"
 DEPEND="${PYTHON_DEPS}
 	dev-python/Babel[${PYTHON_USEDEP}]
 	dev-python/PyQt4[webkit]
+	dev-python/pywebkitgtk
+	dev-python/gst-python
 	dev-python/libturpial"
 
 S=${WORKDIR}/${MY_P}
