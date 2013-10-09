@@ -1,8 +1,8 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=2
-inherit cmake-utils git
+EAPI=5
+inherit cmake-utils git-2
 
 EGIT_REPO_URI="git://v4l2ucp.git.sourceforge.net/gitroot/v4l2ucp/v4l2ucp"
 
