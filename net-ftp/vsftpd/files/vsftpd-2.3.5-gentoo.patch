@@ -1,0 +1,35 @@
+Index: vsftpd-2.3.5/tunables.c
+===================================================================
+--- vsftpd-2.3.5.orig/tunables.c
++++ vsftpd-2.3.5/tunables.c
+@@ -250,7 +250,7 @@ tunables_load_defaults()
+   /* -rw------- */
+   tunable_chown_upload_mode = 0600;
+ 
+-  install_str_setting("/usr/share/empty", &tunable_secure_chroot_dir);
++  install_str_setting("/usr/share/vsftpd/empty", &tunable_secure_chroot_dir);
+   install_str_setting("ftp", &tunable_ftp_username);
+   install_str_setting("root", &tunable_chown_username);
+   install_str_setting("/var/log/xferlog", &tunable_xferlog_file);
+Index: vsftpd-2.3.5/vsftpd.8
+===================================================================
+--- vsftpd-2.3.5.orig/vsftpd.8
++++ vsftpd-2.3.5/vsftpd.8
+@@ -33,7 +33,7 @@ as root. Any command line option not sta
+ as a config file that will be loaded. Note that config files are loaded in the
+ strict order that they are encountered on the command line.
+ If no config files are specified, the default configuration file of
+-.Pa /etc/vsftpd.conf
++.Pa /etc/vsftpd/vsftpd.conf
+ will be loaded, after all other command line options are processed.
+ .Pp
+ Supported options are:
+@@ -50,7 +50,7 @@ their appearance on the command line, in
+ vsftpd -olisten=NO /etc/vsftpd/vsftpd.conf -oftpd_banner=blah
+ .Pp
+ That example overrides vsftpd's built-in default for the "listen" option to be
+-NO, but then loads /etc/vsftpd.conf which may override that setting. Finally,
++NO, but then loads /etc/vsftpd/vsftpd.conf which may override that setting. Finally,
+ the "ftpd_banner" setting is set to "blah", which overrides any default vsftpd
+ setting and any identical setting that was in the config file.
+ .Sh FILES

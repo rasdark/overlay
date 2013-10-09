@@ -1,0 +1,37 @@
+--- vsftpd-3.0.0.orig/Makefile	2013-10-06 05:50:04.000000000 +0400
++++ vsftpd-3.0.0/Makefile	2013-10-06 05:52:36.000000000 +0400
+@@ -1,19 +1,20 @@
+ # Makefile for systems with GNU tools
+-CC 	=       gcc
++CC 	?=       gcc
+ INSTALL	=       install
+ IFLAGS  = -idirafter dummyinc
+ #CFLAGS = -g
+-CFLAGS	=	-O2 -fPIE -fstack-protector --param=ssp-buffer-size=4 \
+-	-Wall -W -Wshadow -Werror -Wformat-security \
++CFLAGS	=	-fPIE -fstack-protector --param=ssp-buffer-size=4 \
++	-Wall -W -Wshadow -Wformat-security \
+ 	-D_FORTIFY_SOURCE=2 \
+ 	#-pedantic -Wconversion
+ 
+-LIBS	=       -lcap -ldl -lcrypt    -lpam    -lwrap -lnsl    -lssl -lcrypto
++LIBS	=	`./vsf_findlibs.sh`
++#LIBS	=       -lcap -ldl -lcrypt    -lpam    -lwrap -lnsl    -lssl -lcrypto
+ #                                     |        |               + VSF_BUILD_SSL
+ #                                     |        + VSF_BUILD_TCPWRAPPERS
+ #                                     + VSF_BUILD_PAM
+ LINK	=       
+-LDFLAGS	=	-fPIE -pie -Wl,-z,relro -Wl,-z,now
++LDFLAGS	+=	-fPIE -pie -Wl,-z,relro -Wl,-z,now
+ 
+ OBJS	=	$(patsubst %.c,%.o,$(wildcard *.c))
+ #OBJS	=       main.o utility.o prelogin.o ftpcmdio.o postlogin.o privsock.o \
+@@ -31,7 +32,7 @@
+ 	$(CC) -c $*.c $(CFLAGS) $(IFLAGS)
+ 
+ vsftpd: $(OBJS) 
+-	$(CC) -o vsftpd $(LDFLAGS) $(OBJS) $(LINK) $(LIBS)
++	$(CC) -o vsftpd $(LDFLAGS) $(OBJS) $(LINK) $(LDFLAGS) $(LIBS)
+ 
+ install:
+ 	if [ -x /usr/local/sbin ]; then \
