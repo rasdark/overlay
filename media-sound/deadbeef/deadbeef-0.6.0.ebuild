@@ -6,7 +6,7 @@ EAPI="5"
 
 inherit fdo-mime gnome2-utils versionator
 
-MY_PV="${PV}-rc2"
+MY_PV="${PV}"
 
 SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.bz2
 		 http://sourceforge.net/projects/${PN}/files/${PN}-${MY_PV}.tar.bz2/download -> ${PN}-${MY_PV}.tar.bz2"
