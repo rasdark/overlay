@@ -15,7 +15,7 @@ HOMEPAGE="has no url"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="x86 amd64"
 
 DEPEND=">x11-base/xorg-server-1.11.4-r1"
 
