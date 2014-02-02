@@ -1,0 +1,39 @@
+# fix deprecated glib thread function
+#
+#  g_thread_init has been deprecated since version 2.32 and should not be
+#  used in newly-written code. This function is no longer necessary. The
+#  GLib threading system is automatically initialized at the start of your
+#  program.
+#
+# Patch by Dennis Lan (dlan)
+
+--- a/dict/src/lib/sockets.cpp
++++ b/dict/src/lib/sockets.cpp
+@@ -239,7 +239,7 @@ void Socket::resolve(std::string& host, gpointer data, on_resolved_func func)
+ 	query_data->host = host;
+ 	query_data->data = data;
+ 	query_data->func = func;
+-	g_thread_create(dns_thread, query_data, FALSE, NULL);
++	g_thread_try_new("dns_thread", dns_thread, query_data, NULL);
+ }
+ 
+ void Socket::connect(int socket, in_addr_t sa, int port, gpointer data, on_connected_func func)
+@@ -250,7 +250,7 @@ void Socket::connect(int socket, in_addr_t sa, int port, gpointer data, on_conne
+ 	connect_data->port = port;
+ 	connect_data->data = data;
+ 	connect_data->func = func;
+-	g_thread_create(connect_thread, connect_data, FALSE, NULL);
++	g_thread_try_new("connect", connect_thread, connect_data, NULL);
+ }
+ 
+ gpointer Socket::connect_thread(gpointer data)
+--- a/dict/src/stardict.cpp
++++ b/dict/src/stardict.cpp
+@@ -2311,7 +2311,6 @@ int main(int argc,char **argv)
+ 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+ 	textdomain (GETTEXT_PACKAGE);
+ 
+-	g_thread_init (NULL);
+ #if defined(_WIN32) && defined(_MSC_VER)
+ 	synchronize_crt_enviroment();
+ #endif
