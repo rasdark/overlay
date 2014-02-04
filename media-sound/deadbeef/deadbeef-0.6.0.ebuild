@@ -10,7 +10,7 @@ MY_PV="${PV}"
 
 SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.bz2
 		 http://sourceforge.net/projects/${PN}/files/${PN}-${MY_PV}.tar.bz2/download -> ${PN}-${MY_PV}.tar.bz2"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="x86 amd64"
 
 DESCRIPTION="foobar2k-like music player"
 HOMEPAGE="http://deadbeef.sourceforge.net/"

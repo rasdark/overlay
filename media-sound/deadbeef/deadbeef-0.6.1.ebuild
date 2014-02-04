@@ -6,11 +6,12 @@ EAPI="5"
 
 inherit fdo-mime gnome2-utils versionator
 
-MY_PV=$(replace_version_separator 3 '-')
+MY_PV=${PV}
+#MY_PV=$(replace_version_separator 3 '-')
 
 SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.bz2
 		 http://sourceforge.net/projects/${PN}/files/${PN}-${MY_PV}.tar.bz2/download -> ${PN}-${MY_PV}.tar.bz2"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="x86 amd64"
 
 DESCRIPTION="foobar2k-like music player"
 HOMEPAGE="http://deadbeef.sourceforge.net/"
