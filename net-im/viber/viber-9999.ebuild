@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 RESTRICT="strip"
-INST="/opt/${PN}"
+INSTALL_DIR="/opt"
 S="${WORKDIR}"
 
 src_unpack() {
@@ -23,18 +23,18 @@ src_unpack() {
 }
 
 src_install(){
-	insinto "${INST}"
-	doins -r usr/share/${PN}/*
+	insinto "${INSTALL_DIR}"
+	doins -r usr/share/${PN}
 	insinto "/usr/share/applications"
 	doins usr/share/applications/viber.desktop
 	insinto "/usr/share/pixmaps"
 	doins usr/share/pixmaps/viber.png
 
 # for creating launcher.db from user.
-	fperms 777 $INST/${PN}
+	fperms 777 ${INSTALL_DIR}/${PN}
 #	
-	fperms 755 ${INST}/Viber.sh
-	fperms 755 ${INST}/Viber
+	fperms 755 ${INSTALL_DIR}/${PN}/Viber.sh
+	fperms 755 ${INSTALL_DIR}/${PN}/Viber
 }
 
 pkg_prerm(){
