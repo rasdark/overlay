@@ -41,7 +41,7 @@ DEPEND="dev-util/intltool
 "
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-1.13.2-fix-sandbox-r1.patch"
+#	epatch "${FILESDIR}/${PN}-1.13.2-fix-sandbox-r1.patch"
 	eautoreconf
 }
 
