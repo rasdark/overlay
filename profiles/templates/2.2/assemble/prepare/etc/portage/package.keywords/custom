@@ -1,0 +1,9 @@
+# Calculate exists(/etc/portage/package.keywords/custom)==
+
+www-client/firefox-bin ~#-os_assemble_gentoo_arch-#
+app-editors/gvim ~#-os_assemble_gentoo_arch-#
+mail-client/thunderbird-bin ~#-os_assemble_gentoo_arch-#
+sys-kernel/calculate-sources ~#-os_assemble_gentoo_arch-#
+app-emulation/winetricks **
+app-emulation/wine #-os_assemble_gentoo_arch-#
+=media-video/v4l2ucp-9999 ~#-os_assemble_gentoo_arch-#

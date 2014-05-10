@@ -1,0 +1,10 @@
+# Calculate exists(/etc/portage/package.mask/custom)==
+
+x11-base/xorg-drivers::gentoo
+x11-base/xorg-server::gentoo
+x11-drivers/xf86-input-evdev::gentoo
+>x11-drivers/xf86-input-keyboard-1.6.2
+x11-drivers/xf86-input-synaptics::gentoo
+x11-drivers/xf86-input-mouse::gentoo
+>net-im/skype-4.0.0.0
+sys-kernel/calculate-sources::calculate
