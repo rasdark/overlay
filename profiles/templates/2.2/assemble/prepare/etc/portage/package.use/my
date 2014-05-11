@@ -1,8 +1,8 @@
-# Calculate exists(/etc/portage/package.use/custom)==
+# Calculate exists(/etc/portage/package.use/my)==
 
 www-client/firefox system-jpeg system-sqlite
 net-irc/kvirc -audiofile -oss -theora -dcc_voice -phonon doc
 app-editors/gvim python perl
-
 app-emulation/winetricks rar
 dev-qt/qt-creator autotools cmake cvs -doc examples fakevim git  subversion valgrind
+dev-libs/botan threads

@@ -6,7 +6,6 @@ net-irc/kvirc
 app-editors/gvim
 mail-client/thunderbird-bin
 app-admin/keepassx
-
 x11-drivers/xf86-video-sis671
 app-emulation/winetricks
 app-emulation/wine

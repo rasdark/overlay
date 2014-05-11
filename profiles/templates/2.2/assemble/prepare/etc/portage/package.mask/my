@@ -1,4 +1,4 @@
-# Calculate exists(/etc/portage/package.mask/custom)==
+# Calculate exists(/etc/portage/package.mask/my)==
 
 x11-base/xorg-drivers::gentoo
 x11-base/xorg-server::gentoo
