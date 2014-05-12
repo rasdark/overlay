@@ -1,6 +1,6 @@
 # Calculate exists(/etc/portage/package.keywords/my)==
 
-www-client/firefox-bin ~#-os_assemble_gentoo_arch-#
+www-client/firefox ~#-os_assemble_gentoo_arch-#
 app-editors/gvim ~#-os_assemble_gentoo_arch-#
 mail-client/thunderbird-bin ~#-os_assemble_gentoo_arch-#
 sys-kernel/calculate-sources ~#-os_assemble_gentoo_arch-#
