@@ -1,13 +1,13 @@
 # Calculate comment=#
 
+app-admin/keepassx
+app-editors/gvim
+app-emulation/wine
+app-emulation/winetricks
+dev-qt/qt-creator
+mail-client/thunderbird-bin
+media-video/v4l2ucp
+net-irc/kvirc
 www-client/firefox
 www-plugins/adobe-flash
-net-irc/kvirc
-app-editors/gvim
-mail-client/thunderbird-bin
-app-admin/keepassx
 x11-drivers/xf86-video-sis671
-app-emulation/winetricks
-app-emulation/wine
-dev-qt/qt-creator
-media-video/v4l2ucp
