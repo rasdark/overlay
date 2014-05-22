@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="amd64 x86"
 IUSE=""
 
-SRC_URI="ftp://ftp.calculate.ru/pub/calculate/themes/dm/dm-${PVR}.tar.bz2"
+SRC_URI="ftp://ftp.calculate.ru/pub/calculate/themes/dm/dm-14-r2.tar.bz2"
 
 RDEPEND=""
 
@@ -22,5 +22,4 @@ src_install() {
 	insinto /
 	doins -r .
 }
-
 

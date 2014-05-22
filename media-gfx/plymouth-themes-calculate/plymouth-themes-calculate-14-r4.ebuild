@@ -26,4 +26,3 @@ src_install() {
 	doins *
 	doins .plymouth_shutdown*
 }
-
