@@ -1,10 +1,10 @@
 # Calculate format=diff
-From 23377b06e419103c31a1a1bd2b3b074ea53432fc Mon Sep 17 00:00:00 2001
+From 35e70b5db2fbd5806e121ccff93c14391f0d72a8 Mon Sep 17 00:00:00 2001
 From: Paolo Valente <paolo.valente@unimore.it>
 Date: Thu, 9 May 2013 19:10:02 +0200
-Subject: [PATCH 2/3] block: introduce the BFQ-v7r3 I/O sched for 3.14
+Subject: [PATCH 2/3] block: introduce the BFQ-v7r4 I/O sched for 3.14
 
-Add the BFQ-v7r3 I/O scheduler to 3.14.
+Add the BFQ-v7r4 I/O scheduler to 3.14.
 The general structure is borrowed from CFQ, as much of the code for
 handling I/O contexts. Over time, several useful features have been
 ported from CFQ as well (details in the changelog in README.BFQ). A
@@ -59,10 +59,10 @@ Signed-off-by: Arianna Avanzini <avanzini.arianna@gmail.com>
 ---
  block/bfq-cgroup.c  |  927 +++++++++++++
  block/bfq-ioc.c     |   36 +
- block/bfq-iosched.c | 3609 +++++++++++++++++++++++++++++++++++++++++++++++++++
+ block/bfq-iosched.c | 3582 +++++++++++++++++++++++++++++++++++++++++++++++++++
  block/bfq-sched.c   | 1204 +++++++++++++++++
- block/bfq.h         |  689 ++++++++++
- 5 files changed, 6465 insertions(+)
+ block/bfq.h         |  703 ++++++++++
+ 5 files changed, 6452 insertions(+)
  create mode 100644 block/bfq-cgroup.c
  create mode 100644 block/bfq-ioc.c
  create mode 100644 block/bfq-iosched.c
@@ -1046,10 +1046,10 @@ index 0000000..7f6b000
 +}
 diff --git a/block/bfq-iosched.c b/block/bfq-iosched.c
 new file mode 100644
-index 0000000..8a26b4f
+index 0000000..dfa1c1e
 --- /dev/null
 +++ block/bfq-iosched.c
-@@ -0,0 +1,3609 @@
+@@ -0,0 +1,3582 @@
 +/*
 + * Budget Fair Queueing (BFQ) disk scheduler.
 + *
@@ -1671,8 +1671,7 @@ index 0000000..8a26b4f
 +				bfqq->wr_cur_max_time =
 +					bfqd->bfq_wr_rt_max_time;
 +			bfq_log_bfqq(bfqd, bfqq,
-+				     "wrais starting at %lu, "
-+				     "rais_max_time %u",
++				     "wrais starting at %lu, rais_max_time %u",
 +				     jiffies,
 +				     jiffies_to_msecs(bfqq->wr_cur_max_time));
 +		} else if (old_wr_coeff > 1) {
@@ -1683,11 +1682,10 @@ index 0000000..8a26b4f
 +				 !soft_rt) {
 +				bfqq->wr_coeff = 1;
 +				bfq_log_bfqq(bfqd, bfqq,
-+					     "wrais ending at %lu, "
-+					     "rais_max_time %u",
-+					     jiffies,
-+					     jiffies_to_msecs(bfqq->
-+					     wr_cur_max_time));
++					"wrais ending at %lu, rais_max_time %u",
++					jiffies,
++					jiffies_to_msecs(bfqq->
++					wr_cur_max_time));
 +			} else if (time_before(
 +					bfqq->last_wr_start_finish +
 +					bfqq->wr_cur_max_time,
@@ -1761,10 +1759,9 @@ index 0000000..8a26b4f
 +			bfqd->raised_busy_queues++;
 +			entity->ioprio_changed = 1;
 +			bfq_log_bfqq(bfqd, bfqq,
-+				     "non-idle wrais starting at %lu, "
-+				     "rais_max_time %u",
-+				     jiffies,
-+				     jiffies_to_msecs(bfqq->wr_cur_max_time));
++		             "non-idle wrais starting at %lu, rais_max_time %u",
++			     jiffies,
++			     jiffies_to_msecs(bfqq->wr_cur_max_time));
 +		}
 +		if (prev != bfqq->next_rq)
 +			bfq_updated_next_req(bfqd, bfqq);
@@ -2153,26 +2150,6 @@ index 0000000..8a26b4f
 +		return bfq_default_max_budget / 32;
 +	else
 +		return bfqd->bfq_max_budget / 32;
-+}
-+
-+/*
-+ * Decides whether idling should be done for given device and
-+ * given in-service queue.
-+ */
-+static inline bool bfq_queue_nonrot_noidle(struct bfq_data *bfqd,
-+					   struct bfq_queue *in_service_bfqq)
-+{
-+	if (in_service_bfqq == NULL)
-+		return false;
-+	/*
-+	 * If the device is non-rotational, and hence has no seek penalty,
-+	 * disable idling; but do so only if:
-+	 * - device does not support queuing, otherwise we still have
-+	 *   a problem with sync vs async workloads;
-+	 * - the queue is not weight-raised, to preserve guarantees.
-+	 */
-+	return blk_queue_nonrot(bfqd->queue) && bfqd->hw_tag &&
-+	       (in_service_bfqq->wr_coeff == 1);
 +}
 +
 +static void bfq_arm_slice_timer(struct bfq_data *bfqd)
@@ -2789,7 +2766,7 @@ index 0000000..8a26b4f
 +	if (BFQQ_SEEKY(bfqq) && reason == BFQ_BFQQ_BUDGET_TIMEOUT &&
 +	    !bfq_bfqq_constantly_seeky(bfqq)) {
 +		bfq_mark_bfqq_constantly_seeky(bfqq);
-+		if (!blk_queue_nonrot(bfqq->bfqd->queue) && bfqd->hw_tag)
++		if (!blk_queue_nonrot(bfqd->queue))
 +			bfqd->const_seeky_busy_in_flight_queues++;
 +	}
 +
@@ -3041,8 +3018,7 @@ index 0000000..8a26b4f
 +	struct bfq_data *bfqd = bfqq->bfqd;
 +
 +	return RB_EMPTY_ROOT(&bfqq->sort_list) && bfqd->bfq_slice_idle != 0 &&
-+	       bfq_bfqq_must_not_expire(bfqq) &&
-+	       !bfq_queue_nonrot_noidle(bfqd, bfqq);
++	       bfq_bfqq_must_not_expire(bfqq);
 +}
 +
 +/*
@@ -3151,13 +3127,12 @@ index 0000000..8a26b4f
 +		struct bfq_entity *entity = &bfqq->entity;
 +
 +		bfq_log_bfqq(bfqd, bfqq,
-+			"raising period dur %u/%u msec, "
-+			"old raising coeff %u, w %d(%d)",
-+			jiffies_to_msecs(jiffies -
-+				bfqq->last_wr_start_finish),
-+			jiffies_to_msecs(bfqq->wr_cur_max_time),
-+			bfqq->wr_coeff,
-+			bfqq->entity.weight, bfqq->entity.orig_weight);
++		"raising period dur %u/%u msec, old raising coeff %u, w %d(%d)",
++		jiffies_to_msecs(jiffies -
++			bfqq->last_wr_start_finish),
++		jiffies_to_msecs(bfqq->wr_cur_max_time),
++		bfqq->wr_coeff,
++		bfqq->entity.weight, bfqq->entity.orig_weight);
 +
 +		BUG_ON(bfqq != bfqd->in_service_queue && entity->weight !=
 +			entity->orig_weight * bfqq->wr_coeff);
@@ -3172,8 +3147,7 @@ index 0000000..8a26b4f
 +					   bfqq->wr_cur_max_time)) {
 +			bfqq->last_wr_start_finish = jiffies;
 +			bfq_log_bfqq(bfqd, bfqq,
-+				     "wrais ending at %lu, "
-+				     "rais_max_time %u",
++				     "wrais ending at %lu, rais_max_time %u",
 +				     bfqq->last_wr_start_finish,
 +				     jiffies_to_msecs(bfqq->wr_cur_max_time));
 +			bfq_bfqq_end_wr(bfqq);
@@ -3765,7 +3739,7 @@ index 0000000..8a26b4f
 +	bfq_update_io_seektime(bfqd, bfqq, rq);
 +	if (!BFQQ_SEEKY(bfqq) && bfq_bfqq_constantly_seeky(bfqq)) {
 +		bfq_clear_bfqq_constantly_seeky(bfqq);
-+		if (!blk_queue_nonrot(bfqq->bfqd->queue) && bfqd->hw_tag) {
++		if (!blk_queue_nonrot(bfqd->queue)) {
 +			BUG_ON(!bfqd->const_seeky_busy_in_flight_queues);
 +			bfqd->const_seeky_busy_in_flight_queues--;
 +		}
@@ -3890,7 +3864,7 @@ index 0000000..8a26b4f
 +	if (!bfqq->dispatched && !bfq_bfqq_busy(bfqq)) {
 +		bfq_weights_tree_remove(bfqd, &bfqq->entity,
 +					&bfqd->queue_weights_tree);
-+		if (!blk_queue_nonrot(bfqq->bfqd->queue) && bfqd->hw_tag) {
++		if (!blk_queue_nonrot(bfqd->queue)) {
 +			BUG_ON(!bfqd->busy_in_flight_queues);
 +			bfqd->busy_in_flight_queues--;
 +			if (bfq_bfqq_constantly_seeky(bfqq)) {
@@ -4389,8 +4363,7 @@ index 0000000..8a26b4f
 +	num_char += sprintf(page + num_char, "Active:\n");
 +	list_for_each_entry(bfqq, &bfqd->active_list, bfqq_list) {
 +	  num_char += sprintf(page + num_char,
-+			      "pid%d: weight %hu, nr_queued %d %d,"
-+			      " dur %d/%u\n",
++			      "pid%d: weight %hu, nr_queued %d %d, dur %d/%u\n",
 +			      bfqq->pid,
 +			      bfqq->entity.weight,
 +			      bfqq->queued[0],
@@ -4643,7 +4616,7 @@ index 0000000..8a26b4f
 +	device_speed_thresh[1] = (R_fast[1] + R_slow[1]) / 2;
 +
 +	elv_register(&iosched_bfq);
-+	pr_info("BFQ I/O-scheduler version: v7r3");
++	pr_info("BFQ I/O-scheduler version: v7r4");
 +
 +	return 0;
 +}
@@ -4661,7 +4634,7 @@ index 0000000..8a26b4f
 +MODULE_LICENSE("GPL");
 diff --git a/block/bfq-sched.c b/block/bfq-sched.c
 new file mode 100644
-index 0000000..18e695bd66
+index 0000000..d9fef18
 --- /dev/null
 +++ block/bfq-sched.c
 @@ -0,0 +1,1204 @@
@@ -5048,7 +5021,7 @@ index 0000000..18e695bd66
 +		BUG_ON(!bfqd);
 +		bfq_weights_tree_add(bfqd, entity, &bfqd->group_weights_tree);
 +	}
-+	if (bfqd->hw_tag && bfqg != bfqd->root_group) {
++	if (bfqg != bfqd->root_group) {
 +		BUG_ON(!bfqg);
 +		BUG_ON(!bfqd);
 +		bfqg->active_entities++;
@@ -5159,7 +5132,7 @@ index 0000000..18e695bd66
 +		bfq_weights_tree_remove(bfqd, entity,
 +					&bfqd->group_weights_tree);
 +	}
-+	if (bfqd->hw_tag && bfqg != bfqd->root_group) {
++	if (bfqg != bfqd->root_group) {
 +		BUG_ON(!bfqg);
 +		BUG_ON(!bfqd);
 +		BUG_ON(!bfqg->active_entities);
@@ -5825,7 +5798,7 @@ index 0000000..18e695bd66
 +	if (!bfqq->dispatched) {
 +		bfq_weights_tree_remove(bfqd, &bfqq->entity,
 +					&bfqd->queue_weights_tree);
-+		if (!blk_queue_nonrot(bfqd->queue) && bfqd->hw_tag) {
++		if (!blk_queue_nonrot(bfqd->queue)) {
 +			BUG_ON(!bfqd->busy_in_flight_queues);
 +			bfqd->busy_in_flight_queues--;
 +			if (bfq_bfqq_constantly_seeky(bfqq)) {
@@ -5860,7 +5833,7 @@ index 0000000..18e695bd66
 +		if (bfqq->wr_coeff == 1)
 +			bfq_weights_tree_add(bfqd, &bfqq->entity,
 +					     &bfqd->queue_weights_tree);
-+		if (!blk_queue_nonrot(bfqd->queue) && bfqd->hw_tag) {
++		if (!blk_queue_nonrot(bfqd->queue)) {
 +			bfqd->busy_in_flight_queues++;
 +			if (bfq_bfqq_constantly_seeky(bfqq))
 +				bfqd->const_seeky_busy_in_flight_queues++;
@@ -5871,12 +5844,12 @@ index 0000000..18e695bd66
 +}
 diff --git a/block/bfq.h b/block/bfq.h
 new file mode 100644
-index 0000000..0c3f2f5
+index 0000000..0acb344
 --- /dev/null
 +++ block/bfq.h
-@@ -0,0 +1,689 @@
+@@ -0,0 +1,703 @@
 +/*
-+ * BFQ-v7r3 for 3.14.0: data structures and common functions prototypes.
++ * BFQ-v7r4 for 3.14.0: data structures and common functions prototypes.
 + *
 + * Based on ideas and code from CFQ:
 + * Copyright (C) 2003 Jens Axboe <axboe@kernel.dk>
@@ -6205,14 +6178,28 @@ index 0000000..0c3f2f5
 + *		 queue under service, even if it is idling).
 + * @busy_in_flight_queues: number of @bfq_queues containing pending or
 + *                         in-flight requests, plus the @bfq_queue in service,
-+ *			   even if idle but waiting for the possible arrival
-+ *			   of its next sync request.
++ *                         even if idle but waiting for the possible arrival
++ *                         of its next sync request. This field is updated only
++ *                         if the device is rotational, but used only if the
++ *                         device is also NCQ-capable. The reason why the field
++ *                         is updated also for non-NCQ-capable rotational
++ *                         devices is related to the fact that the value of
++ *                         hw_tag may be set also later than when this field may
++ *                         need to be incremented for the first time(s).
++ *                         Taking also this possibility into account, to avoid
++ *                         unbalanced increments/decrements, would imply more
++ *                         overhead than just updating this field regardless of
++ *                         the value of hw_tag.
 + * @const_seeky_busy_in_flight_queues: number of constantly-seeky @bfq_queues
 + *                                     (that is, seeky queues that expired
 + *                                     for budget timeout at least once)
 + *                                     containing pending or in-flight
-+ *					requests, including the in-service
-+ *					@bfq_queue if constantly seeky.
++ *                                     requests, including the in-service
++ *                                     @bfq_queue if constantly seeky. This
++ *                                     field is updated only if the device
++ *                                     is rotational, but used only if the
++ *                                     device is also NCQ-capable (see the
++ *                                     comments to @busy_in_flight_queues).
 + * @raised_busy_queues: number of weight-raised busy bfq_queues.
 + * @queued: number of queued requests.
 + * @rq_in_driver: number of requests dispatched and waiting for completion.
@@ -6422,7 +6409,7 @@ index 0000000..0c3f2f5
 + * @active_entities: number of active entities belonging to the group; unused
 + *                   for the root group. Used to know whether there are groups
 + *                   with more than one active @bfq_entity (see the comments
-+ *		      to the function bfq_bfqq_must_not_expire()).
++ *                   to the function bfq_bfqq_must_not_expire()).
 + *
 + * Each (device, cgroup) pair has its own bfq_group, i.e., for each cgroup
 + * there is a set of bfq_groups, each one collecting the lower-level
@@ -6565,5 +6552,5 @@ index 0000000..0c3f2f5
 +static void bfq_exit_bfqq(struct bfq_data *bfqd, struct bfq_queue *bfqq);
 +#endif
 -- 
-1.9.1
+1.9.2
 
