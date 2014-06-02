@@ -3,4 +3,4 @@
 +++ Makefile	2014-06-01 21:40:11.592808451 +0400
 @@ -4 +4 @@
 -EXTRAVERSION = -calculate
-+EXTRAVERSION = -darkus-note
++EXTRAVERSION = -darkus
