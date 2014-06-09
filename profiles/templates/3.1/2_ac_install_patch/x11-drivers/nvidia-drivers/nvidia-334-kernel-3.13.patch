@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/geek-sources)>=3.13&&merge(x11-drivers/nvidia-drivers)>=334
+# Calculate format=diff pkg(sys-kernel/geek-sources)>=3.13&&merge(x11-drivers/nvidia-drivers)>=334&&merge(x11-drivers/nvidia-drivers)<337
 diff -Nuar nvidia-drivers-334/kernel/nv-acpi.c nvidia-drivers-334-new/kernel/nv-acpi.c
 --- nvidia-drivers-334/kernel/nv-acpi.c	2014-02-18 21:55:10.335718157 +0400
 +++ nvidia-drivers-334-new/kernel/nv-acpi.c	2014-02-18 21:51:25.000000000 +0400
