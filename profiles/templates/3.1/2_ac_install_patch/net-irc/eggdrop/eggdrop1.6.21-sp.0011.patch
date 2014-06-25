@@ -1,0 +1,81 @@
+# Calculate format=diff merge(net-irc/eggdrop)!= 
+diff -Nru src/tcl.c src/tcl.c
+--- src/tcl.c	2011-09-10 01:37:53.000000000 +0400
++++ src/tcl.c	2011-11-03 11:20:40.000000000 +0400
+@@ -279,17 +279,31 @@
+       Tcl_Obj *obj;
+       unsigned char *bytes;
+       int len;
++      Tcl_DString ds;
++      int binary;
+ 
+       obj = Tcl_GetVar2Ex(interp, name1, name2, 0);
+       if (!obj)
+         return NULL;
+       len = 0;
+-      bytes = Tcl_GetByteArrayFromObj(obj, &len);
+-      if (!bytes)
+-        return NULL;
++      binary = 0;
++      if (obj->typePtr != NULL)  
++        if (strcmp(obj->typePtr->name, "bytearray") == 0)
++          binary = 1; 
++      if (!binary) {
++        char *strptr = Tcl_GetStringFromObj(obj, &len);
++        bytes = (unsigned char *)Tcl_UtfToExternalDString(NULL, strptr, len, &ds);
++      }
++      else {
++        bytes = Tcl_GetByteArrayFromObj(obj, &len);
++        if (!bytes)
++          return NULL;
++      }
+       s = malloc(len + 1);
+       egg_memcpy(s, bytes, len);
+       s[len] = 0;
++      if (!binary)
++        Tcl_DStringFree(&ds);
+     }
+ #else
+     s = (char *) Tcl_GetVar2(interp, name1, name2, 0);
+@@ -333,6 +347,8 @@
+   void **callback_data;
+   Function func;
+   ClientData cd;
++  Tcl_DString ds;
++  int binary;
+ 
+   objc += 5;
+   strings = (char **) nmalloc(sizeof(char *) * objc);
+@@ -341,11 +357,23 @@
+   utftot += sizeof(char *) * objc;
+   objc -= 5;
+   for (i = 0; i < objc; i++) {
+-    byteptr = (char *) Tcl_GetByteArrayFromObj(objv[i], &len);
++    binary = 0;
++    if (objv[i]->typePtr != NULL)  
++      if (strcmp(objv[i]->typePtr->name, "bytearray") == 0)
++        binary = 1;       
++    if (!binary) {
++      char *strptr = Tcl_GetStringFromObj(objv[i], &len);
++      byteptr = Tcl_UtfToExternalDString(NULL, strptr, len, &ds);
++    }
++    else {
++      byteptr = (char *)Tcl_GetByteArrayFromObj(objv[i], &len);
++    }
+     strings[i] = (char *) nmalloc(len + 1);
+     utftot += len + 1;
+     strncpy(strings[i], byteptr, len);
+     strings[i][len] = 0;
++    if (!binary)
++      Tcl_DStringFree(&ds);
+   }
+   callback_data = (void **) cdata;
+   func = (Function) callback_data[0];
+@@ -505,6 +533,7 @@
+   {"logfile-suffix",  logfile_suffix, 20,                      0},
+   {"timestamp-format",log_ts,         32,                      0},
+   {"pidfile",         pid_file,       120,           STR_PROTECT},
++  {"sp_version",      "0011",         0,                       0},
+   {NULL,              NULL,           0,                       0}
+ };
+ 
