@@ -1,0 +1,547 @@
+# Calculate format=diff
+aufs3.15 loopback patch
+
+diff --git a/drivers/block/loop.c b/drivers/block/loop.c
+index 138104b..227f7fa 100644
+--- a/drivers/block/loop.c
++++ b/drivers/block/loop.c
+@@ -514,7 +514,7 @@ out:
+ }
+ 
+ struct switch_request {
+-	struct file *file;
++	struct file *file, *virt_file;
+ 	struct completion wait;
+ };
+ 
+@@ -576,7 +576,8 @@ static int loop_thread(void *data)
+  * First it needs to flush existing IO, it does this by sending a magic
+  * BIO down the pipe. The completion of this BIO does the actual switch.
+  */
+-static int loop_switch(struct loop_device *lo, struct file *file)
++static int loop_switch(struct loop_device *lo, struct file *file,
++		       struct file *virt_file)
+ {
+ 	struct switch_request w;
+ 	struct bio *bio = bio_alloc(GFP_KERNEL, 0);
+@@ -584,6 +585,7 @@ static int loop_switch(struct loop_device *lo, struct file *file)
+ 		return -ENOMEM;
+ 	init_completion(&w.wait);
+ 	w.file = file;
++	w.virt_file = virt_file;
+ 	bio->bi_private = &w;
+ 	bio->bi_bdev = NULL;
+ 	loop_make_request(lo->lo_queue, bio);
+@@ -600,7 +602,7 @@ static int loop_flush(struct loop_device *lo)
+ 	if (!lo->lo_thread)
+ 		return 0;
+ 
+-	return loop_switch(lo, NULL);
++	return loop_switch(lo, NULL, NULL);
+ }
+ 
+ /*
+@@ -619,6 +621,7 @@ static void do_loop_switch(struct loop_device *lo, struct switch_request *p)
+ 	mapping = file->f_mapping;
+ 	mapping_set_gfp_mask(old_file->f_mapping, lo->old_gfp_mask);
+ 	lo->lo_backing_file = file;
++	lo->lo_backing_virt_file = p->virt_file;
+ 	lo->lo_blocksize = S_ISBLK(mapping->host->i_mode) ?
+ 		mapping->host->i_bdev->bd_block_size : PAGE_SIZE;
+ 	lo->old_gfp_mask = mapping_gfp_mask(mapping);
+@@ -627,6 +630,13 @@ out:
+ 	complete(&p->wait);
+ }
+ 
++static struct file *loop_real_file(struct file *file)
++{
++	struct file *f = NULL;
++	if (file->f_dentry->d_sb->s_op->real_loop)
++		f = file->f_dentry->d_sb->s_op->real_loop(file);
++	return f;
++}
+ 
+ /*
+  * loop_change_fd switched the backing store of a loopback device to
+@@ -640,6 +650,7 @@ static int loop_change_fd(struct loop_device *lo, struct block_device *bdev,
+ 			  unsigned int arg)
+ {
+ 	struct file	*file, *old_file;
++	struct file	*f, *virt_file = NULL, *old_virt_file;
+ 	struct inode	*inode;
+ 	int		error;
+ 
+@@ -656,9 +667,16 @@ static int loop_change_fd(struct loop_device *lo, struct block_device *bdev,
+ 	file = fget(arg);
+ 	if (!file)
+ 		goto out;
++	f = loop_real_file(file);
++	if (f) {
++		virt_file = file;
++		file = f;
++		get_file(file);
++	}
+ 
+ 	inode = file->f_mapping->host;
+ 	old_file = lo->lo_backing_file;
++	old_virt_file = lo->lo_backing_virt_file;
+ 
+ 	error = -EINVAL;
+ 
+@@ -670,17 +688,21 @@ static int loop_change_fd(struct loop_device *lo, struct block_device *bdev,
+ 		goto out_putf;
+ 
+ 	/* and ... switch */
+-	error = loop_switch(lo, file);
++	error = loop_switch(lo, file, virt_file);
+ 	if (error)
+ 		goto out_putf;
+ 
+ 	fput(old_file);
++	if (old_virt_file)
++		fput(old_virt_file);
+ 	if (lo->lo_flags & LO_FLAGS_PARTSCAN)
+ 		ioctl_by_bdev(bdev, BLKRRPART, 0);
+ 	return 0;
+ 
+  out_putf:
+ 	fput(file);
++	if (virt_file)
++		fput(virt_file);
+  out:
+ 	return error;
+ }
+@@ -841,7 +863,7 @@ static void loop_config_discard(struct loop_device *lo)
+ static int loop_set_fd(struct loop_device *lo, fmode_t mode,
+ 		       struct block_device *bdev, unsigned int arg)
+ {
+-	struct file	*file, *f;
++	struct file	*file, *f, *virt_file = NULL;
+ 	struct inode	*inode;
+ 	struct address_space *mapping;
+ 	unsigned lo_blocksize;
+@@ -856,6 +878,12 @@ static int loop_set_fd(struct loop_device *lo, fmode_t mode,
+ 	file = fget(arg);
+ 	if (!file)
+ 		goto out;
++	f = loop_real_file(file);
++	if (f) {
++		virt_file = file;
++		file = f;
++		get_file(file);
++	}
+ 
+ 	error = -EBUSY;
+ 	if (lo->lo_state != Lo_unbound)
+@@ -904,6 +932,7 @@ static int loop_set_fd(struct loop_device *lo, fmode_t mode,
+ 	lo->lo_device = bdev;
+ 	lo->lo_flags = lo_flags;
+ 	lo->lo_backing_file = file;
++	lo->lo_backing_virt_file = virt_file;
+ 	lo->transfer = transfer_none;
+ 	lo->ioctl = NULL;
+ 	lo->lo_sizelimit = 0;
+@@ -948,6 +977,7 @@ out_clr:
+ 	lo->lo_thread = NULL;
+ 	lo->lo_device = NULL;
+ 	lo->lo_backing_file = NULL;
++	lo->lo_backing_virt_file = NULL;
+ 	lo->lo_flags = 0;
+ 	set_capacity(lo->lo_disk, 0);
+ 	invalidate_bdev(bdev);
+@@ -957,6 +987,8 @@ out_clr:
+ 	lo->lo_state = Lo_unbound;
+  out_putf:
+ 	fput(file);
++	if (virt_file)
++		fput(virt_file);
+  out:
+ 	/* This is safe: open() is still holding a reference. */
+ 	module_put(THIS_MODULE);
+@@ -1003,6 +1035,7 @@ loop_init_xfer(struct loop_device *lo, struct loop_func_table *xfer,
+ static int loop_clr_fd(struct loop_device *lo)
+ {
+ 	struct file *filp = lo->lo_backing_file;
++	struct file *virt_filp = lo->lo_backing_virt_file;
+ 	gfp_t gfp = lo->old_gfp_mask;
+ 	struct block_device *bdev = lo->lo_device;
+ 
+@@ -1036,6 +1069,7 @@ static int loop_clr_fd(struct loop_device *lo)
+ 
+ 	spin_lock_irq(&lo->lo_lock);
+ 	lo->lo_backing_file = NULL;
++	lo->lo_backing_virt_file = NULL;
+ 	spin_unlock_irq(&lo->lo_lock);
+ 
+ 	loop_release_xfer(lo);
+@@ -1078,6 +1112,8 @@ static int loop_clr_fd(struct loop_device *lo)
+ 	 * bd_mutex which is usually taken before lo_ctl_mutex.
+ 	 */
+ 	fput(filp);
++	if (virt_filp)
++		fput(virt_filp);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/block/loop.h b/drivers/block/loop.h
+index 90df5d6..cb91822 100644
+--- a/drivers/block/loop.h
++++ b/drivers/block/loop.h
+@@ -44,7 +44,7 @@ struct loop_device {
+ 	int		(*ioctl)(struct loop_device *, int cmd, 
+ 				 unsigned long arg); 
+ 
+-	struct file *	lo_backing_file;
++	struct file *	lo_backing_file, *lo_backing_virt_file;
+ 	struct block_device *lo_device;
+ 	unsigned	lo_blocksize;
+ 	void		*key_data; 
+diff --git a/fs/aufs/f_op.c b/fs/aufs/f_op.c
+index 510919e..f9317c9 100644
+--- a/fs/aufs/f_op.c
++++ b/fs/aufs/f_op.c
+@@ -345,7 +345,7 @@ static ssize_t aufs_splice_read(struct file *file, loff_t *ppos,
+ 	err = -EINVAL;
+ 	h_file = au_hf_top(file);
+ 	get_file(h_file);
+-	if (au_test_loopback_kthread()) {
++	if (0 && au_test_loopback_kthread()) {
+ 		au_warn_loopback(h_file->f_dentry->d_sb);
+ 		if (file->f_mapping != h_file->f_mapping) {
+ 			file->f_mapping = h_file->f_mapping;
+diff --git a/fs/aufs/loop.c b/fs/aufs/loop.c
+index 3b03b52..4ab749d 100644
+--- a/fs/aufs/loop.c
++++ b/fs/aufs/loop.c
+@@ -130,3 +130,19 @@ void au_loopback_fin(void)
+ 	symbol_put(loop_backing_file);
+ 	kfree(au_warn_loopback_array);
+ }
++
++/* ---------------------------------------------------------------------- */
++
++/* support the loopback block device insude aufs */
++
++struct file *aufs_real_loop(struct file *file)
++{
++	struct file *f;
++
++	BUG_ON(!au_test_aufs(file->f_dentry->d_sb));
++	fi_read_lock(file);
++	f = au_hf_top(file);
++	fi_read_unlock(file);
++	AuDebugOn(!f);
++	return f;
++}
+diff --git a/fs/aufs/loop.h b/fs/aufs/loop.h
+index da8b756..28cb7ea 100644
+--- a/fs/aufs/loop.h
++++ b/fs/aufs/loop.h
+@@ -25,7 +25,11 @@ void au_warn_loopback(struct super_block *h_sb);
+ 
+ int au_loopback_init(void);
+ void au_loopback_fin(void);
++
++struct file *aufs_real_loop(struct file *file);
+ #else
++AuStub(struct file *, loop_backing_file, return NULL)
++
+ AuStubInt0(au_test_loopback_overlap, struct super_block *sb,
+ 	   struct dentry *h_adding)
+ AuStubInt0(au_test_loopback_kthread, void)
+@@ -33,6 +37,8 @@ AuStubVoid(au_warn_loopback, struct super_block *h_sb)
+ 
+ AuStubInt0(au_loopback_init, void)
+ AuStubVoid(au_loopback_fin, void)
++
++AuStub(struct file *, aufs_real_loop, return NULL, struct file *file)
+ #endif /* BLK_DEV_LOOP */
+ 
+ #endif /* __KERNEL__ */
+diff --git a/fs/aufs/super.c b/fs/aufs/super.c
+index b609e5a..e3909ed 100644
+--- a/fs/aufs/super.c
++++ b/fs/aufs/super.c
+@@ -807,7 +807,10 @@ static const struct super_operations aufs_sop = {
+ 	.statfs		= aufs_statfs,
+ 	.put_super	= aufs_put_super,
+ 	.sync_fs	= aufs_sync_fs,
+-	.remount_fs	= aufs_remount_fs
++	.remount_fs	= aufs_remount_fs,
++#ifdef CONFIG_AUFS_BDEV_LOOP
++	.real_loop	= aufs_real_loop
++#endif
+ };
+ 
+ /* ---------------------------------------------------------------------- */
+diff --git a/include/linux/fs.h b/include/linux/fs.h
+index 3ff3e89..13017e6 100644
+--- a/include/linux/fs.h
++++ b/include/linux/fs.h
+@@ -1554,6 +1554,10 @@ struct super_operations {
+ 	int (*bdev_try_to_free_page)(struct super_block*, struct page*, gfp_t);
+ 	long (*nr_cached_objects)(struct super_block *, int);
+ 	long (*free_cached_objects)(struct super_block *, long, int);
++#if defined(CONFIG_BLK_DEV_LOOP) ||  defined(CONFIG_BLK_DEV_LOOP_MODULE)
++	/* and aufs */
++	struct file *(*real_loop)(struct file *);
++#endif
+ };
+ 
+ /*
+diff --git a/include/linux/shmem_fs.h b/include/linux/shmem_fs.h
+index 4d1771c..4d389c5 100644
+--- a/include/linux/shmem_fs.h
++++ b/include/linux/shmem_fs.h
+@@ -24,10 +24,13 @@ struct shmem_inode_info {
+ };
+ 
+ struct shmem_sb_info {
++	struct mutex idr_lock;
++	bool idr_nouse;
++	struct idr idr;		    /* manages inode-number */
+ 	unsigned long max_blocks;   /* How many blocks are allowed */
+ 	struct percpu_counter used_blocks;  /* How many are allocated */
+-	unsigned long max_inodes;   /* How many inodes are allowed */
+-	unsigned long free_inodes;  /* How many are left for allocation */
++	int max_inodes;		    /* How many inodes are allowed */
++	int free_inodes;	    /* How many are left for allocation */
+ 	spinlock_t stat_lock;	    /* Serialize shmem_sb_info changes */
+ 	kuid_t uid;		    /* Mount uid for root directory */
+ 	kgid_t gid;		    /* Mount gid for root directory */
+diff --git a/mm/shmem.c b/mm/shmem.c
+index 9f70e02..c79b1e4 100644
+--- a/mm/shmem.c
++++ b/mm/shmem.c
+@@ -106,9 +106,13 @@ static unsigned long shmem_default_max_blocks(void)
+ 	return totalram_pages / 2;
+ }
+ 
+-static unsigned long shmem_default_max_inodes(void)
++static int shmem_default_max_inodes(void)
+ {
+-	return min(totalram_pages - totalhigh_pages, totalram_pages / 2);
++	unsigned long ul;
++
++	ul = INT_MAX;
++	ul = min3(ul, totalram_pages - totalhigh_pages, totalram_pages / 2);
++	return ul;
+ }
+ #endif
+ 
+@@ -563,6 +567,7 @@ static int shmem_setattr(struct dentry *dentry, struct iattr *attr)
+ static void shmem_evict_inode(struct inode *inode)
+ {
+ 	struct shmem_inode_info *info = SHMEM_I(inode);
++	struct shmem_sb_info *sbinfo = SHMEM_SB(inode->i_sb);
+ 
+ 	if (inode->i_mapping->a_ops == &shmem_aops) {
+ 		shmem_unacct_size(info->flags, inode->i_size);
+@@ -578,6 +583,11 @@ static void shmem_evict_inode(struct inode *inode)
+ 
+ 	simple_xattrs_free(&info->xattrs);
+ 	WARN_ON(inode->i_blocks);
++	if (!sbinfo->idr_nouse && inode->i_ino) {
++		mutex_lock(&sbinfo->idr_lock);
++		idr_remove(&sbinfo->idr, inode->i_ino);
++		mutex_unlock(&sbinfo->idr_lock);
++	}
+ 	shmem_free_inode(inode->i_sb);
+ 	clear_inode(inode);
+ }
+@@ -1300,13 +1310,13 @@ static struct inode *shmem_get_inode(struct super_block *sb, const struct inode
+ 	struct inode *inode;
+ 	struct shmem_inode_info *info;
+ 	struct shmem_sb_info *sbinfo = SHMEM_SB(sb);
++	int ino;
+ 
+ 	if (shmem_reserve_inode(sb))
+ 		return NULL;
+ 
+ 	inode = new_inode(sb);
+ 	if (inode) {
+-		inode->i_ino = get_next_ino();
+ 		inode_init_owner(inode, dir, mode);
+ 		inode->i_blocks = 0;
+ 		inode->i_mapping->backing_dev_info = &shmem_backing_dev_info;
+@@ -1347,6 +1357,25 @@ static struct inode *shmem_get_inode(struct super_block *sb, const struct inode
+ 			mpol_shared_policy_init(&info->policy, NULL);
+ 			break;
+ 		}
++
++		if (!sbinfo->idr_nouse) {
++			/* inum 0 and 1 are unused */
++			mutex_lock(&sbinfo->idr_lock);
++			ino = idr_alloc(&sbinfo->idr, inode, 2, INT_MAX,
++					GFP_NOFS);
++			if (ino > 0) {
++				inode->i_ino = ino;
++				mutex_unlock(&sbinfo->idr_lock);
++				__insert_inode_hash(inode, inode->i_ino);
++			} else {
++				inode->i_ino = 0;
++				mutex_unlock(&sbinfo->idr_lock);
++				iput(inode);
++				/* shmem_free_inode() will be called */
++				inode = NULL;
++			}
++		} else
++			inode->i_ino = get_next_ino();
+ 	} else
+ 		shmem_free_inode(sb);
+ 	return inode;
+@@ -2251,8 +2280,7 @@ static struct dentry *shmem_get_parent(struct dentry *child)
+ static int shmem_match(struct inode *ino, void *vfh)
+ {
+ 	__u32 *fh = vfh;
+-	__u64 inum = fh[2];
+-	inum = (inum << 32) | fh[1];
++	__u64 inum = fh[1];
+ 	return ino->i_ino == inum && fh[0] == ino->i_generation;
+ }
+ 
+@@ -2263,14 +2291,11 @@ static struct dentry *shmem_fh_to_dentry(struct super_block *sb,
+ 	struct dentry *dentry = NULL;
+ 	u64 inum;
+ 
+-	if (fh_len < 3)
++	if (fh_len < 2)
+ 		return NULL;
+ 
+-	inum = fid->raw[2];
+-	inum = (inum << 32) | fid->raw[1];
+-
+-	inode = ilookup5(sb, (unsigned long)(inum + fid->raw[0]),
+-			shmem_match, fid->raw);
++	inum = fid->raw[1];
++	inode = ilookup5(sb, inum, shmem_match, fid->raw);
+ 	if (inode) {
+ 		dentry = d_find_alias(inode);
+ 		iput(inode);
+@@ -2282,30 +2307,15 @@ static struct dentry *shmem_fh_to_dentry(struct super_block *sb,
+ static int shmem_encode_fh(struct inode *inode, __u32 *fh, int *len,
+ 				struct inode *parent)
+ {
+-	if (*len < 3) {
+-		*len = 3;
++	if (*len < 2) {
++		*len = 2;
+ 		return FILEID_INVALID;
+ 	}
+ 
+-	if (inode_unhashed(inode)) {
+-		/* Unfortunately insert_inode_hash is not idempotent,
+-		 * so as we hash inodes here rather than at creation
+-		 * time, we need a lock to ensure we only try
+-		 * to do it once
+-		 */
+-		static DEFINE_SPINLOCK(lock);
+-		spin_lock(&lock);
+-		if (inode_unhashed(inode))
+-			__insert_inode_hash(inode,
+-					    inode->i_ino + inode->i_generation);
+-		spin_unlock(&lock);
+-	}
+-
+ 	fh[0] = inode->i_generation;
+ 	fh[1] = inode->i_ino;
+-	fh[2] = ((__u64)inode->i_ino) >> 32;
+ 
+-	*len = 3;
++	*len = 2;
+ 	return 1;
+ }
+ 
+@@ -2370,7 +2380,7 @@ static int shmem_parse_options(char *options, struct shmem_sb_info *sbinfo,
+ 				goto bad_val;
+ 		} else if (!strcmp(this_char,"nr_inodes")) {
+ 			sbinfo->max_inodes = memparse(value, &rest);
+-			if (*rest)
++			if (*rest || sbinfo->max_inodes < 2)
+ 				goto bad_val;
+ 		} else if (!strcmp(this_char,"mode")) {
+ 			if (remount)
+@@ -2423,7 +2433,7 @@ static int shmem_remount_fs(struct super_block *sb, int *flags, char *data)
+ {
+ 	struct shmem_sb_info *sbinfo = SHMEM_SB(sb);
+ 	struct shmem_sb_info config = *sbinfo;
+-	unsigned long inodes;
++	int inodes;
+ 	int error = -EINVAL;
+ 
+ 	config.mpol = NULL;
+@@ -2471,7 +2481,7 @@ static int shmem_show_options(struct seq_file *seq, struct dentry *root)
+ 		seq_printf(seq, ",size=%luk",
+ 			sbinfo->max_blocks << (PAGE_CACHE_SHIFT - 10));
+ 	if (sbinfo->max_inodes != shmem_default_max_inodes())
+-		seq_printf(seq, ",nr_inodes=%lu", sbinfo->max_inodes);
++		seq_printf(seq, ",nr_inodes=%d", sbinfo->max_inodes);
+ 	if (sbinfo->mode != (S_IRWXUGO | S_ISVTX))
+ 		seq_printf(seq, ",mode=%03ho", sbinfo->mode);
+ 	if (!uid_eq(sbinfo->uid, GLOBAL_ROOT_UID))
+@@ -2489,6 +2499,8 @@ static void shmem_put_super(struct super_block *sb)
+ {
+ 	struct shmem_sb_info *sbinfo = SHMEM_SB(sb);
+ 
++	if (!sbinfo->idr_nouse)
++		idr_destroy(&sbinfo->idr);
+ 	percpu_counter_destroy(&sbinfo->used_blocks);
+ 	mpol_put(sbinfo->mpol);
+ 	kfree(sbinfo);
+@@ -2507,6 +2519,8 @@ int shmem_fill_super(struct super_block *sb, void *data, int silent)
+ 	if (!sbinfo)
+ 		return -ENOMEM;
+ 
++	mutex_init(&sbinfo->idr_lock);
++	idr_init(&sbinfo->idr);
+ 	sbinfo->mode = S_IRWXUGO | S_ISVTX;
+ 	sbinfo->uid = current_fsuid();
+ 	sbinfo->gid = current_fsgid();
+@@ -2610,6 +2624,15 @@ static void shmem_destroy_inodecache(void)
+ 	kmem_cache_destroy(shmem_inode_cachep);
+ }
+ 
++static __init void shmem_no_idr(struct super_block *sb)
++{
++	struct shmem_sb_info *sbinfo;
++
++	sbinfo = SHMEM_SB(sb);
++	sbinfo->idr_nouse = true;
++	idr_destroy(&sbinfo->idr);
++}
++
+ static const struct address_space_operations shmem_aops = {
+ 	.writepage	= shmem_writepage,
+ 	.set_page_dirty	= __set_page_dirty_no_writeback,
+@@ -2750,6 +2773,7 @@ int __init shmem_init(void)
+ 		printk(KERN_ERR "Could not kern_mount tmpfs\n");
+ 		goto out1;
+ 	}
++	shmem_no_idr(shm_mnt->mnt_sb);
+ 	return 0;
+ 
+ out1:
+diff --git a/fs/inode.c b/fs/inode.c
+index f96d2a6..2baa78c 100644
+--- a/fs/inode.c
++++ b/fs/inode.c
+@@ -839,6 +839,8 @@ unsigned int get_next_ino(void)
+ 	unsigned int *p = &get_cpu_var(last_ino);
+ 	unsigned int res = *p;
+ 
++start:
++
+ #ifdef CONFIG_SMP
+ 	if (unlikely((res & (LAST_INO_BATCH-1)) == 0)) {
+ 		static atomic_t shared_last_ino;
+@@ -848,7 +850,9 @@ unsigned int get_next_ino(void)
+ 	}
+ #endif
+ 
+-	*p = ++res;
++	if (unlikely(!++res))
++		goto start;	/* never zero */
++	*p = res;
+ 	put_cpu_var(last_ino);
+ 	return res;
+ }
