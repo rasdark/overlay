@@ -31,6 +31,7 @@ src_prepare() {
 		ltmain.sh aclocal.m4 || die
 	sed -i "s/-Werror -g0//" configure.in || die
 	sed -i -e '/Encoding/d' -e '/Categories/s/$/;/' ${PN}.desktop.in || die
+	sed -i 's/moc-qt4/moc/g' src/Makefile.* || die
 	eautoreconf
 }
 
