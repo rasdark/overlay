@@ -19,7 +19,9 @@ COMMON_DEPEND=">=sys-devel/gettext-0.16.1
 	>=x11-misc/xneur-$(get_version_component_range 1-2)
 	!x11-misc/xneur[gtk3]
 	dev-qt/qtcore:4
-	dev-qt/qtgui:4"
+	dev-qt/qtgui:4
+	dev-qt/qtdbus:5
+	kde-base/kdelibs"
 RDEPEND="${COMMON_DEPEND}
 	nls? ( virtual/libintl )"
 DEPEND="${COMMON_DEPEND}
