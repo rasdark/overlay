@@ -4,7 +4,8 @@
     <description>Gentoo overlay by rasdark</description>
     <homepage>https://github.com/rasdark/rasdarkus</homepage>
     <owner>
-      <email>andrew.senik@gmail.com</email>
+		<email>andrew.senik@gmail.com</email>
+		<name>Andrey Senik</name>
     </owner>
     <source type="git">git://github.com/rasdark/rasdarkus.git</source>
   </repo>
