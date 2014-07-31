@@ -7,7 +7,7 @@
 		<email>andrew.senik@gmail.com</email>
 		<name>Andrey Senik</name>
     </owner>
-    <source type="git">git://github.com/rasdark/rasdarkus.git</source>
+    <source type="git">git://github.com/rasdark/overlay.git</source>
   </repo>
 </repositories>
 
