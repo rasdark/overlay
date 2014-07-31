@@ -2,7 +2,7 @@
  <repo priority="50" quality="experimental" status="unofficial">
     <name>rasdark</name>
     <description>Gentoo overlay by rasdark</description>
-    <homepage>https://github.com/rasdark/rasdarkus</homepage>
+    <homepage>https://github.com/rasdark/overlay</homepage>
     <owner>
 		<email>andrew.senik@gmail.com</email>
 		<name>Andrey Senik</name>
