@@ -13,7 +13,6 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 RESTRICT="strip"
-#INSTALL_DIR="/"
 S="${WORKDIR}"
 
 src_unpack() {
