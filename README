@@ -26,7 +26,7 @@ x11-misc/kdeneur
 x11-plugins/pidgin-sipe
 
 Now you may add the overlay in Gentoo.
-Just: cp repositories.xml to /etc/layman/overlays/ and layman -a rasdark
+Just: layman -a rasdark
 
 
 profiles/templates - Calculate Linux templates. calculate-core>3.1
