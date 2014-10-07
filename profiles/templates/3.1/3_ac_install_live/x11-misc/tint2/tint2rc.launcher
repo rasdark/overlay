@@ -1,0 +1,54 @@
+# Tint2 config file
+# To use this as default tint2 config: save as $HOME/.config/tint2/tint2rc
+
+# Background definitions
+# ID 1
+rounded = 10
+border_width = 2
+background_color = #3B6AFF 60
+border_color = #4964BC 100
+
+# Panel
+panel_monitor = all
+panel_position = bottom center horizontal
+panel_items = L
+panel_size = 70% 50
+panel_margin = 0 0
+panel_padding = 0 0 0
+panel_dock = 0
+wm_menu = 0
+panel_layer = top
+panel_background_id = 1
+
+# Panel Autohide
+autohide = 1
+autohide_show_timeout = 0.0
+autohide_hide_timeout = 0.0
+autohide_height = 2
+strut_policy = 
+
+# Launchers
+launcher_icon_theme = Calculate
+launcher_padding = 5 0 10
+launcher_background_id = 1
+launcher_icon_size = 48
+launcher_item_app = /usr/share/applications/pcmanfm.desktop
+launcher_item_app = /usr/share/applications/calculate-audioplayer.desktop
+launcher_item_app = /usr/share/applications/calculate-videoplayer.desktop
+launcher_item_app = /usr/share/applications/calculate-writer.desktop
+launcher_item_app = /usr/share/applications/calculate-calc.desktop
+launcher_item_app = /usr/share/applications/calculate-imageedit.desktop
+launcher_item_app = /usr/share/applications/calculate-calculator.desktop
+launcher_item_app = /usr/share/applications/thunderbird-bin.desktop
+launcher_item_app = /usr/share/applications/calculate-browser.desktop
+launcher_item_app = /usr/share/applications/calculate-im.desktop
+launcher_item_app = /usr/share/applications/skype-preload.desktop
+launcher_item_app = /usr/share/applications/kvirc4.desktop
+launcher_item_app = /usr/share/applications/deluge.desktop
+launcher_item_app = /usr/share/applications/remmina.desktop
+launcher_item_app = /usr/share/applications/vncviewer-tigervnc.desktop
+launcher_item_app = /usr/share/applications/keepassx.desktop
+launcher_item_app = /usr/share/applications/gvim.desktop
+launcher_item_app = /usr/share/applications/qstardict.desktop
+
+# End of config

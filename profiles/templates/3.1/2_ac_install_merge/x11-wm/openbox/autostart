@@ -1,0 +1,6 @@
+# Calculate comment=# chmod=755
+
+#?pkg(x11-misc/tint2)!=#
+tint2 -c /etc/xdg/tint2/tint2rc &
+tint2 -c /etc/xdg/tint2/tint2rc.launcher &
+#pkg#
