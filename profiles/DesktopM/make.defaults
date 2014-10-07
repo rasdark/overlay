@@ -7,7 +7,7 @@ USE="${USE} cdda gstreamer -pulseaudio"
 USE="${USE} rdesktop"
 
 # System
-USE="${USE} -dconf networkmanager"
+USE="${USE} -dconf networkmanager udisks"
 
 # Window manager and specialities
 USE="${USE} -eds -gnome -kde"
