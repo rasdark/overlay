@@ -1,5 +1,6 @@
 # Calculate name=world format=world
-#?in(os_linux_pkglist, TOSS)!=#
+#?in(os_linux_pkglist, TOSS,COBRA)!=#
 net-analyzer/mtr
 net-analyzer/netcat6
+app-text/wgetpaste
 #in#
