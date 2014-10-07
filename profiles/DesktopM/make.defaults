@@ -1,0 +1,18 @@
+USE=""
+
+# Audio
+USE="${USE} cdda gstreamer -pulseaudio"
+
+# Network protocols
+USE="${USE} rdesktop"
+
+# System
+USE="${USE} -dconf networkmanager"
+
+# Window manager and specialities
+USE="${USE} -eds -gnome -kde"
+
+CL="builder client desktop console consolegui"
+THEMES="CLDX"
+LIGHTDM_SESSION=openbox-session
+
