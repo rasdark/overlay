@@ -15,3 +15,4 @@ x11-misc/light-locker upower
 x11-misc/lightdm -introspection
 
 sys-fs/udisks cryptsetup
+sys-fs/cryptsetup kernel -gcrypt -nettle -openssl

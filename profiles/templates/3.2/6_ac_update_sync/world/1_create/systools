@@ -5,6 +5,7 @@ sys-process/lsof
 sys-process/atop
 sys-process/htop
 sys-process/iotop
+sys-fs/cryptsetup
 #in#
 
 #?in(os_linux_pkglist, COBRA)!=#

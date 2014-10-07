@@ -1,0 +1,1 @@
+sys-fs/cryptsetup kernel -gcrypt -nettle -openssl
