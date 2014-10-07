@@ -9,9 +9,10 @@
 
 # AMD64 Profiles
 amd64		OrionS/amd64					stable
+amd64		DesktopM/amd64					stable
 
 # x86 Profiles
 x86		OrionS/x86					stable
-
+x86		DesktopM/x86					stable
 # vim: set ts=8
 
