@@ -1,0 +1,17 @@
+sys-fs/udev gudev
+x11-libs/libfm udisks
+
+# net-fs/samba [client]
+net-fs/cifs-utils -acl
+
+# Removed unnecessary dependence
+net-fs/samba -winbind
+
+# Add file systems and raid support.
+sys-block/gparted btrfs dmraid fat jfs mdadm ntfs reiserfs xfs
+
+x11-misc/light-locker upower
+
+x11-misc/lightdm -introspection
+
+sys-fs/udisks cryptsetup

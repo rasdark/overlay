@@ -1,8 +1,12 @@
 # Calculate name=world format=world
-#?in(os_linux_pkglist, TOSS)!=#
+#?in(os_linux_pkglist, TOSS,COBRA)!=#
 app-misc/tmux-mem-cpu-load
 sys-process/lsof
 sys-process/atop
 sys-process/htop
 sys-process/iotop
+#in#
+
+#?in(os_linux_pkglist, COBRA)!=#
+sys-block/gparted
 #in#
