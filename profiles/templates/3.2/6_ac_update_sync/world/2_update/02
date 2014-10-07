@@ -1,0 +1,11 @@
+# Calculate format=world name=world ini(update-sysadmin.world)<2
+#-ini(update-sysadmin.world,2)-#
+#?os_linux_pkglist==TOSS#
+app-misc/tmux-mem-cpu-load
+net-analyzer/mtr
+net-analyzer/netcat6
+sys-process/lsof
+sys-process/atop
+sys-process/htop
+sys-process/iotop
+#os_linux_pkglist#
