@@ -1,0 +1,22 @@
+URxvt*foreground: #FFFFFF
+URxvt*background: #000000
+URxvt*font: xft:Droid Sans Mono
+URxvt*scrollstyle:plain
+URxvt*scrollBar_right:true
+URxvt*scrollColor: #fdb927
+URxvt*color0:  #000000
+URxvt*color1:  #fe0b12
+URxvt*color2:  #00d900
+URxvt*color3:  #ff7916
+URxvt*color4:  #000095
+URxvt*color5:  #aa00aa
+URxvt*color6:  #00aaaa
+URxvt*color7:  #e2e2e2
+URxvt*color8:  #555555
+URxvt*color9:  #aa3838
+URxvt*color10: #55ff55
+URxvt*color11: #ffff55
+URxvt*color12: #5555ff
+URxvt*color13: #ff55ff
+URxvt*color14: #bebebe
+URxvt*color15: #ffffff
