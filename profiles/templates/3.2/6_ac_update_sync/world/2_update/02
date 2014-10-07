@@ -14,6 +14,7 @@ app-text/wgetpaste
 #?in(os_linux_pkglist, COBRA)!=#
 sys-block/gparted
 app-arch/xarchiver
+gnome-extra/nm-applet
 media-sound/volumeicon
 x11-misc/light-locker
 x11-misc/tint2
