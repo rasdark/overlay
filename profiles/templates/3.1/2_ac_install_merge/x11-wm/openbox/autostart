@@ -9,3 +9,6 @@ tint2 -c /etc/xdg/tint2/tint2rc.launcher &
 # autostart nm-applet
 sleep 2; nm-applet &
 #pkg#
+#?pkg(media-sound/volumeicon)!=#
+volumeicon &
+#pkg#
