@@ -1,6 +1,6 @@
 # Calculate format=world name=world ini(update-rasdark.world)<2
 #-ini(update-rasdark.world,2)-#
-#?os_linux_pkglist==TOSS#
+#?in(os_linux_pkglist, TOSS,COBRA)!=#
 app-misc/tmux-mem-cpu-load
 net-analyzer/mtr
 net-analyzer/netcat6
@@ -8,4 +8,16 @@ sys-process/lsof
 sys-process/atop
 sys-process/htop
 sys-process/iotop
-#os_linux_pkglist#
+app-text/wgetpaste
+#in#
+
+#?in(os_linux_pkglist, COBRA)!=#
+sys-block/gparted
+app-arch/xarchiver
+media-sound/volumeicon
+x11-misc/light-locker
+x11-misc/tint2
+x11-misc/pcmanfm
+x11-misc/lightdm-gtk-greeter
+#in#
+
