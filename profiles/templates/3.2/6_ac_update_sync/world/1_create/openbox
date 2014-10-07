@@ -1,0 +1,6 @@
+# Calculate name=world format=world in(os_linux_pkglist,COBRA)!=
+
+app-arch/xarchiver
+media-sound/volumeicon
+x11-misc/light-locker
+
