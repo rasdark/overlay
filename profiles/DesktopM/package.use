@@ -16,3 +16,5 @@ x11-misc/lightdm -introspection
 
 sys-fs/udisks cryptsetup
 sys-fs/cryptsetup kernel -gcrypt -nettle -openssl
+
+sys-kernel/calculate-sources -minimal
