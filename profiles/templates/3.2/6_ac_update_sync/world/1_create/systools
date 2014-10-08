@@ -1,7 +1,5 @@
 # Calculate name=world format=world
 #?in(os_linux_pkglist, TOSS,COBRA)!=#
-sys-kernel/dracut
-media-gfx/plymouth-themes-calculate
 app-misc/tmux-mem-cpu-load
 app-misc/mc
 sys-process/lsof

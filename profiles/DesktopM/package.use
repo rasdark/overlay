@@ -17,4 +17,6 @@ x11-misc/lightdm -introspection
 sys-fs/udisks cryptsetup
 sys-fs/cryptsetup kernel -gcrypt -nettle -openssl
 
-sys-kernel/calculate-sources -minimal
+sys-kernel/calculate-sources -minimalsys-fs/ntfs3g ntfsprogs ntfsdecrypt -external-fuse
+sys-fs/cryptsetup udev static-libs
+sys-fs/udisks cryptsetup

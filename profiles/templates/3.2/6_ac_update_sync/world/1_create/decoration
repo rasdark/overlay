@@ -1,0 +1,16 @@
+# Calculate name=world format=world
+
+#?in(os_linux_pkglist, base)!=#
+media-gfx/grub-splashes-calculate
+media-gfx/plymouth-themes-calculate
+media-gfx/syslinux-themes-calculate
+x11-themes/oxygen-gtk:2
+x11-themes/oxygen-gtk:3
+kde-base/oxygen-icons
+x11-themes/calculate-xcursors
+x11-themes/haematite-xcursors
+media-gfx/calculate-wallpapers
+#in#
+
+
+
