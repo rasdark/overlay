@@ -1,5 +1,5 @@
 # Calculate format=world name=world ini(update-rasdark.world)<2
-#-ini(update-rasdark.world,2)-#
+#-ini(update-rasdark.world,1)-#
 #?in(os_linux_pkglist, TOSS,COBRA)!=#
 media-gfx/plymouth-themes-calculate
 sys-kernel/dracut
