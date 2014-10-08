@@ -12,6 +12,7 @@ sys-process/htop
 sys-process/iotop
 app-text/wgetpaste
 sys-fs/cryptsetup
+app-misc/mc
 #in#
 
 #?in(os_linux_pkglist, COBRA)!=#

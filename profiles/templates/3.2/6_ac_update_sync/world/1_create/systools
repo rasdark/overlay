@@ -3,6 +3,7 @@
 sys-kernel/dracut
 media-gfx/plymouth-themes-calculate
 app-misc/tmux-mem-cpu-load
+app-misc/mc
 sys-process/lsof
 sys-process/atop
 sys-process/htop
