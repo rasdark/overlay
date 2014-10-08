@@ -1,0 +1,21 @@
+
+XXkb.controls.two_state: no
+XXkb.controls.add_when_start: yes
+XXkb.controls.add_when_create: yes
+
+XXkb*label.text.1: En
+XXkb*label.text.2: Es
+XXkb*label.text.3: Ru
+
+
+XXkb.mainwindow.type: tray
+XXkb.mainwindow.label.enable: yes
+XXkb.mainwindow.enable: yes
+XXkb.mainwindow.appicon: no
+XXkb.mainwindow.geometry: 18x18+0+0
+XXkb.mainwindow.in_tray: KDE2
+XXkb.mainwindow.label.background: #EDE9E3
+XXkb.mainwindow.label.foreground: black
+XXkb.mainwindow.label.font: -misc-*-r-*-13-*
+
+XXkb.button.enable: no

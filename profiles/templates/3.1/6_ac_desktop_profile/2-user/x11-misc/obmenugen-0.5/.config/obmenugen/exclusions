@@ -1,0 +1,13 @@
+# OpenBox Menu Generator exclusions file
+#
+# Lines starting with a '#' character and empty lines are ignored.
+# Put one exclusion per line.
+# Exclusions are case sensitive and are matched against
+# the 'Name' of the entry (the text that appears in menuitems).
+#
+# Exclusions format examples:
+# ^example$    exact match with 'example'.
+# ^example     match any string that begins whith 'example'.
+# example$     match any string that ends with 'example'.
+# example      match any string containing 'example'.
+

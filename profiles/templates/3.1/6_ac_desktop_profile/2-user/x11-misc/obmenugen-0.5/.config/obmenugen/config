@@ -1,0 +1,35 @@
+# OpenBox Menu Generator config file
+#
+# Lines starting with a '#' character and empty lines are ignored.
+# Keys and values are case sensitive. Keep all keys lowercase.
+# Removing or commenting any config line will cause an error.
+
+# Top Menu section
+# 'terminal' and 'editor' are REQUIRED
+# 'filemanager', 'webbrowser' and 'run command' are optional.
+# Leaving optional values empty causes the corresponding
+# menu item to be hidden, no matter what show/hide option says.
+terminal = urxvt
+editor = gvim
+filemanager = pcmanfm
+webbrowser = firefox-bin
+instant messaging = pidgin
+run command = gmrun
+
+# Lock Screen menuitem
+# Also leaving it empty causes menuitem to be hidden
+lock command = xscreensaver-command -lock
+
+# Exit menuitem
+# Giving this an empty value don't hides the menuitem
+# but uses the default OpenBox action "Exit"
+exit command = obshutdown
+
+# OnlyShowIn Exclusions
+# There is a 'OnlyShowIn' directive in .desktop files.
+# This directive is self-descriptive :)
+# You can put here (in lowercase) any directive's posible value
+# you want to be excluded from the menu, comma-separeted.
+# Leaving this value empty won't exclude any entry by this criteria.
+exclude onlyshowin = kde,gnome
+

@@ -4,5 +4,7 @@ app-arch/xarchiver
 media-sound/volumeicon
 x11-misc/light-locker
 x11-misc/tint2
+x11-misc/obmenugen-bin
 x11-misc/pcmanfm
+x11-misc/xxkb
 gnome-extra/nm-applet

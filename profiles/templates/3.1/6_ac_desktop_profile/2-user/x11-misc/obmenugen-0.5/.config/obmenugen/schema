@@ -1,0 +1,45 @@
+# OpenBox Menu Generator Schema file
+
+# Each (non-empty or non-comment) line of this file must be in the form:
+#   'type:options'
+#
+# 'type' could be one of the following values:
+#   'item', 'submenu', 'sep', 'cat', 'raw', 'file'
+#
+# Posible values for each of this types are:
+# For 'item': 'terminal', 'filemanager', 'webbrowser', 'instantmessaging', 'editor', 'runcommand', 'lock', 'exit'
+# For 'submenu': 'windowsanddesktops', 'openbox'
+# For 'sep': A string representing the LABEL for the separator or none
+# For 'cat': Any of the posible categories. See obmenugen --help
+# For 'raw': A hardcoded XML line in the OpenBox's menu.xml file format
+#    Example: raw:<item label="Linux Breakout 2"><action name="Execute"><execute>lbreakout2</execute></action></item>
+# For file: The name of a file with a chunk of XML in the OpenBox's menu.xml file format.
+#           The file must be in ~/.config/obmenugen/
+#     Example: file:extras.xml
+#
+# Comments are lines begining with a # character, to the end of the line.
+item:terminal
+item:filemanager
+#raw:<item label="root Midnight Commanger"><action name="Execute"><execute>urxvt -e sudo mc</execute></action></item>
+item:webbrowser
+item:instantmessaging
+item:editor
+#raw:<menu execute="obdevicemenu" id="mounts" label="Внешние накопители"/>
+item:runcommand
+submenu:windowsanddesktops
+sep:Applications
+cat:accessories
+cat:education
+cat:games
+cat:graphics
+cat:network
+cat:office
+cat:development
+cat:audiovideo
+cat:system
+cat:settings
+submenu:openbox
+sep:
+item:lock
+item:exit
+
