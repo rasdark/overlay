@@ -15,8 +15,19 @@ x11-misc/light-locker upower
 x11-misc/lightdm -introspection
 
 sys-fs/udisks cryptsetup
-sys-fs/cryptsetup kernel -gcrypt -nettle -openssl
+sys-fs/cryptsetup kernel -gcrypt -nettle -openssl udev static-libs
 
-sys-kernel/calculate-sources -minimalsys-fs/ntfs3g ntfsprogs ntfsdecrypt -external-fuse
-sys-fs/cryptsetup udev static-libs
-sys-fs/udisks cryptsetup
+sys-kernel/calculate-sources -minimal
+sys-fs/ntfs3g ntfsprogs ntfsdecrypt -external-fuse
+
+dev-libs/elfutils static-libs
+dev-libs/libgcrypt static-libs
+dev-libs/libgpg-error static-libs
+dev-libs/popt static-libs
+sys-apps/util-linux static-libs
+sys-fs/lvm2 lvm2create_initrd static-libs -thin
+sys-fs/udev static-libs
+sys-libs/e2fsprogs-libs static-libs
+virtual/libgudev static-libs
+virtual/libudev static-libs
+virtual/udev static-libs
