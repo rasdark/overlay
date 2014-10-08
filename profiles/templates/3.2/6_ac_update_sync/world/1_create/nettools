@@ -7,4 +7,5 @@ app-text/wgetpaste
 
 #?in(os_linux_pkglist, COBRA)!=#
 net-irc/kvirc
+www-client/firefox
 #in#
