@@ -31,3 +31,5 @@ sys-libs/e2fsprogs-libs static-libs
 virtual/libgudev static-libs
 virtual/libudev static-libs
 virtual/udev static-libs
+media-sound/deadbeef -ffmpeg ape converter dts hotkeys infobar mms notify mono2stereo psf shn supereq -gtk2 gtk3 -lastfm wma pltbrowser
+net-irc/kvirc -audiofile -oss -theora -dcc_voice -phonon doc
