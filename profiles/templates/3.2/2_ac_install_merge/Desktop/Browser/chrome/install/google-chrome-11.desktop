@@ -1,6 +1,0 @@
-# Calculate format=kde link=/usr/share/applications/google-chrome.desktop name=calculate-browser.desktop mirror pkg(www-client/google-chrome)>=11.0
-
-# Hide icon
-[Desktop Entry]
-NoDisplay=true
-!MimeType=
