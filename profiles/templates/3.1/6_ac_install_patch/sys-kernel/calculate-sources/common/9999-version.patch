@@ -1,6 +1,0 @@
-# Calculate format=diff
---- Makefile.old	2014-06-01 21:39:56.189808475 +0400
-+++ Makefile	2014-06-01 21:40:11.592808451 +0400
-@@ -4 +4 @@
--EXTRAVERSION = -calculate
-+EXTRAVERSION = -darkus
