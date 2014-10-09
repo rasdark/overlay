@@ -1,10 +1,6 @@
-style "xfdesktop-icon-view" {
-	XfdesktopIconView::label-alpha = 10
-	base[NORMAL] = "#000000"
-	base[SELECTED] = "#71B9FF"
-	base[ACTIVE] = "#71FFAD"
-	fg[NORMAL] = "#ffffff"
-	fg[SELECTED] = "#71B9FF"
-	fg[ACTIVE] = "#71FFAD"
-}
-widget_class "*XfdesktopIconView*" style "xfdesktop-icon-view"
+# Calculate pkg(x11-themes/gnome-themes-standard)!=&&exists(~/.gtkrc-2.0)==
+# include standart themes
+include "/usr/share/themes/Calculate/gtk-2.0/gtkrc"
+
+# include personal settings
+include "~/.gtkrc-2.0-personal"
