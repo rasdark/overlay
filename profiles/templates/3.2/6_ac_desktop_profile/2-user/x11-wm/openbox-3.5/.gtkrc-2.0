@@ -3,4 +3,4 @@
 include "/usr/share/themes/Calculate/gtk-2.0/gtkrc"
 
 # include personal settings
-include "~/.gtkrc-2.0-personal"
+include "/home/#-ur_login-#/.gtkrc-2.0-personal"
