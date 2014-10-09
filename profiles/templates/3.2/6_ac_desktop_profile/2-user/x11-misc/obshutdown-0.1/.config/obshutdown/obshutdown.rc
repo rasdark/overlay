@@ -1,0 +1,65 @@
+#
+# Openbox shutdown dialog
+# This is example obshutdown rc file
+# Copy this file to ~/.obshutdown.rc and customise
+#
+
+[general]
+version =        0.1-rc1
+verbose =        false
+default_action = shutdown
+composite =      true
+theme =          faenza
+buttons =        cancel logout shutdown restart suspend hibernate
+
+[actions]
+logout =         openbox --exit
+shutdown =       dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+restart =        dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+lock = 
+switch =         dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.CloseSession
+suspend =        sudo pm-suspend #dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+hibernate =      sudo pm-hibernate #dbus-send --system --print-reply --dest="org.freedesktop.UPower" /org/freedesktop/UPower org.freedesktop.UPower.Hibernate
+custom = 
+
+[shortcuts]
+logout =         l
+shutdown =       s
+restart =        r
+lock = 
+switch = 
+suspend =        u
+hibernate =      h
+custom = 
+
+[labels]
+#?os_locale_lang==es_ES#
+cancel =         Cancelar
+logout =         Salir
+restart =        Reiniciar
+shutdown =       Apagar
+lock =           Bloquear
+switch =         Cambiar de usuario
+suspend =        Suspensión
+hibernate =      Hibernación
+#os_local_lang#
+#?os_locale_lang==en_EN#
+cancel =         Cancel
+logout =         Logout
+restart =        Reboot
+shutdown =       Shutdown
+lock =           Lock
+switch =         Switch user
+suspend =        Suspend
+hibernate =      Hibernate
+#os_local_lang#
+#?os_locale_lang==ru_RU#
+cancel =         Отмена
+logout =         Выход
+restart =        Перезагрузка
+shutdown =       Выключение
+lock =           Блокировка
+switch =         Сменить пользователя
+suspend =        Ждущий режим
+hibernate =      Спящий режим
+#os_local_lang#
