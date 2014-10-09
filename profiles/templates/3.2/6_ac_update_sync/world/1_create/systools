@@ -11,4 +11,5 @@ sys-fs/cryptsetup
 
 #?in(os_linux_pkglist, COBRA)!=#
 sys-block/gparted
+app-admin/keepassx
 #in#

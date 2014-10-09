@@ -9,3 +9,8 @@ x11-misc/pcmanfm
 x11-misc/xxkb
 gnome-extra/nm-applet
 x11-misc/obconf
+dev-util/gsimplecal
+x11-misc/parcellite
+x11-misc/obshutdown
+gnome-extra/gcalctool
+net-im/pidgin

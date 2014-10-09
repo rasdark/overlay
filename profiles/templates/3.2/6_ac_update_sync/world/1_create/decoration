@@ -1,6 +1,6 @@
 # Calculate name=world format=world
 
-#?in(os_linux_pkglist, base)!=#
+#?in(os_linux_pkglist, COBRA)!=#
 media-gfx/grub-splashes-calculate
 media-gfx/plymouth-themes-calculate
 media-gfx/syslinux-themes-calculate

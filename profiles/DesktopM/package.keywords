@@ -8,3 +8,5 @@
 ~x11-misc/xxkb-1.11-r3 x86 amd64
 ~x11-misc/tint2-9999 *
 ~x11-misc/obconf-2.0.4 x86 amd64
+~dev-util/gsimplecal-1.6 x86 amd64
+~x11-misc/obshutdown-9999 x86 amd64
