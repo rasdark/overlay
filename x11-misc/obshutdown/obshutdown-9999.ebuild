@@ -16,6 +16,6 @@ SLOT="0"
 
 # strace only uses the header from libaio to decode structs
 DEPEND=">=x11-libs/gtk+-2.24.10-r1
-	>=x11-libs/cairo-1.10.2"
+	>=x11-libs/cairo-1.10.2
+	sys-devel/automake:1.11"
 RDEPEND=""
-
