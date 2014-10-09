@@ -31,7 +31,7 @@ autohide_height = 2
 strut_policy = 
 
 # Launchers
-launcher_icon_theme = Calculate
+launcher_icon_theme = elementary
 launcher_padding = 5 0 10
 launcher_background_id = 1
 launcher_icon_size = 48
