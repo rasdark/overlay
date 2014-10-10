@@ -24,7 +24,7 @@ then
 fi
 
 SLOT=${PV}
-EXTRAVERSION="-calculate"
+EXTRAVERSION="-${KERNELNAME:-calculate}"
 KV_FULL="${PV}${EXTRAVERSION}"
 
 S="${WORKDIR}/linux-${KV_FULL}"
@@ -45,6 +45,7 @@ vmlinuz_src_compile() {
 	local GENTOOARCH="${ARCH}"
 	unset ARCH
 	cd ${S}
+	emake olddefconfig || die "kernel configure failed"
 	emake && emake modules || die "kernel build failed"
 	[ -f .config ] && cp .config .config.save
 	ARCH="${GENTOOARCH}"
@@ -103,6 +104,7 @@ clean_for_minimal() {
 		scripts/gcc-version.sh scripts/Makefile.help \
 		scripts/Makefile.modinst scripts/Makefile.asm-generic \
 		scripts/Makefile.modbuiltin scripts/Makefile.fwinst \
+		scripts/Makefile.extrawarn \
 		scripts/depmod.sh scripts/Makefile.host \
 		scripts/Kbuild.include scripts/Makefile.modpost \
 		scripts/gcc-goto.sh scripts/Makefile.headersinst \
@@ -114,6 +116,7 @@ clean_for_minimal() {
 	find . -type f -a \! -wholename ./.config \
 		$(echo $KEEPLIST | sed -r 's/(\S+)(\s|$)/-a \! -wholename .\/\1 /g') \
 		-a \! -name "*.h" -delete
+	find . -type l -delete
 	rm -r drivers
 	rm -r Documentation
 }
@@ -126,6 +129,7 @@ calculate-kernel-6_src_install() {
 	then
 		cp .config ${D}/usr/share/${PN}/${PV}/boot/config-${KV_FULL}
 	fi
+	use vmlinuz && touch ${D}/usr/src/linux-${KV_FULL}/.calculate
 }
 
 vmlinuz_pkg_postinst() {
