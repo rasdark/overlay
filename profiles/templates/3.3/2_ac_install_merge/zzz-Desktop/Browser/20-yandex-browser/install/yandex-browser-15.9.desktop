@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/yandex-browser-beta.desktop name=calculate-browser.desktop mirror pkg(www-client/yandex-browser-beta)>=15.9
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

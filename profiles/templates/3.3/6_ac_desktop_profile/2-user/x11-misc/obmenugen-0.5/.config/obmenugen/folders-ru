@@ -1,0 +1,45 @@
+# Calculate os_locale_lang==ru_RU name=folders.xml
+<menu id="folders-menu" label="Открыть">
+		<item label="Домашняя папка">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.path)-#
+				</command>
+			</action>
+		</item>
+                <item label="Документы">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.documents)-#
+				</command>
+			</action>
+		</item>
+  		<item label="Картинки">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.pictures)-#
+				</command>
+			</action>
+		</item>
+  		<item label="Музыка">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.music)-#
+				</command>
+			</action>
+		</item>
+		<item label="Видео">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.videos)-#
+				</command>
+			</action>
+		</item>
+		<item label="Загрузки">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.downloads)-#
+				</command>
+			</action>
+		</item>
+	</menu>

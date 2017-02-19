@@ -1,0 +1,14 @@
+# Calculate name=world format=world
+
+#?in(os_linux_pkglist, COBRA)!=#
+app-cdr/pburn
+media-plugins/alsa-plugins
+media-sound/alsa-utils
+media-sound/audacious
+media-sound/sox
+media-video/ffmpeg
+media-video/mpv
+media-video/smplayer
+media-video/v4l2ucp
+#in#
+

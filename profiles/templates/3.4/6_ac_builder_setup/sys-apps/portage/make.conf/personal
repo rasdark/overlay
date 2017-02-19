@@ -1,0 +1,8 @@
+# Calculate comment=#
+FEATURES="${FEATURES} -getbinpkg"
+#?ini(hardware.model)==laptop_k50c#
+LINGUAS="en es es_ES ru ru_RU"
+L10N="ru ru-RU es es-ES"
+INPUT_DEVICES="synaptics evdev"
+VIDEO_CARDS="sis671 vesa"
+#ini#

@@ -1,0 +1,7 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<21
+
+#-ini(overlay-rasdark.world,21)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+net-wireless/blueman
+#in#

@@ -1,0 +1,17 @@
+# Calculate format=samba
+[color]
+	diff = auto
+	branch = auto
+	interactive = auto
+	status = auto
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+[merge]
+        tool = vimdiff
+[mergetool]
+        prompt = false

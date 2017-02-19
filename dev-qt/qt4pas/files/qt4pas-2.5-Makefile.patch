@@ -1,0 +1,31 @@
+--- Makefile	2013-02-09 03:15:37.027217352 +0400
++++ Makefile.n	2013-02-09 14:24:49.183070057 +0400
+@@ -1702,17 +1702,17 @@
+ 
+ install_target: first FORCE
+-	@$(CHK_DIR_EXISTS) $(INSTALL_ROOT)/usr/lib64/qt4/ || $(MKDIR) $(INSTALL_ROOT)/usr/lib64/qt4/ 
+-	-$(INSTALL_PROGRAM) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET)"
+-	-$(STRIP) --strip-unneeded "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET)"
+-	-$(SYMLINK) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET0)"
+-	-$(SYMLINK) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET1)"
+-	-$(SYMLINK) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET2)"
++	@$(CHK_DIR_EXISTS) $(INSTALL_ROOT)/usr/lib64/ || $(MKDIR) $(INSTALL_ROOT)/usr/lib64/ 
++	-$(INSTALL_PROGRAM) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/$(TARGET)"
++	-$(STRIP) --strip-unneeded "$(INSTALL_ROOT)/usr/lib64/$(TARGET)"
++	-$(SYMLINK) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/$(TARGET0)"
++	-$(SYMLINK) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64/$(TARGET1)"
++	-$(SYMLINK) "$(TARGET)" "$(INSTALL_ROOT)/usr/lib64//$(TARGET2)"
+ 
+ uninstall_target:  FORCE
+-	-$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET)" 
+-	 -$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET0)" 
+-	 -$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET1)" 
+-	 -$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/qt4/$(TARGET2)"
+-	-$(DEL_DIR) $(INSTALL_ROOT)/usr/lib64/qt4/ 
++	-$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/$(TARGET)" 
++	 -$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/$(TARGET0)" 
++	 -$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/$(TARGET1)" 
++	 -$(DEL_FILE) "$(INSTALL_ROOT)/usr/lib64/$(TARGET2)"
++	-$(DEL_DIR) $(INSTALL_ROOT)/usr/lib64/ 
+ 
+ 

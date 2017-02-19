@@ -1,0 +1,5 @@
+# Calculate format=samba path=/etc/calculate name=ini.env ac_install_unmerge==on&&pkg(www-client/palemoon-bin)==&&ini(desktop.browser)==palemoon-bin
+
+[desktop]
+!browser=
+browser-removing=on

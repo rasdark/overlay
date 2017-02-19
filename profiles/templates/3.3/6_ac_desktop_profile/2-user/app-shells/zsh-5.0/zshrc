@@ -1,0 +1,101 @@
+# Calculate name=.zshrc
+
+zstyle :compinstall filename '#-ini(resource.path)-#/.zshrc'
+
+autoload -Uz compinit promptinit
+compinit
+promptinit
+prompt gentoo
+
+HISTFILE=~/.zhistory
+HISTSIZE=5000
+SAVEHIST=10000
+setopt appendhistory autocd beep
+
+bindkey -v
+
+alias la='ls -la'
+alias hpush='git push origin HEAD'
+
+autoload -U edit-command-line
+zle -N  edit-command-line
+bindkey -M vicmd v edit-command-line
+
+setopt menucomplete
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+
+bindkey '^R' history-incremental-search-backward
+
+SPROMPT='zsh: Заменить '\''%R'\'' на '\''%r'\'' ? [Yes/No/Abort/Edit] '
+
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=$color[cyan]=$color[red]"
+
+setopt autocd
+setopt extendedglob
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+# setopt correctall
+setopt correct
+
+compress () {
+  if [ $1 ] ; then
+    case $1 in
+      tbz)  tar cjvf $2.tar.bz2 $2   ;;
+      tgz)  tar czvf $2.tar.gz  $2   ;;
+      tar)  tar cpvf $2.tar  $2      ;;
+      bz2)  bzip $2                  ;;
+      gz)   gzip -c -9 -n $2 > $2.gz ;;
+      zip)  zip -r $2.zip $2         ;;
+      7z)   7z a $2.7z $2            ;;
+      *)    echo "'$1' cannot be packed via >compress<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2) tar xvjf $1   ;;
+            *.tar.gz)  tar xvzf $1   ;;
+            *.bz2)     bunzip2 $1    ;;
+            *.rar)     unrar x $1    ;;
+            *.gz)      gunzip $1     ;;
+            *.tar)     tar xvf $1    ;;
+            *.tbz2)    tar xvjf $1   ;;
+            *.tgz)     tar xvzf $1   ;;
+            *.zip)     unzip $1      ;;
+            *.Z)       uncompress $1 ;;
+            *.7z)      7z x $1       ;;
+            *)         echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+export GREP_COLOR="1;33"
+export LS_COLORS='no=00;37:fi=00;37:di=01;36:ln=04;36:pi=33:so=01;35:do=01;35:bd=33;01:cd=33;01:or=31;01:su=37:sg=30:tw=30:ow=34:st=37:ex=01;31:*.cmd=01;31:*.exe=01;31:*.com=01;31:*.btm=01;31:*.sh=01;31:*.run=01;31:*.tar=33:*.tgz=33:*.arj=33:*.taz=33:*.lzh=33:*.zip=33:*.z=33:*.Z=33:*.gz=33:*.bz2=33:*.deb=33:*.rpm=33:*.jar=33:*.rar=33:*.jpg=32:*.jpeg=32:*.gif=32:*.bmp=32:*.pbm=32:*.pgm=32:*.ppm=32:*.tga=32:*.xbm=32:*.xpm=32:*.tif=32:*.tiff=32:*.png=32:*.mov=34:*.mpg=34:*.mpeg=34:*.avi=34:*.fli=34:*.flv=34:*.3gp=34:*.mp4=34:*.divx=34:*.gl=32:*.dl=32:*.xcf=32:*.xwd=32:*.flac=35:*.mp3=35:*.mpc=35:*.ogg=35:*.wav=35:*.m3u=35:';
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+alias ls='ls -F --color=auto'
+alias grep='grep --color=auto'
+
+alias logc="grc cat"
+alias logt="grc tail"
+alias logh="grc head"
+
+
+[[ -f /usr/bin/grc ]] && {
+  alias ping="grc --colour=auto ping"
+  alias traceroute="grc --colour=auto traceroute"
+  alias make="grc --colour=auto make"
+  alias diff="grc --colour=auto diff"
+  alias cvs="grc --colour=auto cvs"
+  alias netstat="grc --colour=auto netstat"
+}
+
+alias dirf='find . -type d | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/"'
+alias lls="ls -F --color=auto -l | sed -e 's/--x/1/g' -e 's/-w-/2/g' -e 's/-wx/3/g' -e 's/r--/4/g'  -e 's/r-x/5/g' -e 's/rw-/6/g' -e 's/rwx/7/g' -e 's/---/0/g'"
+

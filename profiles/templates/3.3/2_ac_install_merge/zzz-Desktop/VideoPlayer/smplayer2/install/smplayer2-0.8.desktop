@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/smplayer2.desktop name=calculate-videoplayer.desktop mirror pkg(media-video/smplayer2)>=0.8
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

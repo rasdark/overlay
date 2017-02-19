@@ -1,0 +1,5 @@
+# Calculate format=samba path=/etc/calculate name=ini.env ac_install_unmerge==on&&pkg(media-video/vlc)==&&ini(desktop.videoplayer)==vlc
+
+[desktop]
+!videoplayer=
+videoplayer-removing=on

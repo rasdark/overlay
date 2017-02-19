@@ -1,0 +1,45 @@
+# Calculate name=folders.xml
+<menu id="folders-menu" label="Open">
+		<item label="Home">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.path)-#
+				</command>
+			</action>
+		</item>
+                <item label="Documents">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.documents)-#
+				</command>
+			</action>
+		</item>
+  		<item label="Pictures">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.pictures)-#
+				</command>
+			</action>
+		</item>
+  		<item label="Music">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.music)-#
+				</command>
+			</action>
+		</item>
+		<item label="Videos">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.videos)-#
+				</command>
+			</action>
+		</item>
+		<item label="Downloads">
+			<action name="Execute">
+				<command>
+					pcmanfm #-ini(resource.downloads)-#
+				</command>
+			</action>
+		</item>
+	</menu>

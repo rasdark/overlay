@@ -1,0 +1,6 @@
+# Calculate format=kde
+[Desktop Entry]
+Exec=gksu /usr/bin/zenmap %F
+!TryExec=
+!OnlyShowIn=
+

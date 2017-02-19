@@ -1,0 +1,17 @@
+# Calculate name=world format=world
+
+#?in(os_linux_pkglist, TOSS,COBRA)!=#
+app-admin/testdisk
+app-arch/p7zip
+app-editors/nano
+media-fonts/terminus-font
+sys-apps/ifplugd
+sys-apps/less
+sys-fs/ntfs3g
+sys-fs/reiserfsprogs
+sys-kernel/dracut
+sys-process/lsof
+virtual/linux-sources
+sys-apps/calculate-toolkit
+#in#
+

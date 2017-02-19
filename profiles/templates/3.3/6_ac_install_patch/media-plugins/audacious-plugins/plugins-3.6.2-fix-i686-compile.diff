@@ -1,0 +1,96 @@
+# Calculate format=diff os_arch_machine_gentoo==x86 merge(media-plugins/audacious-plugins)==3.6.2
+diff -Nuar audacious-plugins-3.6.2-orig/src/asx/Makefile audacious-plugins-3.6.2/src/asx/Makefile
+--- audacious-plugins-3.6.2-orig/src/asx/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/asx/Makefile	2015-08-17 17:59:36.466139646 +0000
+@@ -6,7 +6,7 @@
+ 
+ plugindir := ${plugindir}/${CONTAINER_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ 
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} -I../..
+diff -Nuar audacious-plugins-3.6.2-orig/src/asx3/Makefile audacious-plugins-3.6.2/src/asx3/Makefile
+--- audacious-plugins-3.6.2-orig/src/asx3/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/asx3/Makefile	2015-08-17 17:59:47.378138893 +0000
+@@ -7,7 +7,7 @@
+ 
+ plugindir := ${plugindir}/${CONTAINER_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ 
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} ${XML_CFLAGS} -I../..
+diff -Nuar audacious-plugins-3.6.2-orig/src/blur_scope/Makefile audacious-plugins-3.6.2/src/blur_scope/Makefile
+--- audacious-plugins-3.6.2-orig/src/blur_scope/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/blur_scope/Makefile	2015-08-17 17:59:15.974141060 +0000
+@@ -7,7 +7,7 @@
+ 
+ plugindir := ${plugindir}/${VISUALIZATION_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} ${GTK_CFLAGS} -I../..
+ LIBS += ${GTK_LIBS} -lm
+diff -Nuar audacious-plugins-3.6.2-orig/src/cairo-spectrum/Makefile audacious-plugins-3.6.2/src/cairo-spectrum/Makefile
+--- audacious-plugins-3.6.2-orig/src/cairo-spectrum/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/cairo-spectrum/Makefile	2015-08-17 17:59:27.737140248 +0000
+@@ -7,7 +7,7 @@
+ 
+ plugindir := ${plugindir}/${VISUALIZATION_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} -I../.. ${GTK_CFLAGS}
+ LIBS += -lm ${GTK_LIBS}
+diff -Nuar audacious-plugins-3.6.2-orig/src/gl-spectrum/Makefile audacious-plugins-3.6.2/src/gl-spectrum/Makefile
+--- audacious-plugins-3.6.2-orig/src/gl-spectrum/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/gl-spectrum/Makefile	2015-08-17 18:00:35.768245078 +0000
+@@ -7,7 +7,7 @@
+ 
+ plugindir := ${plugindir}/${VISUALIZATION_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} -I../.. ${GTK_CFLAGS}
+ LIBS += -lm ${GTK_LIBS} ${GL_LIBS}
+diff -Nuar audacious-plugins-3.6.2-orig/src/gl-spectrum-qt/Makefile audacious-plugins-3.6.2/src/gl-spectrum-qt/Makefile
+--- audacious-plugins-3.6.2-orig/src/gl-spectrum-qt/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/gl-spectrum-qt/Makefile	2015-08-17 18:00:45.721364158 +0000
+@@ -7,7 +7,7 @@
+ 
+ plugindir := ${plugindir}/${VISUALIZATION_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} -I../.. ${QTOPENGL_CFLAGS} ${GL_CFLAGS}
+ LIBS += -lm ${QTOPENGL_LIBS} ${GL_LIBS}
+diff -Nuar audacious-plugins-3.6.2-orig/src/pls/Makefile audacious-plugins-3.6.2/src/pls/Makefile
+--- audacious-plugins-3.6.2-orig/src/pls/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/pls/Makefile	2015-08-17 18:01:27.567361270 +0000
+@@ -6,6 +6,6 @@
+ 
+ plugindir := ${plugindir}/${CONTAINER_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} -I../..
+diff -Nuar audacious-plugins-3.6.2-orig/src/statusicon/Makefile audacious-plugins-3.6.2/src/statusicon/Makefile
+--- audacious-plugins-3.6.2-orig/src/statusicon/Makefile	2015-05-30 22:28:37.000000000 +0000
++++ audacious-plugins-3.6.2/src/statusicon/Makefile	2015-08-17 18:01:09.739362501 +0000
+@@ -7,7 +7,7 @@
+ 
+ plugindir := ${plugindir}/${GENERAL_PLUGIN_DIR}
+ 
+-LD = ${CXX}
++LD = ${CXX} -lc
+ CFLAGS += ${PLUGIN_CFLAGS}
+ CPPFLAGS += ${PLUGIN_CPPFLAGS} ${GTK_CFLAGS} -I../..
+ LIBS += ${GTK_LIBS} -laudgui

@@ -1,0 +1,20 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.browser, opera)-#
+
+[Added Associations]
+application/rss+xml=opera-developer.desktop;
+application/vnd.mozilla.xul+xml=opera-developer.desktop;
+application/x-font-ttx=opera-developer.desktop;
+application/xhtml+xml=opera-developer.desktop;
+application/xml=opera-developer.desktop;
+application/xml-external-parsed-entity=opera-developer.desktop;
+application/xsd=opera-developer.desktop;
+application/xslt+xml=opera-developer.desktop;
+application/x-ufraw=opera-developer.desktop;
+text/html=opera-developer.desktop;
+x-scheme-handler/http=opera-developer.desktop;
+x-scheme-handler/https=opera-developer.desktop
+;

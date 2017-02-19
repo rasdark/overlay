@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/palemoon-bin.desktop name=calculate-browser.desktop mirror pkg(www-client/palemoon-bin)>=24.0
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

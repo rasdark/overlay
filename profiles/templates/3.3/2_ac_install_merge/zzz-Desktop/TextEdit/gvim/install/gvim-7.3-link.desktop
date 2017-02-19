@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/gvim.desktop name=calculate-textedit.desktop mirror pkg(app-editors/gvim)>=7.3
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

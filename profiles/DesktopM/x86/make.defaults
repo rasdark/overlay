@@ -1,0 +1,4 @@
+PKGDIR="/var/calculate/remote/packages/COBRA/i686"
+
+CFLAGS="-Ofast -march=i686 -pipe"
+CXXFLAGS="${CFLAGS}"

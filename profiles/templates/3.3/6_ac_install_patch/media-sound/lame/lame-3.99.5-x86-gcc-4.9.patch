@@ -1,0 +1,28 @@
+# Calculate format=diff os_arch_machine!=x86_64&&pkg(sys-devel/gcc)>=4.9&&merge(media-sound/lame)>=3.99 
+--- configure.orig	2014-10-16 04:47:43.022826034 +0000
++++ configure	2014-10-16 04:46:28.318827293 +0000
+@@ -12680,6 +12680,15 @@
+ 
+ fi
+ 
++case $host_cpu in
++i686*)
++ check_xmmintrin=
++ ;;
++*)
++ check_xmmintrin="xmmintrin.h"
++ ;;
++esac
++
+ for ac_header in \
+ 		 errno.h \
+ 		 fcntl.h \
+@@ -12689,7 +12698,7 @@
+ 		 sys/soundcard.h \
+ 		 sys/time.h \
+ 		 unistd.h \
+-		 xmmintrin.h \
++		 $check_xmmintrin \
+ 		 linux/soundcard.h
+ do :
+   as_ac_Header=`$as_echo "ac_cv_header_$ac_header" | $as_tr_sh`

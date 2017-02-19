@@ -1,0 +1,7 @@
+# Calculate name=world format=world
+
+#?in(os_linux_pkglist, COBRA)!=#
+app-misc/xorg-meta
+x11-misc/lightdm-gtk-greeter
+#in#
+

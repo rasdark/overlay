@@ -1,0 +1,10 @@
+# Calculate os_locale_language==ru
+<SearchPlugin xmlns="http://www.mozilla.org/2006/browser/search/" xmlns:os="http://a9.com/-/spec/opensearch/1.1/">
+<os:ShortName>Yandex Slovari</os:ShortName>
+<os:Description>Type your word</os:Description>
+<os:InputEncoding>UTF-8</os:InputEncoding>
+<os:Image width="16" height="16">data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAsAAAAUwAAAF8AAABfAAAAXwAAAF8AAABfAAAAXwAAAF8AAABfAAAAXwAAADjBwcEAwcHBAMHBwQDBwcEAAAAAUbq6uurExMT/xMTE/8TExP/ExMT/xMTE/8TExP/ExMT/xMTE/8TExP9ubm6QAAAALcTExADExMQAxMTEAAAAAFrHx8f/x8fH/8fHx//Hx8f/x8fH/8fHx//Hx8f/x8fH/8fHx//Hx8f/vr6+7h4eHmQAAAAQx8fHAMfHxwAAAABXy8vL/8vLy/+UlM3/AADU/4+Pzv/Ly8v/g4PO/wwM0//Ly8v/y8vL/8vLy/+kpKS6AAAAM8vLywDLy8sAAAAAU9DQ0P/Q0ND/0NDQ/05O2f8dHd3/y8vQ/4eH1f8MDN7/0NDQ/9DQ0P/Q0ND/0NDQ/2VlZXsAAAAk0NDQAAAAAE/U1NT/1NTU/9TU1P/Fxdb/FBTq/3Bw3/+Jidz/DAzr/9TU1P/U1NT/1NTU/9TU1P/JycnkDw8PUwAAAAcAAABL2dnZ/9nZ2f/Z2dn/2dnZ/4WF5f8KCvb/ODjv/w0N9f/Z2dn/2dnZ/9nZ2f/Z2dn/2dnZ/6ioqKYAAAAqAAAASOLi4v/i4uL/4uLi/6io6v8LC/7/QkL2/zo69/8NDf3/4uLi/+Li4v/i4uL/4uLi/+Li4v/g4OD7AAAARgAAAETx8fH/8fHx//Hx8f81Ovz/bG/5//Hx8f+fovb/GB3+//Hx8f/x8fH/8fHx//Hx8f/x8fH/7+/v+wAAAEIAAABA9vb2//b29v/29vb/HSz//7K3+f/29vb/qK35/yUz/v/29vb/9vb2//b29v/29vb/9vb2/8jIyKMAAAAkAAAAPPn5+f/5+fn/+fn5/z5U/v+osvv/+fn5/6+4+/80TP//+fn5//n5+f/5+fn/+fn5//Dw8OMXFxdBAAAABgAAADj7+/v/+/v7//v7+/+Ro/3/UG7+/7/J/P+crf3/Q2P///v7+//7+/v/+/v7//v7+/+Tk5NnAAAAGfv7+wAAAAA1/f39//39/f/9/f3/9vj9/4yk/v9Td///QWn//05z///9/f3//f39//39/f/c3NysAAAAH/39/QD9/f0AAAAAMv7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/5+fnpPj4+PgAAAAn+/v4A/v7+AAAAACn39/fi////////////////////////////////////////////////tbW1cgAAABf///8A////AP///wAAAAAVAAAAKAAAAC4AAAAuAAAALgAAAC4AAAAuAAAALgAAAC4AAAAuAAAALgAAABv///8A////AP///wD///8AAA8AAAAHAAAAAwAAAAMAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAMAAAADAAAABwAAAA8AAA==</os:Image>
+<SearchForm>http://slovari.yandex.ru/</SearchForm>
+<os:Url type="text/html" method="GET" template="http://lingvo.yandex.ru/en?st_translate=on&amp;text={searchTerms}" resultDomain="lingvo.yandex.ru">
+</os:Url>
+</SearchPlugin>

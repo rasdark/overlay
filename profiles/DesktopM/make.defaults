@@ -1,0 +1,20 @@
+USE=""
+# Audio
+USE="${USE} cdda -gstreamer -pulseaudio alsa"
+# Network protocols
+USE="${USE} rdesktop"
+# System
+USE="${USE} -dconf networkmanager udisks -systemd modemmanager -libav -qt3support qt4 -qt5"
+# Window manager and specialities
+USE="${USE} -eds -gnome -kde infinality -wayland"
+#
+USE="${USE} natspec"
+#
+USE="${USE} -postgres -mysql"
+
+THEMES="CLDX"
+LIGHTDM_SESSION=openbox
+KERNELNAME="darkus"
+EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --ask --verbose --keep-going"
+ACCEPT_LICENSE="*"
+FEATURES="-getbinpkg buildpkg"

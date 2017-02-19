@@ -1,0 +1,23 @@
+# Calculate format=diff pkg(sys-kernel/calculate-sources)>=3.18&&merge(x11-drivers/nvidia-drivers)==343.36
+--- kernel/nv-drm.c    2014-12-02 02:26:02.000000000 +0300
++++ kernel/nv-drm.c    2014-12-11 23:24:12.704205187 +0300
+@@ -18,7 +18,7 @@
+ 
+ #include <drm/drmP.h>
+ 
+-#if defined(NV_DRM_DRM_GEM_H_PRESENT)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0)
+ #include <drm/drm_gem.h>
+ #endif
+ 
+@@ -127,6 +127,10 @@
+     .gem_prime_get_sg_table = nv_gem_prime_get_sg_table,
+     .gem_prime_vmap = nv_gem_prime_vmap,
+     .gem_prime_vunmap = nv_gem_prime_vunmap,
++    
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,18,0)
++    .set_busid = drm_pci_set_busid,
++#endif    
+ 
+     .name = "nvidia-drm",
+     .desc = "NVIDIA DRM driver",

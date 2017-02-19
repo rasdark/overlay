@@ -1,0 +1,5 @@
+# Calculate format=raw
+# KVIrc configuration file
+[Main]
+LocalKvircDirectory=#-ini(resource.path)-#/.config/kvirc
+SourcesDate=538052353

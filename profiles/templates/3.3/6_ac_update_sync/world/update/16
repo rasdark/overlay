@@ -1,0 +1,7 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<16
+
+#-ini(overlay-rasdark.world,16)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+!media-gfx/plymouth-themes-calculate
+#in#

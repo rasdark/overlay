@@ -1,0 +1,22 @@
+# Calculate format=diff pkg(sys-kernel/calculate-sources)>=3.19&&merge(x11-drivers/nvidia-drivers)>=346.22
+From 33aaea3164ff48b87a533dbba0314e45ed95ec50 Mon Sep 17 00:00:00 2001
+From: Rouven Rastetter <rouven.rastetter@firaweb.de>
+Date: Mon, 19 Jan 2015 21:31:01 +0100
+Subject: [PATCH] NV_FILE_INODE patch
+---
+kernel/nv-linux.h | 2 +-
+kernel/nv.c | 2 +-
+2 files changed, 2 insertions(+), 2 deletions(-)
+diff --git a/kernel/nv-linux.h b/kernel/nv-linux.h
+index f1bf6e9..ce330e9 100644
+--- a/kernel/nv-linux.h
++++ b/kernel/nv-linux.h
+@@ -2000,7 +2000,7 @@ extern NvU32 nv_assign_gpu_count;
+ #if defined(NV_FILE_HAS_INODE)
+ #define NV_FILE_INODE(file) (file)->f_inode
+ #else
+-#define NV_FILE_INODE(file) (file)->f_dentry->d_inode
++#define NV_FILE_INODE(file) (file)->f_path.dentry->d_inode
+ #endif
+ 
+ /* Stub out UVM in multi-RM builds */

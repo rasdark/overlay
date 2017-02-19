@@ -1,0 +1,19 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.browser, yandex-browser)-#
+
+[Added Associations]
+application/rss+xml=yandex-browser-beta.desktop;
+application/vnd.mozilla.xul+xml=yandex-browser-beta.desktop;
+application/x-font-ttx=yandex-browser-beta.desktop;
+application/xhtml+xml=yandex-browser-beta.desktop;
+application/xml=yandex-browser-beta.desktop;
+application/xml-external-parsed-entity=yandex-browser-beta.desktop;
+application/xsd=yandex-browser-beta.desktop;
+application/xslt+xml=yandex-browser-beta.desktop;
+application/x-ufraw=yandex-browser-beta.desktop;
+text/html=yandex-browser-beta.desktop;
+x-scheme-handler/http=yandex-browser-beta.desktop;
+x-scheme-handler/https=yandex-browser-beta.desktop;

@@ -1,0 +1,12 @@
+# KVIrc configuration file
+[KVIrc]
+Bracket=255,0,0,255
+Background=0,0,0,255
+Function=255,255,0,255
+Punctuation=180,180,0,255
+Variable=200,200,200,255
+Comment=0,120,0,255
+Keyword=120,120,150,255
+Find=255,0,0,255
+NormalText=100,255,0,255
+Font=Monospace,8,5,50

@@ -1,0 +1,1 @@
+# Calculate append=skip pkg(app-cdr/pburn)!=&&ini(desktop.imageburn)==||pkg(app-cdr/pburn)!=&&ini(desktop.imageburn)==pburn

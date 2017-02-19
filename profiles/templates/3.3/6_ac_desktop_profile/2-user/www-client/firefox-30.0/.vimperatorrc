@@ -1,0 +1,30 @@
+# Calculate comment=" exists(~/.vimperatorrc)==
+"3.8.2 (created: 2014/02/13 23:52:43)
+
+set gui=none
+set visualbell
+set autocomplete
+set wildmode=list:longest,full
+
+javascript <<EOF
+(function(){
+	var feedPanel = document.createElement("statusbarpanel");
+	feedPanel.setAttribute("id", "feed-panel-clone");
+	feedPanel.appendChild(document.getElementById("feed-button"));
+	feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
+	document.getElementById("status-bar")
+	.insertBefore(feedPanel, document.getElementById("security-button"));
+})();
+EOF
+js <<EOF
+	toggle_element = function (name) {
+	document.getElementById(name).collapsed ^= 1;
+}
+EOF
+
+"map <silent> <F8> :js toggle_element('TabsToolbar')<CR>
+"map <silent> <F9> :js toggle_element('nav-bar')<CR>
+
+source! /home/guest/.vimperatorrc.local
+
+" vim: set ft=vimperator:

@@ -1,0 +1,6 @@
+# Calculate format=compiz protected ini(desktop.mail-removing)==on merge=mail-client/thunderbird,mail-client/thunderbird-bin
+
+#-ini(desktop.mail-removing,)-#
+
+[Added Associations]
+!x-scheme-handler/mailto=

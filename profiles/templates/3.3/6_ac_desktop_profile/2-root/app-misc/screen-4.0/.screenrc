@@ -1,0 +1,13 @@
+backtick 1 1 1 awk '/^MemTotal:/{mt=$2}/^MemFree:/{mf+=$2}/^Buffers:/{mf+=$2}/^Cached:/{mf+=$2}/SwapTotal:/{st=$2}/^SwapFree:/{sf=$2}END{printf("Mem:%i/%i", (mt-mf)/1024, mt/1024);su=st-sf;if(su)printf("|Swp:%i/%i", su/1024, st/1024)}' /proc/meminfo
+
+backtick 2 1 1 sh -c 'for f in /sys/class/power_supply/BAT*/{energy_{full{,_design},now},status}; do echo -e "$(basename $f): $(cat $f)"; done | awk "BEGIN{max=0;now=0;status=\"+\"}/^energy_full:/{max+=\$2}/^energy_now:/{now+=\$2}/^status: Discharging\$/{status=\"-\"}END{result=100.*now/max;if(result>10)printf(\"%s%2.1f%\n\",status,result);else printf(\"%s%i/%i\n\",status,now/1000,max/1000)}"'
+
+
+shelltitle '$|sh'
+shell -$SHELL
+vbell off
+startup_message off
+defscrollback 10000
+caption always "%{Gk}%w%=%{Rk}[%{W}%h%{R}]"
+hardstatus alwayslastline "%{+b rW}$USER@%H%{dd} %= %{kr}%2`%{g}|%{dd}%l|%1`%{g}|%Y-%m-%d%{c}|%c:%s"
+term xterm-256color

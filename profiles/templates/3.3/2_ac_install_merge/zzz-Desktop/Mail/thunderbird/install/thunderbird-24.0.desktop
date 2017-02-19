@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/thunderbird.desktop name=calculate-mail.desktop mirror pkg(mail-client/thunderbird)>=24.0
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

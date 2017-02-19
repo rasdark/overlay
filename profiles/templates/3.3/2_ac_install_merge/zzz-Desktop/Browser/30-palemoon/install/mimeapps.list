@@ -1,0 +1,19 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.browser, palemoon)-#
+
+[Added Associations]
+application/rss+xml=palemoon.desktop;
+application/vnd.mozilla.xul+xml=palemoon.desktop;
+application/x-font-ttx=palemoon.desktop;
+application/xhtml+xml=palemoon.desktop;
+application/xml=palemoon.desktop;
+application/xml-external-parsed-entity=palemoon.desktop;
+application/xsd=palemoon.desktop;
+application/xslt+xml=palemoon.desktop;
+application/x-ufraw=palemoon.desktop;
+text/html=palemoon.desktop;
+x-scheme-handler/http=palemoon.desktop;
+x-scheme-handler/https=palemoon.desktop;

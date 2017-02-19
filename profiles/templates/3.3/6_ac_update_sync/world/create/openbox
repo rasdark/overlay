@@ -1,0 +1,14 @@
+# Calculate name=world format=world in(os_linux_pkglist,COBRA)!=
+
+x11-misc/gmrun
+x11-misc/light-locker
+x11-misc/obconf
+x11-misc/obmenugen-bin
+x11-misc/obshutdown
+x11-misc/parcellite
+x11-misc/pcmanfm
+x11-misc/tint2
+x11-misc/gxkb
+x11-misc/screengrab
+x11-terms/rxvt-unicode
+x11-wm/openbox

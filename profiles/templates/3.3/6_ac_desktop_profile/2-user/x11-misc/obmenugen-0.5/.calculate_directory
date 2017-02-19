@@ -1,0 +1,1 @@
+# Calculate append=skip merge(x11-misc/obmenugen-bin)!=&&ini(update.obmenugen)!=off&&ini(personal.obmenugen)<0.5&&pkg(x11-misc/obmenugen-bin)>=0.5||merge(x11-misc/obmenugen-bin)!=&&ini(update.obmenugen)!=off&&ini(personal.obmenugen)==&&pkg(x11-misc/obmenugen-bin)>=0.5

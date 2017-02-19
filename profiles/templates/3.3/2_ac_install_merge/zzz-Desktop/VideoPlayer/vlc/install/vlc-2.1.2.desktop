@@ -1,0 +1,6 @@
+# Calculate format=kde link=/usr/share/applications/vlc.desktop name=calculate-videoplayer.desktop mirror pkg(media-video/vlc)>=2.1.2
+
+# Hide icon
+[Desktop Entry]
+NoDisplay=true
+!MimeType=

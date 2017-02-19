@@ -1,0 +1,19 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.browser, dwb)-#
+
+[Added Associations]
+application/rss+xml=dwb.desktop;
+application/vnd.mozilla.xul+xml=dwb.desktop;
+application/x-font-ttx=dwb.desktop;
+application/xhtml+xml=dwb.desktop;
+application/xml=dwb.desktop;
+application/xml-external-parsed-entity=dwb.desktop;
+application/xsd=dwb.desktop;
+application/xslt+xml=dwb.desktop;
+application/x-ufraw=dwb.desktop;
+text/html=dwb.desktop;
+x-scheme-handler/http=dwb.desktop;
+x-scheme-handler/https=dwb.desktop;

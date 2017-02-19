@@ -1,0 +1,47 @@
+# Calculate name=world format=world
+#?in(os_linux_pkglist, TOSS,COBRA)!=#
+app-admin/hddtemp
+app-admin/logrotate
+app-admin/pwgen
+app-admin/syslog-ng
+app-cdr/cdrtools
+app-cdr/dvd+rw-tools
+app-misc/mc
+app-misc/tmux
+dev-util/strace
+media-gfx/fbgrab
+net-misc/dhcp
+sys-apps/ethtool
+sys-apps/hdparm
+sys-apps/inxi
+sys-apps/lm_sensors
+sys-apps/smartmontools
+sys-apps/usbutils
+sys-auth/pam_update
+sys-fs/cryptsetup
+sys-fs/dosfstools
+sys-fs/extundelete
+sys-fs/mtools
+sys-power/acpi
+sys-power/acpid
+sys-power/cpupower
+sys-power/pm-utils
+sys-power/powernowd
+sys-power/powertop
+sys-process/atop
+sys-process/htop
+sys-process/iotop
+sys-process/lsof
+sys-process/vixie-cron
+x11-misc/wmctrl
+#in#
+
+#?in(os_linux_pkglist, COBRA)!=#
+app-arch/rar
+app-arch/unrar
+app-admin/keepassx
+app-crypt/chntpw
+sys-block/gparted
+app-forensics/scalpel
+x11-libs/gksu
+#in#

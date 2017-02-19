@@ -1,0 +1,5 @@
+# Calculate format=kde path=/usr/share/applications pkg(app-editors/gvim)>=7.3
+
+# move to Office
+[Desktop Entry]
+Categories=Office;

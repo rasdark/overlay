@@ -1,0 +1,15 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.videoplayer, vlc)-#
+
+[Added Associations]
+video/mp4=vlc.desktop;
+video/mpeg=vlc.desktop;
+video/quicktime=vlc.desktop;
+video/quicktime=vlc.desktop;
+video/vnd.mpegurl=vlc.desktop;
+video/x-m4v=vlc.desktop;
+video/x-msvideo=vlc.desktop;
+video/x-sgi-movie=vlc.desktop;
