@@ -1,0 +1,151 @@
+# Calculate format=diff
+diff -C 2 '--exclude=scanner.h' ../orig/minidlna-1.1.4/minidlna.c ./minidlna.c
+*** ../orig/minidlna-1.1.4/minidlna.c	2014-08-26 23:09:22.000000000 +0200
+--- ./minidlna.c	2014-11-25 01:31:09.771001036 +0100
+***************
+*** 672,675 ****
+--- 672,678 ----
+  				CLEARFLAG(INOTIFY_MASK);
+  			break;
++ 		case DISABLE_EXTENDED_DIRECTORIES:
++ 			disable_extended_directories = 1;
++ 			break;
+  		case ENABLE_TIVO:
+  			if (strtobool(ary_options[i].value))
+diff -C 2 '--exclude=scanner.h' ../orig/minidlna-1.1.4/options.c ./options.c
+*** ../orig/minidlna-1.1.4/options.c	2014-08-26 23:09:22.000000000 +0200
+--- ./options.c	2014-11-25 01:35:12.287789652 +0100
+***************
+*** 59,62 ****
+--- 59,63 ----
+  	{ UPNPLOGLEVEL, "log_level" },
+  	{ UPNPMINISSDPDSOCKET, "minissdpdsocket"},
++ 	{ DISABLE_EXTENDED_DIRECTORIES, "disable_extended_directories" },
+  	{ ENABLE_TIVO, "enable_tivo" },
+  	{ ENABLE_DLNA_STRICT, "strict_dlna" },
+diff -C 2 '--exclude=scanner.h' ../orig/minidlna-1.1.4/options.h ./options.h
+*** ../orig/minidlna-1.1.4/options.h	2014-08-26 23:09:22.000000000 +0200
+--- ./options.h	2014-11-25 01:32:33.935274920 +0100
+***************
+*** 52,55 ****
+--- 52,56 ----
+  	UPNPLOGLEVEL,			/* logging verbosity */
+  	UPNPMINISSDPDSOCKET,		/* minissdpdsocket */
++ 	DISABLE_EXTENDED_DIRECTORIES,	/* disables directories like All Music, ... */
+  	ENABLE_TIVO,			/* enable support for streaming images and music to TiVo */
+  	ENABLE_DLNA_STRICT,		/* strictly adhere to DLNA specs */
+diff -C 2 '--exclude=scanner.h' ../orig/minidlna-1.1.4/scanner.c ./scanner.c
+*** ../orig/minidlna-1.1.4/scanner.c	2014-08-26 23:09:22.000000000 +0200
+--- ./scanner.c	2014-11-25 01:36:58.704135152 +0100
+***************
+*** 461,465 ****
+  		if( is_album_art(name) )
+  			return -1;
+! 		strcpy(base, IMAGE_DIR_ID);
+  		strcpy(class, "item.imageItem.photo");
+  		detailID = GetImageMetadata(path, name);
+--- 461,472 ----
+  		if( is_album_art(name) )
+  			return -1;
+! 		if(disable_extended_directories == 1)
+! 		{
+! 			strcpy(base, IMAGE_ID);
+! 		}
+! 		else
+! 		{
+! 			strcpy(base, IMAGE_DIR_ID);
+! 		}
+  		strcpy(class, "item.imageItem.photo");
+  		detailID = GetImageMetadata(path, name);
+***************
+*** 468,472 ****
+  	{
+   		orig_name = strdup(name);
+! 		strcpy(base, VIDEO_DIR_ID);
+  		strcpy(class, "item.videoItem");
+  		detailID = GetVideoMetadata(path, name);
+--- 475,486 ----
+  	{
+   		orig_name = strdup(name);
+! 		if(disable_extended_directories == 1)
+! 		{
+! 			strcpy(base, VIDEO_ID);
+! 		}
+! 		else
+! 		{
+! 			strcpy(base, VIDEO_DIR_ID);
+! 		}
+  		strcpy(class, "item.videoItem");
+  		detailID = GetVideoMetadata(path, name);
+***************
+*** 481,485 ****
+  	if( !detailID && (types & TYPE_AUDIO) && is_audio(name) )
+  	{
+! 		strcpy(base, MUSIC_DIR_ID);
+  		strcpy(class, "item.audioItem.musicTrack");
+  		detailID = GetAudioMetadata(path, name);
+--- 495,506 ----
+  	if( !detailID && (types & TYPE_AUDIO) && is_audio(name) )
+  	{
+! 		if(disable_extended_directories == 1)
+! 		{
+! 			strcpy(base, MUSIC_ID);
+! 		}
+! 		else
+! 		{
+! 			strcpy(base, MUSIC_DIR_ID);
+! 		}
+  		strcpy(class, "item.audioItem.musicTrack");
+  		detailID = GetAudioMetadata(path, name);
+***************
+*** 519,523 ****
+  	             base, parentID, object, base, parentID, objectID, class, detailID, name);
+  
+! 	insert_containers(name, path, objectID, class, detailID);
+  	return 0;
+  }
+--- 540,547 ----
+  	             base, parentID, object, base, parentID, objectID, class, detailID, name);
+  
+! 	if(disable_extended_directories != 1)
+! 	{
+! 		insert_containers(name, path, objectID, class, detailID);
+! 	}
+  	return 0;
+  }
+***************
+*** 575,578 ****
+--- 599,609 ----
+  	for( i=0; containers[i]; i=i+3 )
+  	{
++ 		if(disable_extended_directories == 1)
++ 		{
++ 			if(strcmp(containers[i+1], MUSIC_ID) == 0 || strcmp(containers[i+1], VIDEO_ID) == 0 || strcmp(containers[i+1], IMAGE_ID) == 0)
++ 			{
++ 				continue;
++ 			}
++ 		}
+  		ret = sql_exec(db, "INSERT into OBJECTS (OBJECT_ID, PARENT_ID, DETAIL_ID, CLASS, NAME)"
+  		                   " values "
+diff -C 2 '--exclude=scanner.h' ../orig/minidlna-1.1.4/upnpglobalvars.c ./upnpglobalvars.c
+*** ../orig/minidlna-1.1.4/upnpglobalvars.c	2014-08-26 23:09:22.000000000 +0200
+--- ./upnpglobalvars.c	2014-11-25 00:51:41.994247293 +0100
+***************
+*** 88,91 ****
+--- 88,92 ----
+  char log_path[PATH_MAX] = {'\0'};
+  struct media_dir_s * media_dirs = NULL;
++ short int disable_extended_directories = 0;
+  struct album_art_name_s * album_art_names = NULL;
+  short int scanning = 0;
+diff -C 2 '--exclude=scanner.h' ../orig/minidlna-1.1.4/upnpglobalvars.h ./upnpglobalvars.h
+*** ../orig/minidlna-1.1.4/upnpglobalvars.h	2014-08-26 23:09:22.000000000 +0200
+--- ./upnpglobalvars.h	2014-11-25 00:51:20.706171879 +0100
+***************
+*** 231,234 ****
+--- 231,235 ----
+  extern char log_path[];
+  extern struct media_dir_s *media_dirs;
++ short int disable_extended_directories;
+  extern struct album_art_name_s *album_art_names;
+  extern short int scanning;
