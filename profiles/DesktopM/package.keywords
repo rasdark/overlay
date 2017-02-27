@@ -29,7 +29,7 @@
 ~app-text/xdvik-22.87.03 x86 amd64
 =dev-java/oracle-jre-bin-1.8.0.60* x86 amd64
 =dev-lang/python-2.7* x86 amd64
-=dev-lang/python-3.4* x86 amd64
+=dev-lang/python-3.5* x86 amd64
 ~dev-lang/tcl-8.6.6 x86 amd64
 ~dev-lang/tk-8.6.6 x86 amd64
 ~dev-libs/cloog-0.18.4 x86 amd64
