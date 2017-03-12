@@ -31,6 +31,7 @@ dev-qt/qtgui accessibility gtkstyle
 dev-qt/qtsql -mysql sqlite
 dev-util/geany-plugins -webkit ctags git gpg multiterm python scope
 dev-vcs/git -gtk
+games-strategy/freeciv aimodules modpack sqlite
 gnome-extra/nm-applet bluetooth
 mail-client/claws-mail pdf rss smime webkit xface -libindicate
 mail-client/thunderbird custom-cflags custom-optimization minimal system-cairo system-icu system-jpeg system-sqlite
@@ -72,6 +73,7 @@ net-libs/libpcap netlink
 net-libs/rb_libtorrent python
 net-libs/webkit-gtk -introspection -geoloc libsecret
 net-misc/aria2 sqlite ssh tcmalloc
+net-misc/iputils -arping
 net-misc/openvpn pkcs11 examples
 net-misc/remmina -avahi freerdp gnome-keyring ssh vte -webkit spice
 net-p2p/deluge geoip setproctitle webinterface sound
