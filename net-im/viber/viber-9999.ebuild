@@ -3,18 +3,21 @@
 # $Header: $
 
 EAPI="5"
-inherit eutils
+inherit eutils unpacker
 
 DESCRIPTION="Free calls, text and picture sharing with anyone, anywhere!"
 HOMEPAGE="http://www.viber.com"
-SRC_URI="http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb"
+SRC_URI="
+        amd64? ( http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb -> ${P}.deb )
+"
+
 
 SLOT="0"
 KEYWORDS=""
 IUSE="pulseaudio +apulse"
 REQUIRED_USE="apulse? ( !pulseaudio )"
 
-QA_PREBUILT=opt/${PN}/${PN}
+QA_PREBUILT="*"
 
 RESTRICT="mirror bindist strip"
 RDEPEND="
@@ -25,8 +28,7 @@ RDEPEND="
 S="${WORKDIR}"
 
 src_unpack() {
-	default_src_unpack
-	unpack ./data.tar.xz
+    unpack_deb ${A}
 }
 
 src_install(){
