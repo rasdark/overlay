@@ -179,7 +179,7 @@
 ~x11-misc/obshutdown-9999 x86 amd64
 ~x11-misc/pcmanfm-1.2.5 x86 amd64
 ~x11-misc/screengrab-1.2.1-r1 x86 amd64
-~x11-misc/tint2-0.12.12 x86 amd64
+~x11-misc/tint2-0.13.1 x86 amd64
 ~x11-plugins/pidgin-gpg-0.9.3 x86 amd64
 ~x11-plugins/pidgin-toobars-1.14 x86 amd64
 ~x11-terms/rxvt-unicode-9.22 x86 amd64
