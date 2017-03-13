@@ -35,8 +35,6 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${PN}-v${PV}"
 
-PATCHES=( "${FILESDIR}/${PN}-update-icon-cache.patch" )
-
 src_unpack() {
         default
         mv "${PN}-v${PV}-"* "${PN}-v${PV}"
