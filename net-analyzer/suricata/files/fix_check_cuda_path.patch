@@ -1,0 +1,21 @@
+diff -Nuar suricata-3.2.1-old/configure.ac suricata-3.2.1/configure.ac
+--- suricata-3.2.1-old/configure.ac	2017-02-15 10:54:17.000000000 +0300
++++ suricata-3.2.1/configure.ac	2017-03-14 07:24:24.219124103 +0300
+@@ -1337,7 +1337,7 @@
+         if test "$with_cuda_includes" != "no"; then
+             CPPFLAGS="${CPPFLAGS} -I${with_cuda_includes}"
+         else
+-            CPPFLAGS="${CPPFLAGS} -I/usr/local/cuda/include"
++            CPPFLAGS="${CPPFLAGS} -I/opt/cuda/include"
+         fi
+ 
+         if test "$with_cuda_libraries" != "no"; then
+@@ -1347,7 +1347,7 @@
+         if test "$with_cuda_nvcc" != "no"; then
+             NVCC_DIR="${with_cuda_nvcc}"
+         else
+-            NVCC_DIR="/usr/local/cuda/bin"
++            NVCC_DIR="/opt/cuda/bin"
+         fi
+ 
+         AC_CHECK_HEADER(cuda.h,,[AC_ERROR(cuda.h not found ...)])
