@@ -109,6 +109,7 @@ src_configure() {
 		O+=" -msse2 -mfpmath=sse"
 		#echo  "### Optimize: $O"
 		echo "ac_add_options --enable-optimize=\"${O}\"" >> "${S}/.mozconfig"
+		echo "ac_add_options --disable-elf-hack" >> "${S}/.mozconfig"
 	else
 		mozconfig_disable optimize
 	fi
