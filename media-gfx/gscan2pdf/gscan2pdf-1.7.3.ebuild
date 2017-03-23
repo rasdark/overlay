@@ -1,84 +1,61 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
-EAPI="5"
-inherit perl-app
+EAPI=6
 
-DESCRIPTION="GUI to produce PDF or DjVu files from scanned documents"
+inherit eutils perl-module
+
+DESCRIPTION="Scan documents, perform OCR, produce PDFs and DjVus"
 HOMEPAGE="http://gscan2pdf.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
-# https://bugs.gentoo.org/show_bug.cgi?id=254704
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
 
-# test only: dev-perl/Test-Perl-Critic
-# >=virtual/perl-version-0.990.800 due to #505524
-DEPEND="sys-devel/gettext"
+# OCR tests fail with tesseract[opencl], not fixed by addpredict
+# and others on Wayland and the console
+RESTRICT="test"
 
-# app-text/poppler for the pdfunite binary
-RDEPEND="app-text/poppler
-	dev-lang/perl[ithreads]
-	>=dev-perl/Config-General-2.40
-        dev-perl/Date-Calc
+RDEPEND="
+	dev-perl/Config-General
+	dev-perl/Date-Calc
 	dev-perl/Data-UUID
 	dev-perl/Filesys-Df
-	>=dev-perl/glib-perl-1.100-r1
+	dev-perl/glib-perl
 	dev-perl/Goo-Canvas
+	dev-perl/Gtk2-Ex-PodViewer
 	dev-perl/Gtk2-Ex-Simple-List
 	dev-perl/Gtk2-ImageView
-	>=dev-perl/gtk2-perl-1.043.1
+	dev-perl/Gtk2
 	dev-perl/HTML-Parser
+	dev-perl/Locale-gettext
 	dev-perl/List-MoreUtils
-	>=dev-perl/Locale-gettext-1.50
 	dev-perl/Log-Log4perl
 	dev-perl/PDF-API2
 	dev-perl/Proc-ProcessTable
-	dev-perl/Readonly-XS
+	dev-perl/Readonly
 	dev-perl/Sane
 	dev-perl/Set-IntSpan
 	dev-perl/Try-Tiny
 	virtual/perl-Archive-Tar
+	virtual/perl-Carp
+	virtual/perl-Data-Dumper
 	virtual/perl-File-Temp
-	virtual/perl-JSON-PP
-	virtual/perl-Storable
-	virtual/perl-Text-Balanced
-	>=virtual/perl-version-0.990.200-r1
-	media-gfx/imagemagick[perl]
+	virtual/perl-Getopt-Long
+	virtual/perl-threads
+	virtual/perl-threads-shared
+	media-gfx/gtkimageview
+	media-gfx/imagemagick[png,tiff,perl]
 	media-gfx/sane-backends
-	media-libs/tiff:0"
+	media-libs/tiff"
 
-src_install() {
-	perl-module_src_install
-	dodoc History
-}
-
-my_optfeature() {
-	local desc=$1
-	shift
-	while (( $# )); do
-		if has_version "$1"; then
-			elog "  [I] $1 - ${desc}"
-		else
-			elog "  [ ] $1 - ${desc}"
-		fi
-		shift
-	done
-}
+mydoc="History"
 
 pkg_postinst() {
-	elog "Optional dependencies:"
-	my_optfeature "for OCR support" \
-		app-text/gocr \
-		app-text/tesseract \
-		app-text/cuneiform
-	elog "  [-] OCRopus for OCR support (not in Portage)"
-	my_optfeature "to post-process scans with unpaper" app-text/unpaper
-	my_optfeature "for sending to mail" x11-misc/xdg-utils
-	my_optfeature "to scan via ADF" media-gfx/sane-frontends
-	my_optfeature "to convert/scan to DJVU" app-text/djvu
-	my_optfeature "for displaying help" dev-perl/Gtk2-Ex-PodViewer
+	optfeature "DjVu file support" "app-text/djvu[tiff] media-gfx/imagemagick[djvu]"
+	optfeature "Optical Character Recognition" app-text/tesseract[osd,tiff]
+	optfeature "scan post-processing" app-text/unpaper
+	optfeature "automatic document feeder support" media-gfx/sane-frontends
+	optfeature "sending PDFs as email attachments" x11-misc/xdg-utils
 }
