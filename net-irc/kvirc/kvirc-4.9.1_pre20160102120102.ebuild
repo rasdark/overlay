@@ -3,9 +3,9 @@
 # $Id$
 
 EAPI="5"
-PYTHON_DEPEND="python? 2"
+PYTHON_COMPAT=(python2_7)
 
-inherit cmake-utils flag-o-matic multilib python
+inherit cmake-utils flag-o-matic multilib python-single-r1
 
 HASH="298f00afa5d5a65aa39f7036d2c925ce57a95e5a"
 DESCRIPTION="Advanced IRC Client"
@@ -42,12 +42,12 @@ RDEPEND="${RDEPEND}
 	gsm? ( media-sound/gsm )"
 REQUIRED_USE="audiofile? ( oss ) theora? ( dcc_video )"
 
-DOCS="ChangeLog doc/FAQ"
+DOCS=(ChangeLog doc/FAQ)
+
 
 pkg_setup() {
 	if use python; then
-		python_set_active_version 2
-		python_pkg_setup
+		python-single-r1_pkg_setup
 	fi
 }
 
