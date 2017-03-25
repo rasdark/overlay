@@ -23,8 +23,8 @@
 ~app-shells/zsh-completions-0.12.0-r2 x86 amd64
 ~app-text/dvipsk-5.996_p20160523 x86 amd64
 ~app-text/libwps-0.4.1 x86 amd64
-~app-text/qpdfview-0.4.15 amd64 x86
 ~app-text/ps2pkm-1.8_p20160523 x86 amd64
+~app-text/qpdfview-0.4.15 amd64 x86
 ~app-text/teckit-2.5.6 x86 amd64
 ~app-text/texlive-2016 x86 amd64
 ~app-text/texlive-core-2016-r2 x86 amd64
@@ -41,11 +41,11 @@
 ~dev-python/configparser-3.5.0 amd64
 ~dev-python/entrypoints-0.2.2 x86 amd64
 ~dev-python/functools32-3.2.3 x86 amd64
-~dev-python/isort-4.2.5 x86 amd64
 ~dev-python/ipykernel-4.5.2 x86 amd64
 ~dev-python/ipyparallel-6.0.2 x86 amd64
 ~dev-python/ipython-5.3.0 x86 amd64
 ~dev-python/ipython_genutils-0.1.0 x86 amd64
+~dev-python/isort-4.2.5 x86 amd64
 ~dev-python/jedi-0.10.0 x86 amd64
 ~dev-python/jsonschema-2.5.1-r2 x86 amd64
 ~dev-python/jupyter_client-4.4.0 x86 amd64
@@ -135,15 +135,14 @@
 ~net-dialup/ppp-2.4.7-r3 x86 amd64
 ~net-dns/bind-tools-9.11.0_p3 x86 amd64
 ~net-irc/hexchat-2.12.4-r2 x86 amd64
-~net-libs/rb_libtorrent-1.0.11 x86 amd64
+~net-libs/libtorrent-rasterbar-1.0.11 x86 amd64
 ~net-misc/freerdp-2.0.0_pre20161219 x86 amd64
 ~net-misc/networkmanager-1.4.4-r1 x86 amd64
 ~net-misc/remmina-1.2.0_rc18 x86 amd64
-~net-misc/remmina-1.2.0_rc18 x86 amd64
 ~net-misc/yandex-disk-0.1.5.978_p1 x86 amd64
 ~net-misc/youtube-dl-2017.03.10 x86 amd64
-~net-wireless/spectools-2016.01.1 x86 amd64
 ~net-wireless/reaver-1.4-r3 x86 amd64
+~net-wireless/spectools-2016.01.1 x86 amd64
 ~net-wireless/wpa_supplicant-2.6-r1 x86 amd64
 ~sci-calculators/speedcrunch-0.11-r2 x86 amd64
 ~sys-apps/ethtool-4.8 x86 amd64
@@ -157,7 +156,7 @@
 ~sys-fs/f2fs-tools-1.7.0-r1 x86 amd64
 ~sys-fs/ntfs3g-2016.2.22-r2 x86 amd64
 ~sys-fs/reiser4progs-1.1.0 x86 amd64
-~sys-kernel/calculate-sources-4.10.2 x86 amd64
+~sys-kernel/calculate-sources-4.10.5 x86 amd64
 ~sys-kernel/linux-firmware-20170113 x86 amd64
 ~sys-power/cpupower-4.9.0 x86 amd64
 ~virtual/jdk-1.8.0-r3 x86 amd64
