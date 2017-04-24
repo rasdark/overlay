@@ -116,4 +116,5 @@ xfce-extra/xfce4-taskmanager gksu
 net-libs/webkit-gtk -geolocation -webgl
 dev-java/oracle-jdk-bin nsplugin
 media-libs/opus float-approx
-media-libs/mesa -llvm
+media-libs/mesa -llvm -vulkan
+net-im/pidgin -gadu

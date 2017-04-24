@@ -1,1 +1,2 @@
 >net-irc/kvirc-4.9.2
+>=sys-devel/gcc-5.0
