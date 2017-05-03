@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/calculate-sources)<=3.18,3.20&&merge(x11-drivers/nvidia-drivers)>=346.22
+# Calculate format=diff pkg(sys-kernel/calculate-sources)=>3.18,3.20&&merge(x11-drivers/nvidia-drivers)>=346.22
 --- kernel/nv-drm.c    2014-12-02 02:26:02.000000000 +0300
 +++ kernel/nv-drm.c    2014-12-11 23:24:12.704205187 +0300
 @@ -18,7 +18,7 @@

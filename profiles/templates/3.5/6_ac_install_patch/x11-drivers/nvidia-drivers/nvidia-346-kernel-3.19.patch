@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/calculate-sources)<=3.19,3.20&&merge(x11-drivers/nvidia-drivers)>=346.22
+# Calculate format=diff pkg(sys-kernel/calculate-sources)=>3.19,3.20&&merge(x11-drivers/nvidia-drivers)>=346.22
 From 33aaea3164ff48b87a533dbba0314e45ed95ec50 Mon Sep 17 00:00:00 2001
 From: Rouven Rastetter <rouven.rastetter@firaweb.de>
 Date: Mon, 19 Jan 2015 21:31:01 +0100

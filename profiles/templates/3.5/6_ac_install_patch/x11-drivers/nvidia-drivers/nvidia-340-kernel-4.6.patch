@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/calculate-sources)<=4.6,4.7&&merge(x11-drivers/nvidia-drivers)<=340.0,341
+# Calculate format=diff pkg(sys-kernel/calculate-sources)=>4.6,4.7&&merge(x11-drivers/nvidia-drivers)=>340.0,341
 diff -Nuar nvidia-drivers-340.96-r5.old/kernel/os-mlock.c nvidia-drivers-340.96-r5/kernel/os-mlock.c
 --- nvidia-drivers-340.96-r5.old/kernel/os-mlock.c      2015-11-09 08:44:53.000000000 +0300
 +++ nvidia-drivers-340.96-r5/kernel/os-mlock.c  2016-08-12 14:27:21.113946450 +0300
