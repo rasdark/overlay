@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/calculate-sources)<=3.18,3.19&&merge(x11-drivers/nvidia-drivers)<=340,341
+# Calculate format=diff pkg(sys-kernel/calculate-sources)=>3.18,3.19&&merge(x11-drivers/nvidia-drivers)=>340,341
 --- a/kernel/nv-drm.c 2014-11-08 00:57:53.000000000 +0100
 +++ b/kernel/nv-drm.c 2014-11-13 21:03:37.589650873 +0100
 @@ -128,6 +128,10 @@ static struct drm_driver nv_drm_driver =

@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/calculate-sources)<=4.10,4.11&&merge(x11-drivers/nvidia-drivers)>=378.13
+# Calculate format=diff pkg(sys-kernel/calculate-sources)=>4.10,4.11&&merge(x11-drivers/nvidia-drivers)>=378.13
 diff -ur NVIDIA-Linux-x86_64-378.13/kernel/common/inc/nv-mm.h NVIDIA-Linux-x86_64-378.13.patched/kernel/common/inc/nv-mm.h
 --- NVIDIA-Linux-x86_64-378.13/kernel/common/inc/nv-mm.h	2017-02-08 04:58:34.000000000 +0100
 +++ NVIDIA-Linux-x86_64-378.13.patched/kernel/common/inc/nv-mm.h	2017-02-23 18:57:34.655592444 +0100
