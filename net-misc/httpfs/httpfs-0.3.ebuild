@@ -14,6 +14,6 @@ DEPEND="
 	app-editors/vim
 	"
 RDEPEND="${DEPEND}"
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/${P}"
 
 
