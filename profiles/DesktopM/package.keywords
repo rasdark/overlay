@@ -120,6 +120,7 @@
 ~media-gfx/imagemagick-6.9.7.9 x86 amd64
 ~media-gfx/viewnior-1.6 x86 amd64
 ~media-libs/fontconfig-ultimate-2015.08.01 x86 amd64
+~media-libs/mesa-17.1.0 x86 amd64
 ~media-libs/libass-0.12.3 x86 amd64
 ~media-libs/opusfile-0.8 x86 amd64
 ~media-libs/x265-1.7 x86 amd64
@@ -166,6 +167,7 @@
 ~www-plugins/mozplugger-2.1.6 amd64 x86
 ~x11-libs/gtk+-3.20.9 x86 amd64
 ~x11-libs/libfm-1.2.5 x86 amd64
+~x11-libs/libdrm-2.4.80 x86 amd64
 ~x11-libs/libfm-extra-1.2.5 x86 amd64
 ~x11-misc/gsimplecal-2.1 x86 amd64
 ~x11-misc/gxkb-0.7.8 x86 amd64
