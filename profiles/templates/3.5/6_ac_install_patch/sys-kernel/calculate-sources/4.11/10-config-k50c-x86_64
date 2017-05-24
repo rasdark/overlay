@@ -1,4 +1,4 @@
-# Calculate format=kernel name=.config os_install_arch_machine==x86_64&&ini(hardware.model)==laptop_k50c 
+# Calculate format=kernel name=.config os_install_arch_machine==x86_64&&ini(hardware.model)==laptop_k50c
 # CONFIG_60XX_WDT is not set
 # CONFIG_ACERHDF is not set
 # CONFIG_ACPI_CMPC is not set
