@@ -10,7 +10,7 @@
 ~app-editors/nano-2.7.5 x86 amd64
 ~app-editors/vim-8.0.0386 x86 amd64
 ~app-editors/vim-core-8.0.0386 x86 amd64
-~app-emulation/wine-2.0 x86 amd64
+~app-emulation/wine-2.3 x86 amd64
 ~app-emulation/winetricks-20150826 x86 amd64
 ~app-forensics/scalpel-2.0 x86 amd64
 ~app-i18n/man-pages-ru-3.71.2209.1992.20140911 x86 amd64
@@ -54,6 +54,7 @@
 ~dev-python/nbconvert-4.3.0 x86 amd64
 ~dev-python/nbformat-4.3.0 x86 amd64
 ~dev-python/notebook-4.4.1 x86 amd64
+~dev-python/pathlib2-2.1.0 x86 amd64
 ~dev-python/pep8-1.7.0 x86 amd64
 ~dev-python/pickleshare-0.7.4 x86 amd64
 ~dev-python/prompt_toolkit-1.0.13 x86 amd64
@@ -170,7 +171,7 @@
 ~x11-libs/libdrm-2.4.80 x86 amd64
 ~x11-libs/libfm-extra-1.2.5 x86 amd64
 ~x11-misc/gsimplecal-2.1 x86 amd64
-~x11-misc/gxkb-0.7.8 x86 amd64
+~x11-misc/gxkb-0.7.9 x86 amd64
 ~x11-misc/light-locker-1.6.0 x86 amd64
 ~x11-misc/mate-notification-daemon-1.16.1 x86 amd64
 ~x11-misc/obconf-2.0.4 x86 amd64
@@ -178,7 +179,7 @@
 ~x11-misc/obshutdown-9999 x86 amd64
 ~x11-misc/pcmanfm-1.2.5 x86 amd64
 ~x11-misc/screengrab-1.2.1-r1 x86 amd64
-~x11-misc/tint2-0.14.1 x86 amd64
+~x11-misc/tint2-0.14.5 x86 amd64
 ~x11-plugins/pidgin-gpg-0.9.3 x86 amd64
 ~x11-plugins/pidgin-toobars-1.14 x86 amd64
 ~x11-terms/rxvt-unicode-9.22 x86 amd64
