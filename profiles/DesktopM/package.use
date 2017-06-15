@@ -108,7 +108,7 @@ x11-libs/libdrm libkms
 x11-libs/libfm udisks
 x11-misc/lightdm -introspection
 x11-misc/light-locker upower
-x11-misc/tint2 battery tint2conf
+x11-misc/tint2 battery tint2conf themes
 x11-misc/x11vnc fbcon
 x11-terms/rxvt-unicode -alt-font-width pixbuf -vanilla iso14755 unicode3 buffer-on-clear fading-colors blink
 x11-wm/openbox imlib xdg
