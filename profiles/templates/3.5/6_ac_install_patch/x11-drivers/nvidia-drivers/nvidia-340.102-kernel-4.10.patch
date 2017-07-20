@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-kernel/calculate-sources)=>4.10,4.11&&merge(x11-drivers/nvidia-drivers)=>340.102,340.103
+# Calculate format=diff pkg(sys-kernel/calculate-sources)>=4.10&&merge(x11-drivers/nvidia-drivers)=>340.102,340.103
 From 983a2ca221a371e08bb5ad11758a729cfa5aa88c Mon Sep 17 00:00:00 2001
 From: Alberto Milone <alberto.milone@canonical.com>
 Date: Wed, 15 Feb 2017 17:05:55 +0100
