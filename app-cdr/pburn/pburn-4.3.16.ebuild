@@ -8,8 +8,10 @@ inherit eutils gnome2-utils
 DESCRIPTION="A burning tool with GTK+ frontend"
 HOMEPAGE="http://murga-linux.com/puppy/viewtopic.php?t=23881"
 SRC_URI="http://www.meownplanet.net/zigbert/${P}.pet
-		 http://www.meownplanet.net/zigbert/${PN}_NLS.pet"
-
+		 http://www.meownplanet.net/zigbert/${PN}_NLS.pet
+		 http://www.01micko.com/zigbert/${P}.pet
+		 http://www.01micko.com/zigbert/${PN}_NLS.pet"
+RESTRICT="mirror"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
