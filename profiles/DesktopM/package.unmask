@@ -1,1 +1,2 @@
 sys-auth/pam_keystore
+=sys-devel/gcc-6.4.0
