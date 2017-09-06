@@ -11,9 +11,8 @@
 ~app-editors/vim-8.0.0983 x86 amd64
 ~app-editors/vim-core-8.0.0983 x86 amd64
 ~app-emulation/wine-any-2.12 x86 amd64
-~virtual/wine-0-r4 x86 amd64
-~app-eselect/eselect-wine-1.1 x86 amd64
 ~app-emulation/winetricks-20170614 x86 amd64
+~app-eselect/eselect-wine-1.1 x86 amd64
 ~app-forensics/scalpel-2.0 x86 amd64
 #~app-i18n/man-pages-ru-3.71.2209.1992.20140911 x86 amd64
 ~app-misc/ca-certificates-20161130.3.29.3 x86 amd64
@@ -22,6 +21,7 @@
 ~app-office/libreoffice-5.3.4.2 x86 amd64
 ~app-office/libreoffice-l10n-5.3.4.2 x86 amd64
 ~app-text/dvipsk-5.997_p20170524 x86 amd64
+~app-text/libstaroffice-0.0.4 x86 amd64
 ~app-text/libwps-0.4.7 x86 amd64
 ~app-text/ps2pkm-1.8_p20170524 x86 amd64
 ~app-text/qpdfview-0.4.17_beta1 amd64 x86
@@ -30,13 +30,17 @@
 ~app-text/texlive-core-2017-r2 x86 amd64
 ~app-text/ttf2pk2-2.0_p20170524 x86 amd64
 ~app-text/xdvik-22.87.03 x86 amd64
+~dev-lang/python-2.7.13 x86 amd64
+~dev-lang/python-3.5.3 x86 amd64
 ~dev-lang/tcl-8.6.7 x86 amd64
 ~dev-lang/tk-8.6.7 x86 amd64
 ~dev-libs/cloog-0.18.4 x86 amd64
 ~dev-libs/glib-2.52.3 x86 amd64
 ~dev-libs/isl-0.18 x86 amd64
+~dev-libs/liborcus-0.12.1 amd64 x86
 ~dev-libs/mathjax-2.7.0 x86 amd64
 ~dev-python/astroid-1.5.3 x86 amd64
+~dev-python/backports-functools-lru-cache-1.3 x86 amd64
 ~dev-python/certifi-2017.7.27.1 x86 amd64
 ~dev-python/configparser-3.5.0 amd64
 ~dev-python/entrypoints-0.2.3 x86 amd64
@@ -51,9 +55,11 @@
 ~dev-python/jupyter_client-5.1.0-r1 x86 amd64
 ~dev-python/jupyter_core-4.3.0 x86 amd64
 ~dev-python/lazy-object-proxy-1.2.1 x86 amd64
+~dev-python/mistune-0.7.4 x86 amd64
 ~dev-python/nbconvert-5.2.1 x86 amd64
 ~dev-python/nbformat-4.3.0 x86 amd64
 ~dev-python/notebook-5.0.0 x86 amd64
+~dev-python/pandocfilters-1.4.2-r1 x86 amd64
 ~dev-python/pathlib2-2.3.0 x86 amd64
 ~dev-python/pep8-1.7.0 x86 amd64
 ~dev-python/pickleshare-0.7.4-r1 x86 amd64
@@ -64,6 +70,7 @@
 ~dev-python/qtconsole-4.3.0 x86 amd64
 ~dev-python/setuptools-36.0.1 x86 amd64
 ~dev-python/strict-rfc3339-0.7 x86 amd64
+~dev-python/testpath-0.3.1 x86 amd64
 ~dev-python/traitlets-4.3.2 x86 amd64
 ~dev-python/typing-3.5.3.0 x86 amd64
 ~dev-python/vcversioner-2.16.0.0 amd64 x86
@@ -121,8 +128,9 @@
 ~media-gfx/imagemagick-7.0.6.9 x86 amd64
 ~media-gfx/viewnior-1.6 x86 amd64
 ~media-libs/fontconfig-ultimate-2015.08.01 x86 amd64
-~media-libs/mesa-17.1.0 x86 amd64
 ~media-libs/libass-0.13.7 x86 amd64
+~media-libs/libzmf-0.0.1 x86 amd64
+~media-libs/mesa-17.1.0 x86 amd64
 ~media-libs/opusfile-0.9 x86 amd64
 ~media-libs/x265-2.5 x86 amd64
 ~media-plugins/audacious-plugins-3.8.2 x86 amd64
@@ -143,6 +151,7 @@
 ~net-misc/remmina-1.2.0_rc19 x86 amd64
 ~net-misc/yandex-disk-0.1.5.978_p1 x86 amd64
 ~net-misc/youtube-dl-2017.08.27.1 x86 amd64
+~net-vpn/wireguard-0.0.20170810 x86 amd64
 ~net-wireless/reaver-1.4-r3 x86 amd64
 ~net-wireless/spectools-2016.01.1 x86 amd64
 ~net-wireless/wpa_supplicant-2.6-r1 x86 amd64
@@ -163,12 +172,13 @@
 ~sys-power/cpupower-4.5.0-r1 x86 amd64
 ~virtual/jdk-1.8.0-r3 x86 amd64
 ~virtual/jre-1.8.0-r1 x86 amd64
+~virtual/wine-0-r4 x86 amd64
 ~www-client/firefox-45.8.0 x86 amd64
 ~www-client/palemoon-26.5.0 x86 amd64
 ~www-plugins/mozplugger-2.1.6 amd64 x86
 ~x11-libs/gtk+-3.20.9 x86 amd64
-~x11-libs/libfm-1.2.5 x86 amd64
 ~x11-libs/libdrm-2.4.83 x86 amd64
+~x11-libs/libfm-1.2.5 x86 amd64
 ~x11-libs/libfm-extra-1.2.5 x86 amd64
 ~x11-misc/gsimplecal-2.1 x86 amd64
 ~x11-misc/gxkb-0.7.9 x86 amd64
@@ -185,7 +195,8 @@
 ~x11-terms/rxvt-unicode-9.22-r1 x86 amd64
 ~x11-themes/pidgin-penguins-smileys-1.0 x86 amd64
 ~x11-themes/smplayer-skins-15.2.0 x86 amd64
-~dev-python/backports-functools-lru-cache-1.3 x86 amd64
-~net-vpn/wireguard-0.0.20170810 x86 amd64
-~dev-lang/python-2.7.13 x86 amd64
-~dev-lang/python-3.5.3 x86 amd64
+~net-im/telegram-desktop-bin-1.1.19 x86 amd64
+~net-analyzer/traceroute-2.1.0 x86 amd64
+~net-analyzer/arp-scan-1.9 x86 amd64
+~net-vpn/tor-0.3.0.10 x86 amd64
+~x11-themes/clearlooks-phenix-6.0.3 x86 amd64

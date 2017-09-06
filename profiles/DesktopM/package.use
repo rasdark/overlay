@@ -2,7 +2,7 @@ app-admin/testdisk ntfs qt4 reiserfs
 app-arch/p7zip rar
 app-editors/gvim neXt perl python
 app-emulation/winetricks -gtk
-app-emulation/wine -vaapi staging -scanner -d3d9 dos
+app-emulation/wine-any -vaapi staging -scanner -d3d9 dos
 app-misc/double-commander-bin gtk2 -qt4
 app-misc/mc -spell gpm sftp slang -mclib
 app-mobilephone/obexftp python

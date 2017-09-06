@@ -1,10 +1,21 @@
 # Calculate pkg(x11-themes/gnome-themes-standard)!=
 # include standart themes
+#?pkg(x11-themes/clearlooks-phenix)!=#
+gtk-theme-name="Clearlooks-Phenix"
+#!pkg#
 gtk-theme-name="Calculate"
+#pkg#
 gtk-icon-theme-name="Calculate"
-gtk-font-name="Noto Sans 10"
+gtk-font-name="Droid Sans 10"
 gtk-menu-images=1
 gtk-button-images=1
+gtk-toolbar-style=GTK_TOOLBAR_BOTH
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=1
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle="hintfull"
+gtk-xft-rgba="rgb"
 #?pkg(x11-themes/elementary-icon-theme)!=#
 gtk-icon-theme-name="elementary"
 #pkg#
