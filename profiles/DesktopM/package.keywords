@@ -200,3 +200,6 @@
 ~net-analyzer/arp-scan-1.9 x86 amd64
 ~net-vpn/tor-0.3.0.10 x86 amd64
 ~x11-themes/clearlooks-phenix-6.0.3 x86 amd64
+~app-emulation/wine-desktop-common-20150204 x86 amd64
+~app-eselect/eselect-wine-1.1 x86 amd64
+~app-emulation/wine-gecko-2.47-r1 x86 amd64
