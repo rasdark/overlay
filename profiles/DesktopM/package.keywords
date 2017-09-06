@@ -49,6 +49,7 @@
 ~dev-python/certifi-2017.7.27.1 x86 amd64
 ~dev-python/configparser-3.5.0 amd64
 ~dev-python/entrypoints-0.2.3 x86 amd64
+~dev-python/flake8-3.4.1 x86 amd64
 ~dev-python/functools32-3.2.3 x86 amd64
 ~dev-python/ipykernel-4.6.1-r2 x86 amd64
 ~dev-python/ipyparallel-6.0.2-r1 x86 amd64
@@ -117,6 +118,7 @@
 ~dev-texlive/texlive-pictures-2017 x86 amd64
 ~dev-texlive/texlive-plainextra-2017 x86 amd64
 ~dev-texlive/texlive-plaingeneric-2017 x86 amd64
+~dev-texlive/texlive-pstricks-2017 x86 amd64
 ~dev-texlive/texlive-publishers-2017 x86 amd64
 ~dev-texlive/texlive-science-2017 x86 amd64
 ~dev-texlive/texlive-xetex-2017 x86 amd64
