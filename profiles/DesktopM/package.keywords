@@ -22,8 +22,8 @@
 ~app-misc/ca-certificates-20161130.3.29.3 x86 amd64
 ~app-misc/double-commander-bin-0.7.8 x86 amd64
 ~app-misc/mc-4.8.19 x86 amd64
-~app-office/libreoffice-5.3.4.2 x86 amd64
-~app-office/libreoffice-l10n-5.3.4.2 x86 amd64
+#~app-office/libreoffice-5.3.4.2 x86 amd64
+#~app-office/libreoffice-l10n-5.3.4.2 x86 amd64
 ~app-text/dvipsk-5.997_p20170524 x86 amd64
 ~app-text/libstaroffice-0.0.4 x86 amd64
 ~app-text/libwps-0.4.7 x86 amd64
