@@ -24,6 +24,7 @@
 ~app-misc/mc-4.8.19 x86 amd64
 #~app-office/libreoffice-5.3.4.2 x86 amd64
 #~app-office/libreoffice-l10n-5.3.4.2 x86 amd64
+~app-text/djvu-3.5.27 x86 amd64
 ~app-text/dvipsk-5.997_p20170524 x86 amd64
 ~app-text/libstaroffice-0.0.4 x86 amd64
 ~app-text/libwps-0.4.7 x86 amd64
@@ -70,7 +71,6 @@
 ~dev-python/pep8-1.7.0 x86 amd64
 ~dev-python/pickleshare-0.7.4-r1 x86 amd64
 ~dev-python/prompt_toolkit-1.0.15 x86 amd64
-~dev-python/pyflakes-1.6.0 x86 amd64
 ~dev-python/pylint-1.7.2 x86 amd64
 ~dev-python/python-ctags-1.2.4 x86 amd64
 ~dev-python/qtconsole-4.3.0 x86 amd64
@@ -124,6 +124,7 @@
 ~dev-texlive/texlive-xetex-2017 x86 amd64
 ~dev-util/ctags-20170704 x86 amd64
 ~dev-util/gdbus-codegen-2.52.3 x86 amd64
+~dev-util/ragel-7.0.0.10 x86 amd64
 ~dev-util/strace-4.18 x86 amd64
 ~games-emulation/dosbox-0.74_p20160629-r1 amd64 x86
 ~games-strategy/freeciv-2.5.9 x86 amd64
