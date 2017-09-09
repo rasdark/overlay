@@ -122,6 +122,7 @@
 ~dev-texlive/texlive-publishers-2017 x86 amd64
 ~dev-texlive/texlive-science-2017 x86 amd64
 ~dev-texlive/texlive-xetex-2017 x86 amd64
+~dev-util/colm-0.13.0.5 x86 amd64
 ~dev-util/ctags-20170704 x86 amd64
 ~dev-util/gdbus-codegen-2.52.3 x86 amd64
 ~dev-util/ragel-7.0.0.10 x86 amd64
