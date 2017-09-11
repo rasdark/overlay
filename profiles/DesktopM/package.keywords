@@ -166,7 +166,7 @@
 ~net-misc/yandex-disk-0.1.5.978_p1 x86 amd64
 ~net-misc/youtube-dl-2017.08.27.1 x86 amd64
 ~net-vpn/tor-0.3.0.10 x86 amd64
-~net-vpn/wireguard-0.0.20170810 x86 amd64
+net-vpn/wireguard
 ~net-wireless/reaver-1.4-r3 x86 amd64
 ~net-wireless/spectools-2016.01.1 x86 amd64
 ~net-wireless/wpa_supplicant-2.6-r1 x86 amd64
