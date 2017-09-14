@@ -41,6 +41,7 @@ app-arch/rar
 app-arch/unrar
 app-admin/keepassx
 app-crypt/chntpw
+dev-python/virtualenv
 sys-block/gparted
 app-forensics/scalpel
 x11-libs/gksu

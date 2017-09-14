@@ -6,7 +6,7 @@ app-editors/gvim
 app-vim/vim-spell-en
 app-vim/vim-spell-es
 app-vim/vim-spell-ru
-app-emulation/wine
+app-emulation/wine-any
 app-emulation/winetricks
 app-office/libreoffice
 app-text/fbreader

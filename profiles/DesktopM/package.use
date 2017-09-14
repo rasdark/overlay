@@ -2,11 +2,11 @@ app-admin/testdisk ntfs qt4 reiserfs
 app-arch/p7zip rar
 app-editors/gvim neXt perl python
 app-emulation/winetricks -gtk
-app-emulation/wine -vaapi staging -scanner -d3d9 dos
+app-emulation/wine-any -vaapi staging -scanner -d3d9 dos -samba
 app-misc/double-commander-bin gtk2 -qt4
 app-misc/mc -spell gpm sftp slang -mclib
 app-mobilephone/obexftp python
-app-office/libreoffice gtk -bluetooth opengl -vlc branding java -python_single_target_python2_7 python_single_target_python3_4 python_targets_python3_4
+app-office/libreoffice gtk -bluetooth opengl -vlc branding java
 app-portage/layman git mercurial
 app-shells/zsh doc examples
 app-text/poppler qt4
@@ -118,3 +118,4 @@ dev-java/oracle-jdk-bin nsplugin
 media-libs/opus float-approx
 media-libs/mesa -llvm -vulkan
 net-im/pidgin -gadu
+app-emulation/wine-gecko abi_x86_32

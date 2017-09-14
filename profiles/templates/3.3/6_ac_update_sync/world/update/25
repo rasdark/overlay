@@ -1,0 +1,19 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<25
+
+#-ini(overlay-rasdark.world,25)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+!app-emulation/wine
+app-emulation/wine-any
+x11-themes/gtk-engines-unico
+x11-themes/clearlooks-phenix
+x11-themes/faenza-icon-theme
+net-im/telegram-desktop-bin
+net-analyzer/traceroute
+net-analyzer/arp-scan
+net-analyzer/hping
+net-misc/telnet-bsd
+net-misc/wakeonlan
+net-vpn/tor
+dev-python/virtualenv
+#in#
