@@ -164,7 +164,7 @@
 ~net-misc/networkmanager-1.8.2 x86 amd64
 ~net-misc/remmina-1.2.0_rc19 x86 amd64
 ~net-misc/yandex-disk-0.1.5.978_p1 x86 amd64
-~net-misc/youtube-dl-2017.08.27.1 x86 amd64
+~net-misc/youtube-dl-2017.09.11 x86 amd64
 ~net-vpn/tor-0.3.0.10 x86 amd64
 ~net-vpn/wireguard-0.0.20170907 x86 amd64
 ~net-wireless/reaver-1.4-r3 x86 amd64
@@ -182,7 +182,8 @@
 ~sys-fs/f2fs-tools-1.8.0 x86 amd64
 ~sys-fs/ntfs3g-2017.3.23 x86 amd64
 ~sys-fs/reiser4progs-1.1.0 x86 amd64
-~sys-kernel/calculate-sources-4.12.11 x86 amd64
+~sys-kernel/calculate-sources-4.12.13 x86 amd64
+~sys-kernel/calculate-4.13.2 x86 amd64
 ~sys-kernel/linux-firmware-20170622 x86 amd64
 ~sys-power/cpupower-4.5.0-r1 x86 amd64
 ~virtual/jdk-1.8.0-r3 x86 amd64
