@@ -181,8 +181,8 @@
 ~sys-fs/f2fs-tools-1.8.0 x86 amd64
 ~sys-fs/ntfs3g-2017.3.23 x86 amd64
 ~sys-fs/reiser4progs-1.1.0 x86 amd64
-~sys-kernel/calculate-sources-4.12.13 x86 amd64
-~sys-kernel/calculate-sources-4.13.2 x86 amd64
+~sys-kernel/calculate-sources-4.12.14 x86 amd64
+~sys-kernel/calculate-sources-4.13.3 x86 amd64
 ~sys-kernel/linux-firmware-20170622 x86 amd64
 ~sys-power/cpupower-4.5.0-r1 x86 amd64
 ~virtual/jdk-1.8.0-r3 x86 amd64
