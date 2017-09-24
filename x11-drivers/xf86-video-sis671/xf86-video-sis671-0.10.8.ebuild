@@ -17,6 +17,7 @@ SLOT="0"
 KEYWORDS="x86 amd64"
 
 DEPEND=">=x11-base/xorg-server-1.18
+        <x11-base/xorg-server-1.19
         >=x11-base/xorg-drivers-1.18"
 
 src_prepare() {
