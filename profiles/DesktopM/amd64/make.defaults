@@ -2,3 +2,4 @@ PKGDIR="/var/calculate/remote/packages/COBRA/x86_64"
 
 CFLAGS="-Ofast -march=x86-64 -pipe"
 CXXFLAGS="${CFLAGS}"
+ACCEPT_KEYWORDS="amd64 ~amd64"

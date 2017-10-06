@@ -1,13 +1,8 @@
-# Calculate comment=#
-FEATURES="${FEATURES} -getbinpkg"
-PYTHON_TARGETS="python2_7 python3_5"
-PYTHON_SINGLE_TARGET="python3_5"
-#?ini(hardware.model)==laptop_k50c#
+# Calculate ini(hardware.model)==laptop_k50c
 PORTAGE_BINHOST="http://bighost/packages/"
 LINGUAS="en es es_ES ru ru_RU"
 L10N="ru ru-RU es es-ES"
 INPUT_DEVICES="synaptics evdev"
 VIDEO_CARDS="sis671 vesa"
-CFLAGS="-march=core2 -mavx256-split-unaligned-load -mavx256-split-unaligned-store -O2 -pipe"
+CFLAGS="-march=core2 -mavx256-split-unaligned-load -mavx256-split-unaligned-store -Ofast -pipe"
 CXXFLAGS="${CFLAGS}"
-#ini#
