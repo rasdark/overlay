@@ -1,0 +1,1 @@
+# Calculate append=skip pkg(www-client/waterfox-bin)!=&&ini(desktop.browser)==||pkg(www-client/waterfox-bin)!=&&ini(desktop.browser)==waterfox-bin

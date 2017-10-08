@@ -1,0 +1,19 @@
+# Calculate format=compiz protected
+
+# Update info
+#-ini(desktop.updating, on)-#
+#-ini(desktop.browser, waterfox-bin)-#
+
+[Added Associations]
+application/rss+xml=waterfox-bin.desktop;
+application/vnd.mozilla.xul+xml=waterfox-bin.desktop;
+application/x-font-ttx=waterfox-bin.desktop;
+application/xhtml+xml=waterfox-bin.desktop;
+application/xml=waterfox-bin.desktop;
+application/xml-external-parsed-entity=waterfox-bin.desktop;
+application/xsd=waterfox-bin.desktop;
+application/xslt+xml=waterfox-bin.desktop;
+application/x-ufraw=waterfox-bin.desktop;
+text/html=waterfox-bin.desktop;
+x-scheme-handler/http=waterfox-bin.desktop;
+x-scheme-handler/https=waterfox-bin.desktop;
