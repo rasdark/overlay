@@ -17,7 +17,7 @@ IUSE=""
 BIN_PN="${PN/-bin/}"
 RESTRICT="strip mirror"
 SRC_URI="
-	amd64? ( https://storage-waterfox.netdna-ssl.com/releases/linux64/installer/${BIN_PN}-${PV}.en-US.linux-x86_64-1.tar.bz2 )
+	amd64? ( https://storage-waterfox.netdna-ssl.com/releases/linux64/installer/${BIN_PN}-${PV}.en-US.linux-x86_64.tar.bz2 )
 "
 
 RDEPEND="
