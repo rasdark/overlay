@@ -1,0 +1,8 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<26
+
+#-ini(overlay-rasdark.world,26)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+!app-admin/keepassx
+app-admin/keepassxc
+#in#

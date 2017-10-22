@@ -39,7 +39,7 @@ x11-misc/wmctrl
 #?in(os_linux_pkglist, COBRA)!=#
 app-arch/rar
 app-arch/unrar
-app-admin/keepassx
+app-admin/keepassxc
 app-crypt/chntpw
 dev-python/virtualenv
 sys-block/gparted
