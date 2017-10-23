@@ -1,4 +1,4 @@
-# Calculate format=diff merge()>=5.4.0.0
+# Calculate format=diff merge(app-office/libreoffice)>=5.4.0.0
 --- Makefile.old	2017-10-22 16:17:28.816607263 +0000
 +++ Makefile	2017-10-22 16:17:52.139605268 +0000
 @@ -58,7 +58,7 @@
