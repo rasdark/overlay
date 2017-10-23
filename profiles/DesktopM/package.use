@@ -12,7 +12,7 @@ app-shells/zsh doc examples
 app-text/poppler qt4
 app-text/texlive extra -pdfannotextractor publishers science xetex
 dev-db/sqlite secure-delete
-dev-java/oracle-jre-bin fontconfig jce nsplugin
+dev-java/oracle-jre-bin fontconfig -jce nsplugin
 dev-lang/python sqlite tk wininst
 dev-libs/boost python
 dev-libs/elfutils static-libs
