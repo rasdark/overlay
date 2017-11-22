@@ -1,0 +1,57 @@
+# Calculate comment=#
+# Tint2 config file
+# To use this as default tint2 config: save as $HOME/.config/tint2/tint2rc
+
+# Background definitions
+# ID 1
+rounded = 10
+border_width = 1
+background_color = #3B6AFF 60
+border_color = #4964BC 100
+
+# Panel
+panel_monitor = all
+panel_position = bottom center horizontal
+panel_items = L
+panel_size = 750 38
+panel_margin = 0 0
+panel_padding = 0 0 0
+panel_dock = 0
+wm_menu = 0
+panel_layer = top
+panel_background_id = 1
+
+# Panel Autohide
+autohide = 1
+autohide_show_timeout = 0.3
+autohide_hide_timeout = 1
+autohide_height = 2
+strut_policy = minimal
+
+# Launchers
+launcher_icon_theme = faenza
+launcher_icon_theme_override = 1
+launcher_padding = 5 0 10
+launcher_background_id = 1
+launcher_tooltip = 1
+launcher_icon_asb = 100 0 0
+launcher_icon_size = 48
+launcher_item_app = /usr/share/applications/doublecmd-double-commander-bin.desktop
+launcher_item_app = /usr/share/applications/calculate-audioplayer.desktop
+launcher_item_app = /usr/share/applications/calculate-videoplayer.desktop
+launcher_item_app = /usr/share/applications/calculate-writer.desktop
+launcher_item_app = /usr/share/applications/calculate-calc.desktop
+launcher_item_app = /usr/share/applications/calculate-imageedit.desktop
+launcher_item_app = /usr/share/applications/calculate-calculator.desktop
+launcher_item_app = /usr/share/applications/calculate-mail.desktop
+launcher_item_app = /usr/share/applications/calculate-im.desktop
+launcher_item_app = /usr/share/applications/hexchat.desktop
+launcher_item_app = /usr/share/applications/kvirc.desktop
+launcher_item_app = /usr/share/applications/transmission-gtk.desktop
+launcher_item_app = /usr/share/applications/deluge.desktop
+launcher_item_app = /usr/share/applications/remmina-file.desktop
+launcher_item_app = /usr/share/applications/org.keepassxc.desktop
+launcher_item_app = /usr/share/applications/subl3_%F-sublime-text-3.desktop
+launcher_item_app = /usr/share/applications/telegramdesktop.desktop
+
+# End of config

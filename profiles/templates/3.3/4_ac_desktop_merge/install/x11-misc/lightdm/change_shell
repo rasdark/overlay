@@ -1,8 +1,0 @@
-# Calculate exec=/bin/bash pkg(app-shells/zsh)!=
-# 
-SH=$(grep guest /etc/passwd | awk -F':' '{ print $7; }' | awk -F'/' '{ print $3; }')
-if [ "${SH}" != "zsh" ] 
-then
-    /usr/bin/chsh -s /bin/zsh guest
-    exit 0
-fi
