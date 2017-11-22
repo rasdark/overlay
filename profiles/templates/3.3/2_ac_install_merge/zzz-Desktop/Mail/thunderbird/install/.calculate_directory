@@ -1,1 +1,0 @@
-# Calculate append=skip pkg(mail-client/thunderbird)!=&&ini(desktop.mail)==||pkg(mail-client/thunderbird)!=&&ini(desktop.mail)==thunderbird

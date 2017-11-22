@@ -1,0 +1,10 @@
+# Calculate append=join format=squid comment=# path=/etc
+
+set const
+set fill -8
+set matchbrackets "(<[{)>]}"
+set morespace
+set smooth
+set tabsize 8
+set tabstospaces
+include "/usr/share/nano/*.nanorc"

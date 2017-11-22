@@ -1,1 +1,0 @@
-# Calculate append=skip pkg(www-client/yandex-browser-beta)!=&&ini(desktop.browser)==||pkg(www-client/yandex-browser-beta)!=&&ini(desktop.browser)==yandex-browser
