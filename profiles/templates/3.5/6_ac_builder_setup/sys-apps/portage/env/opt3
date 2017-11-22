@@ -1,0 +1,2 @@
+CFLAGS="-O3 -pipe -march=core2 -mavx256-split-unaligned-load -mavx256-split-unaligned-store"
+CXXFLAGS="${CFLAGS}"
