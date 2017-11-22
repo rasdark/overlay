@@ -1,0 +1,265 @@
+# Calculate format=raw path=~/.config/tint2
+# Tint2 config file
+# Gradients
+# Gradient 1
+gradient = vertical
+start_color = #000000 0
+end_color = #c7c7c7 48
+
+# Gradient 2
+gradient = radial
+start_color = #aa3800 40
+end_color = #ffffff 59
+
+#-------------------------------------
+# Backgrounds
+# Background 1: Панель
+rounded = 0
+border_width = 1
+border_sides = TBLR
+background_color = #eeeeee 0
+border_color = #bbbbbb 10
+gradient_id = 1
+background_color_hover = #eeeeee 0
+border_color_hover = #bbbbbb 10
+background_color_pressed = #eeeeee 0
+border_color_pressed = #bbbbbb 10
+
+# Background 2: Задача по умолчанию, Свернутая задача
+rounded = 5
+border_width = 1
+border_sides = TBLR
+background_color = #eeeeee 4
+border_color = #cccccc 62
+gradient_id = 0
+background_color_hover = #eeeeee 22
+border_color_hover = #eaeaea 62
+background_color_pressed = #dddddd 4
+border_color_pressed = #eaeaea 62
+gradient_id_pressed = 2
+
+# Background 3:
+rounded = 5
+border_width = 1
+border_sides = TBLR
+background_color = #000000 72
+border_color = #000000 100
+background_color_hover = #000000 75
+border_color_hover = #000000 100
+background_color_pressed = #000000 78
+border_color_pressed = #000000 100
+
+# Background 4: Неотложная задача
+rounded = 5
+border_width = 1
+border_sides = TBLR
+background_color = #aa4400 100
+border_color = #aa7733 100
+background_color_hover = #aa4400 100
+border_color_hover = #aa7733 100
+background_color_pressed = #aa4400 100
+border_color_pressed = #aa7733 100
+
+# Background 5: Всплывающий текст
+rounded = 2
+border_width = 1
+border_sides = TBLR
+background_color = #ffffaa 100
+border_color = #999999 100
+background_color_hover = #ffffaa 100
+border_color_hover = #999999 100
+background_color_pressed = #ffffaa 100
+border_color_pressed = #999999 100
+
+# Background 6: Имя неактивного рабочего стола
+rounded = 2
+border_width = 1
+border_sides = TBLR
+background_color = #eeeeee 4
+border_color = #cccccc 30
+background_color_hover = #eeeeee 22
+border_color_hover = #999999 30
+background_color_pressed = #dddddd 4
+border_color_pressed = #999999 30
+
+# Background 7: Имя активного рабочего стола
+rounded = 2
+border_width = 1
+border_sides = TBLR
+background_color = #dddddd 3
+border_color = #999999 100
+background_color_hover = #dddddd 3
+border_color_hover = #999999 100
+background_color_pressed = #dddddd 3
+border_color_pressed = #999999 100
+
+# Background 8: Активная задача
+rounded = 3
+border_width = 1
+border_sides = TBLR
+background_color = #aa3800 67
+border_color = #aa3800 100
+background_color_hover = #aa3800 63
+border_color_hover = #aa3800 100
+background_color_pressed = #aa3800 64
+border_color_pressed = #aa3800 100
+
+#-------------------------------------
+# Panel
+panel_items = LT:S:CB
+panel_size = 100% 32
+panel_margin = 0 0
+panel_padding = 4 2 4
+panel_background_id = 1
+wm_menu = 1
+panel_dock = 0
+panel_position = top center horizontal
+panel_layer = normal
+panel_monitor = all
+primary_monitor_first = 0
+panel_shrink = 0
+autohide = 0
+autohide_show_timeout = 0.5
+autohide_hide_timeout = 2
+autohide_height = 2
+strut_policy = follow_size
+panel_window_name = tint2
+disable_transparency = 0
+mouse_effects = 1
+font_shadow = 0
+mouse_hover_icon_asb = 100 0 10
+mouse_pressed_icon_asb = 100 0 0
+
+#-------------------------------------
+# Taskbar
+taskbar_mode = single_desktop
+taskbar_hide_if_empty = 0
+taskbar_padding = 0 0 5
+taskbar_background_id = 0
+taskbar_active_background_id = 0
+taskbar_name = 0
+taskbar_hide_inactive_tasks = 0
+taskbar_hide_different_monitor = 0
+taskbar_always_show_all_desktop_tasks = 0
+taskbar_name_padding = 6 3
+taskbar_name_background_id = 6
+taskbar_name_active_background_id = 7
+taskbar_name_font = Luxi Sans 8
+taskbar_name_font_color = #ffffff 100
+taskbar_name_active_font_color = #ffffff 100
+taskbar_distribute_size = 1
+taskbar_sort_order = none
+task_align = left
+
+#-------------------------------------
+# Task
+task_text = 1
+task_icon = 1
+task_centered = 0
+urgent_nb_of_blink = 100000
+task_maximum_size = 180 35
+task_padding = 4 3 4
+task_font = Luxi Sans 9
+task_tooltip = 1
+task_font_color = #ffffff 100
+task_icon_asb = 100 0 0
+task_background_id = 2
+task_active_background_id = 8
+task_urgent_background_id = 4
+task_iconified_background_id = 2
+mouse_left = toggle_iconify
+mouse_middle = none
+mouse_right = close
+mouse_scroll_up = prev_task
+mouse_scroll_down = next_task
+
+#-------------------------------------
+# System tray (notification area)
+systray_padding = 4 0 2
+systray_background_id = 0
+systray_sort = right2left
+systray_icon_size = 22
+systray_icon_asb = 100 0 0
+systray_monitor = 1
+systray_name_filter =
+
+#-------------------------------------
+# Launcher
+launcher_padding = 0 0 2
+launcher_background_id = 0
+launcher_icon_background_id = 0
+launcher_icon_size = 22
+launcher_icon_asb = 100 0 0
+launcher_icon_theme_override = 0
+startup_notifications = 1
+launcher_tooltip = 1
+launcher_item_app = /usr/share/applications/pcmanfm.desktop
+launcher_item_app = ~/.local/share/applications/urxvt-rxvt-unicode.desktop
+launcher_item_app = /usr/share/applications/palemoon.desktop
+
+#-------------------------------------
+# Clock
+time1_format = %H:%M:%S
+time2_format = %a %d %b
+time1_font = Roboto Mono Medium for Powerline Bold 9
+time1_timezone =
+time2_timezone =
+time2_font = Roboto Mono Medium for Powerline Medium 7
+clock_font_color = #ffffff 100
+clock_padding = 1 0
+clock_background_id = 0
+clock_tooltip =
+clock_tooltip_timezone =
+clock_lclick_command = gsimplecal
+clock_rclick_command = osmo
+clock_mclick_command =
+clock_uwheel_command =
+clock_dwheel_command =
+
+#-------------------------------------
+# Battery
+battery_tooltip = 1
+battery_low_status = 10
+battery_low_cmd = notify-send -i battery-caution -u critical "Низкий заряд" "Внимание\!\nНизкий заряд батареи\!"
+bat1_font = Roboto Mono Medium for Powerline Bold 10
+bat2_font = Roboto Mono Medium for Powerline Medium 0
+battery_font_color = #ffffff 100
+battery_padding = 2 2
+battery_background_id = 0
+battery_hide = 99
+battery_lclick_command =
+battery_rclick_command =
+battery_mclick_command =
+battery_uwheel_command =
+battery_dwheel_command =
+ac_connected_cmd = notify-send -i battery-low-charging -u normal "Адаптер подключен" "Внимание\!\nСетевой адаптер подключен\!"
+ac_disconnected_cmd = notify-send -i battery-caution -u critical "Адаптер отключен" "Внимание\!\nСетевой адаптер ОТКЛЮЧЕН\!"
+
+#-------------------------------------
+# Separator 1
+separator = new
+separator_background_id = 0
+separator_color = #cecece 83
+separator_style = dots
+separator_size = 2
+separator_padding = 1 0
+
+#-------------------------------------
+# Separator 2
+separator = new
+separator_background_id = 0
+separator_color = #cecece 83
+separator_style = dots
+separator_size = 2
+separator_padding = 1 0
+
+#-------------------------------------
+# Tooltip
+tooltip_show_timeout = 0.5
+tooltip_hide_timeout = 0.1
+tooltip_padding = 2 2
+tooltip_background_id = 5
+tooltip_font_color = #081046 100
+tooltip_font = Monaco 9
+
+# End of config
