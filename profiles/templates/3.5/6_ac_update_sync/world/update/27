@@ -1,0 +1,15 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<27
+
+#-ini(overlay-rasdark.world,27)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+!app-emulation/winetricks
+app-office/osmo
+mate-extra/mate-calc
+!sci-calculators/speedcrunch
+net-vpn/openvpn
+net-vpn/wireguard
+x11-themes/gtk-engines-unico
+x11-themes/gtk-theme-switch
+x11-themes/clearlooks-phenix:0
+#in#

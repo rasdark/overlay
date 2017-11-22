@@ -7,8 +7,8 @@ app-vim/vim-spell-en
 app-vim/vim-spell-es
 app-vim/vim-spell-ru
 app-emulation/wine-any
-app-emulation/winetricks
 app-office/libreoffice
+app-office/osmo
 app-text/fbreader
 app-text/qpdfview
 dev-java/oracle-jre-bin
@@ -17,7 +17,7 @@ mail-client/thunderbird
 media-gfx/gimp
 media-gfx/viewnior
 media-sound/volumeicon
-sci-calculators/speedcrunch
+mate-extra/mate-calc
 net-im/pidgin
 x11-plugins/pidgin-hotkeys
 x11-themes/pidgin-penguins-smileys
