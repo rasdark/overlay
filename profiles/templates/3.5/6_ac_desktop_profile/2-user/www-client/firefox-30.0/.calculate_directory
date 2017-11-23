@@ -1,1 +1,1 @@
-# Calculate append=skip mergepkg(www-client/firefox-bin)>=30.0&&ini(update.firefox)!=off&&ini(personal.firefox)==||mergepkg(www-client/firefox)>=30.0&&ini(update.firefox)!=off&&ini(personal.firefox)==
+# Calculate append=skip ini(update.firefox)!=off&&ini(personal.firefox)== mergepkg(www-client/firefox-bin)>=30.0||mergepkg(www-client/firefox)>=30.0
