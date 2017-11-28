@@ -12,11 +12,11 @@ palemoon-1_pkg_pretend() {
 	check-reqs_pkg_setup
 
 	# Ensure we are not on a gcc 5.* profile:
-	einfo "Checking gcc version..."
-	if [[ "6" == "$(gcc -dumpversion | cut -d. -f1)" ]]; then
-		gcc-5_error
-		die
-	fi
+#	einfo "Checking gcc version..."
+#	if [[ "6" == "$(gcc -dumpversion | cut -d. -f1)" ]]; then
+#		gcc-5_error
+#		die
+#	fi
 }
 
 palemoon-1_pkg_preinst() {
