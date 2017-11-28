@@ -6,7 +6,7 @@ app-emulation/wine-any -vaapi staging -scanner -d3d9 dos -samba
 app-misc/double-commander-bin gtk2 -qt4
 app-misc/mc -spell gpm sftp slang -mclib
 app-mobilephone/obexftp python
-app-office/libreoffice gtk -bluetooth opengl -vlc branding java
+app-office/libreoffice gtk -bluetooth opengl -vlc branding java pdfimport
 app-portage/layman git mercurial
 app-shells/zsh doc examples
 app-text/poppler qt4
@@ -83,7 +83,7 @@ net-wireless/lorcon python
 sci-libs/fftw -fortran
 sys-apps/calculate-utils client console desktop qt4 server
 sys-apps/util-linux static-libs
-sys-block/gparted btrfs dmraid fat jfs mdadm ntfs reiserfs xfs f2fs reiser4
+sys-block/gparted -btrfs dmraid fat jfs mdadm ntfs reiserfs xfs f2fs -reiser4
 sys-devel/gcc fortran graphite
 sys-devel/llvm -clang
 sys-fs/cryptsetup kernel -gcrypt -nettle -openssl udev static-libs
@@ -100,9 +100,9 @@ virtual/libgudev static-libs
 virtual/libudev static-libs
 virtual/udev static-libs
 www-client/dwb examples -gtk3
-www-client/firefox custom-cflags custom-optimization minimal system-cairo system-icu system-jpeg system-sqlite
+www-client/firefox -custom-cflags -custom-optimization -minimal system-cairo -system-icu system-sqlite system-jpeg system-libevent system-libvpx pgo
 www-client/links -X
-www-client/palemoon alsa -oss -pulseaudio gtk2 -gtk3 -system-libs jemalloc
+www-client/palemoon alsa -oss -pulseaudio gtk2 -gtk3 -system-libs -jemalloc -optimize
 www-plugins/chrome-binary-plugins flash
 x11-libs/libdrm libkms
 x11-libs/libfm udisks
