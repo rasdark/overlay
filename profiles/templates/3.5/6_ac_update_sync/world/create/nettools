@@ -28,4 +28,5 @@ net-wireless/reaver
 net-wireless/wireless-tools
 net-wireless/wpa_supplicant
 x11-misc/x11vnc
+net-fs/sshfs
 #in#

@@ -10,5 +10,6 @@ media-video/ffmpeg
 media-video/mpv
 media-video/smplayer
 media-video/v4l2ucp
+media-sound/apulse
 #in#
 

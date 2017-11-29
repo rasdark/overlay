@@ -34,6 +34,9 @@ sys-process/iotop
 sys-process/lsof
 sys-process/vixie-cron
 x11-misc/wmctrl
+app-text/tree
+sys-apps/dmidecode
+app-i18n/enca
 #in#
 
 #?in(os_linux_pkglist, COBRA)!=#
