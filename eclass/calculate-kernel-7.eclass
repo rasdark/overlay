@@ -20,18 +20,21 @@ EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst
 
 IUSE="+vmlinuz minimal themes firmware +grub"
 
-REQUIRED_USE="minimal? ( vmlinuz )"
+REQUIRED_USE="minimal? ( vmlinuz )
+	grub? ( vmlinuz )"
 
-
-DEPEND="vmlinuz? ( || ( app-arch/xz-utils app-arch/lzma-utils )
+CDEPEND="vmlinuz? ( || ( app-arch/xz-utils app-arch/lzma-utils )
 		sys-apps/v86d
 		grub? ( sys-boot/grub )
 	)
-	firmware? ( sys-kernel/linux-firmware )
+	firmware? ( sys-kernel/linux-firmware )"
+
+DEPEND="${CDEPEND}
 	themes? ( media-gfx/splash-themes-calculate )
+	!minimal? ( virtual/pkgconfig )
 	"
 
-RDEPEND="${DEPEND} vmlinuz? ( sys-kernel/dracut )"
+RDEPEND="${CDEPEND} vmlinuz? ( sys-kernel/dracut )"
 
 detect_version
 detect_arch
