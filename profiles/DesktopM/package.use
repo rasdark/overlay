@@ -123,5 +123,5 @@ app-emulation/wine-gecko abi_x86_32
 dev-qt/qtsingleapplication qt5
 dev-qt/qtlockedfile qt5
 dev-libs/glib utils
-dev-libs/json static-libs
+dev-libs/json-c static-libs
 app-crypt/argon2 static-libs
