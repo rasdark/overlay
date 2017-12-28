@@ -125,3 +125,4 @@ dev-qt/qtlockedfile qt5
 dev-libs/glib utils
 dev-libs/json-c static-libs
 app-crypt/argon2 static-libs
+sys-boot/grub mount
