@@ -54,7 +54,7 @@ media-plugins/deadbeef-spectrogram -gtk2 gtk3
 media-plugins/deadbeef-vk -gtk2 gtk3
 media-plugins/deadbeef-vu-meter -gtk2 gtk3
 media-plugins/deadbeef-waveform-seekbar -gtk2 gtk3
-media-sound/audacious chardet gtk -gtk3
+media-sound/audacious chardet gtk -gtk3 -qt5
 media-sound/cmus ao discid mp3 opus pidgin
 media-sound/deadbeef aac alsa cdda converter dts ffmpeg flac gtk3 hotkeys libnotify m3u mms mono2stereo mp3 musepack nls psf -pulseaudio shn sndfile vorbis wavpack wma equalizer libsamplerate -gtk2 playlist-browser shell-exec curl
 media-sound/lame mp3rtp sndfile
