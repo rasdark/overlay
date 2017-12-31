@@ -86,7 +86,7 @@ sys-apps/util-linux static-libs
 sys-block/gparted -btrfs dmraid fat jfs mdadm ntfs reiserfs xfs f2fs -reiser4
 sys-devel/gcc fortran graphite
 sys-devel/llvm -clang
-sys-fs/cryptsetup kernel -gcrypt -nettle -openssl udev static-libs
+sys-fs/cryptsetup kernel -gcrypt -nettle -openssl udev static-libs -argon2 pwquality reencrypt
 sys-fs/eudev gudev static-libs
 sys-fs/lvm2 lvm2create_initrd static-libs -thin
 sys-fs/mtools -X
