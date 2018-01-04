@@ -44,7 +44,7 @@ media-libs/lcms abi_x86_32
 media-libs/libpng apng
 media-libs/opencv qt4
 media-libs/sdl-mixer mikmod mod
-media-plugins/audacious-plugins lame libsamplerate http sndfile gtk -gtk3
+media-plugins/audacious-plugins lame libsamplerate http sndfile gtk -gtk3 -qt5
 media-plugins/deadbeef-fb -gtk2 gtk3
 media-plugins/deadbeef-infobar -gtk2 gtk3
 media-plugins/deadbeef-musical-spectrum -gtk2 gtk3
@@ -93,7 +93,7 @@ sys-fs/mtools -X
 sys-fs/ntfs3g ntfsprogs ntfsdecrypt -external-fuse xattr
 sys-fs/udev gudev static-libs
 sys-fs/udisks cryptsetup
-sys-kernel/calculate-sources -minimal firmware
+sys-kernel/calculate-sources -minimal firmware muqss -pae uksm
 sys-libs/e2fsprogs-libs static-libs
 sys-libs/zlib minizip
 virtual/libgudev static-libs
