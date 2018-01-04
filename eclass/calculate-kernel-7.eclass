@@ -38,7 +38,7 @@ RDEPEND="${CDEPEND} vmlinuz? ( sys-kernel/dracut )"
 detect_version
 detect_arch
 
-IUSE="+vmlinuz muqss pae minimal themes firmware +grub"
+IUSE="+vmlinuz uksm muqss pae minimal themes firmware +grub"
 
 if [[ ${KV_MAJOR} -lt 3 ]]
 then
@@ -151,6 +151,7 @@ clean_for_minimal() {
 		scripts/gcc-goto.sh scripts/Makefile.headersinst \
 		scripts/Makefile.build scripts/basic/fixdep \
 		scripts/Makefile.clean scripts/mod/modpost \
+		tools/objtool/objtool \
 		include/config/kernel.release include/config/auto.conf \
 		arch/x86/Makefile_32.cpu arch/x86/Makefile \
 		System.map Kconfig Makefile Kbuild"
