@@ -74,7 +74,7 @@ net-libs/rb_libtorrent python
 net-libs/webkit-gtk -introspection -geoloc libsecret
 net-misc/aria2 sqlite ssh tcmalloc
 net-misc/iputils -arping
-net-misc/openvpn pkcs11 examples
+net-misc/openvpn pkcs11 examples down-root
 net-misc/remmina -avahi freerdp gnome-keyring ssh vte -webkit spice vnc
 net-p2p/deluge geoip setproctitle webinterface sound
 net-p2p/transmission -lightweight -qt4 gtk
