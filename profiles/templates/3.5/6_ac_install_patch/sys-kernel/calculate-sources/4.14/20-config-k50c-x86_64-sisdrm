@@ -1,0 +1,14 @@
+# Calculate format=kernel name=.config os_install_arch_machine==x86_64&&ini(hardware.model)==laptop_k50c
+CONFIG_DRM_LEGACY=y
+# CONFIG_DRM_MGA is not set
+# CONFIG_DRM_R128 is not set
+# CONFIG_DRM_SAVAGE is not set
+CONFIG_DRM_SIS=m
+# CONFIG_DRM_TDFX is not set
+# CONFIG_DRM_VIA is not set
+CONFIG_DRM_VM=y
+# CONFIG_UNWINDER_GUESS is not set
+!CONFIG_CFS_BANDWIDTH=
+!CONFIG_GUESS_UNWINDER=
+!CONFIG_RT_GROUP_SCHED=
+!CONFIG_SCHED_AUTOGROUP=
