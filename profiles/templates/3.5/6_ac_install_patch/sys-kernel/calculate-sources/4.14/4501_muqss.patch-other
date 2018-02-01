@@ -729,18 +729,6 @@ index 3f9c97419f02..1dc79ec7ad09 100644
  
  config PREEMPT
  	bool "Preemptible Kernel (Low-Latency Desktop)"
--- 
-2.11.0
-
-From 44fc740a3ff85d378c28a416a076cc7e019d7b8c Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Fri, 12 May 2017 13:07:37 +1000
-Subject: [PATCH 03/16] Expose vmsplit for our poor 32 bit users.
-
----
- arch/x86/Kconfig | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
 diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
 index e06a7b4e1dc4..931aba4fc567 100644
 --- a/arch/x86/Kconfig
@@ -777,21 +765,6 @@ index e06a7b4e1dc4..931aba4fc567 100644
  endchoice
  
  config PAGE_OFFSET
--- 
-2.11.0
-
-From d27b58b0707ac311be5a51594fc6f22ed1d109e5 Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Sat, 12 Aug 2017 11:53:39 +1000
-Subject: [PATCH 04/16] Create highres timeout variants of schedule_timeout
- functions.
-
----
- include/linux/freezer.h |  1 +
- include/linux/sched.h   | 31 +++++++++++++++++++--
- kernel/time/hrtimer.c   | 71 +++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 101 insertions(+), 2 deletions(-)
-
 diff --git a/include/linux/freezer.h b/include/linux/freezer.h
 index 3995df1d068f..f8645e8f2444 100644
 --- a/include/linux/freezer.h
@@ -930,19 +903,6 @@ index 88f75f92ef36..13227cf2814c 100644
 +	return schedule_msec_hrtimeout(timeout);
 +}
 +EXPORT_SYMBOL(schedule_msec_hrtimeout_uninterruptible);
--- 
-2.11.0
-
-From 5da7d1778b96c514394334c92de9b3d8d71f4a29 Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Sat, 5 Nov 2016 09:27:36 +1100
-Subject: [PATCH 05/16] Special case calls of schedule_timeout(1) to use the
- min hrtimeout of 1ms, working around low Hz resolutions.
-
----
- kernel/time/timer.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
-
 diff --git a/kernel/time/timer.c b/kernel/time/timer.c
 index 9c18e16059a3..dd4d1b193286 100644
 --- a/kernel/time/timer.c
@@ -980,18 +940,6 @@ index 9c18e16059a3..dd4d1b193286 100644
  	return timeout < 0 ? 0 : timeout;
  }
  EXPORT_SYMBOL(schedule_timeout);
--- 
-2.11.0
-
-From 9df803c28bb8ccb2588c0ccaf857b9e673175fed Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Fri, 4 Nov 2016 09:25:54 +1100
-Subject: [PATCH 06/16] Convert msleep to use hrtimers when active.
-
----
- kernel/time/timer.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
-
 diff --git a/kernel/time/timer.c b/kernel/time/timer.c
 index dd4d1b193286..c68cb9307f64 100644
 --- a/kernel/time/timer.c
@@ -1034,55 +982,6 @@ index dd4d1b193286..c68cb9307f64 100644
  
  	while (timeout && !signal_pending(current))
  		timeout = schedule_timeout_interruptible(timeout);
--- 
-2.11.0
-
-From ff1ab759022323229ca1e7b368c0df5e2aa1dabc Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Mon, 20 Feb 2017 13:28:30 +1100
-Subject: [PATCH 07/16] Replace all schedule timeout(1) with
- schedule_min_hrtimeout()
-
----
- drivers/block/swim.c                            | 6 +++---
- drivers/bluetooth/hci_qca.c                     | 2 +-
- drivers/char/ipmi/ipmi_msghandler.c             | 2 +-
- drivers/char/ipmi/ipmi_ssif.c                   | 2 +-
- drivers/char/snsc.c                             | 4 ++--
- drivers/gpu/drm/vmwgfx/vmwgfx_fifo.c            | 2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_irq.c             | 2 +-
- drivers/media/pci/ivtv/ivtv-ioctl.c             | 2 +-
- drivers/media/pci/ivtv/ivtv-streams.c           | 2 +-
- drivers/mfd/ucb1x00-core.c                      | 2 +-
- drivers/misc/sgi-xp/xpc_channel.c               | 2 +-
- drivers/net/caif/caif_hsi.c                     | 2 +-
- drivers/net/can/usb/peak_usb/pcan_usb.c         | 2 +-
- drivers/net/usb/lan78xx.c                       | 2 +-
- drivers/net/usb/usbnet.c                        | 2 +-
- drivers/ntb/test/ntb_perf.c                     | 2 +-
- drivers/scsi/fnic/fnic_scsi.c                   | 4 ++--
- drivers/scsi/snic/snic_scsi.c                   | 2 +-
- drivers/staging/comedi/drivers/ni_mio_common.c  | 2 +-
- drivers/staging/lustre/lnet/lnet/lib-eq.c       | 2 +-
- drivers/staging/rts5208/rtsx.c                  | 2 +-
- drivers/staging/speakup/speakup_acntpc.c        | 4 ++--
- drivers/staging/speakup/speakup_apollo.c        | 2 +-
- drivers/staging/speakup/speakup_decext.c        | 2 +-
- drivers/staging/speakup/speakup_decpc.c         | 2 +-
- drivers/staging/speakup/speakup_dectlk.c        | 2 +-
- drivers/staging/speakup/speakup_dtlk.c          | 4 ++--
- drivers/staging/speakup/speakup_keypc.c         | 4 ++--
- drivers/staging/speakup/synth.c                 | 2 +-
- drivers/staging/unisys/visornic/visornic_main.c | 6 +++---
- drivers/target/target_core_user.c               | 5 ++---
- drivers/video/fbdev/omap/hwa742.c               | 2 +-
- drivers/video/fbdev/pxafb.c                     | 2 +-
- fs/afs/vlocation.c                              | 2 +-
- fs/btrfs/extent-tree.c                          | 2 +-
- fs/btrfs/inode-map.c                            | 2 +-
- sound/usb/line6/pcm.c                           | 2 +-
- 37 files changed, 47 insertions(+), 48 deletions(-)
-
 diff --git a/drivers/block/swim.c b/drivers/block/swim.c
 index 84434d3ea19b..66ee1af3a34b 100644
 --- a/drivers/block/swim.c
@@ -1649,32 +1548,6 @@ index b3854f8c0c67..d6bd68b381f3 100644
  	} while (--timeout > 0);
  	if (alive)
  		dev_err(line6pcm->line6->ifcdev,
--- 
-2.11.0
-
-From 3ef5df78c2f425115b87f0f2f59fd189c0f1bbe3 Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Mon, 20 Feb 2017 13:30:07 +1100
-Subject: [PATCH 08/16] Replace all calls to schedule_timeout_interruptible of
- potentially under 50ms to use schedule_msec_hrtimeout_interruptible.
-
----
- drivers/hwmon/fam15h_power.c        |  2 +-
- drivers/iio/light/tsl2563.c         |  6 +-----
- drivers/media/i2c/msp3400-driver.c  |  4 ++--
- drivers/media/pci/ivtv/ivtv-gpio.c  |  6 +++---
- drivers/media/radio/radio-mr800.c   |  2 +-
- drivers/media/radio/radio-tea5777.c |  2 +-
- drivers/media/radio/tea575x.c       |  2 +-
- drivers/parport/ieee1284.c          |  2 +-
- drivers/parport/ieee1284_ops.c      |  2 +-
- drivers/platform/x86/intel_ips.c    |  8 ++++----
- net/core/pktgen.c                   |  2 +-
- sound/soc/codecs/wm8350.c           | 12 ++++++------
- sound/soc/codecs/wm8900.c           |  2 +-
- sound/soc/codecs/wm9713.c           |  4 ++--
- 14 files changed, 26 insertions(+), 30 deletions(-)
-
 diff --git a/drivers/hwmon/fam15h_power.c b/drivers/hwmon/fam15h_power.c
 index 9545a346044f..c24cf1302ec7 100644
 --- a/drivers/hwmon/fam15h_power.c
@@ -1960,25 +1833,6 @@ index 7e4822185feb..0c85a207446a 100644
  	return 0;
  }
  
--- 
-2.11.0
-
-From 6044370cf4bbc5e05f5d78f5772c1d88e3153603 Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Mon, 20 Feb 2017 13:30:32 +1100
-Subject: [PATCH 09/16] Replace all calls to schedule_timeout_uninterruptible
- of potentially under 50ms to use schedule_msec_hrtimeout_uninterruptible
-
----
- drivers/media/pci/cx18/cx18-gpio.c           | 4 ++--
- drivers/net/wireless/intel/ipw2x00/ipw2100.c | 4 ++--
- drivers/rtc/rtc-wm8350.c                     | 6 +++---
- drivers/scsi/lpfc/lpfc_scsi.c                | 2 +-
- sound/pci/maestro3.c                         | 4 ++--
- sound/soc/codecs/rt5631.c                    | 4 ++--
- sound/soc/soc-dapm.c                         | 2 +-
- 7 files changed, 13 insertions(+), 13 deletions(-)
-
 diff --git a/drivers/media/pci/cx18/cx18-gpio.c b/drivers/media/pci/cx18/cx18-gpio.c
 index 012859e6dc7b..206bd08265a5 100644
 --- a/drivers/media/pci/cx18/cx18-gpio.c
@@ -2120,20 +1974,6 @@ index dcef67a9bd48..11c2bb48c8f2 100644
  }
  
  static void pop_dbg(struct device *dev, u32 pop_time, const char *fmt, ...)
--- 
-2.11.0
-
-From 071486de633698dcdd163295173ce4663ec9158c Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Mon, 20 Feb 2017 13:32:58 +1100
-Subject: [PATCH 10/16] Don't use hrtimer overlay when pm_freezing since some
- drivers still don't correctly use freezable timeouts.
-
----
- kernel/time/hrtimer.c | 2 +-
- kernel/time/timer.c   | 9 +++++----
- 2 files changed, 6 insertions(+), 5 deletions(-)
-
 diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
 index 13227cf2814c..66456c72bace 100644
 --- a/kernel/time/hrtimer.c
@@ -2189,21 +2029,6 @@ index c68cb9307f64..2f2c96b03efe 100644
  
  	while (timeout && !signal_pending(current))
  		timeout = schedule_timeout_interruptible(timeout);
--- 
-2.11.0
-
-From ef412af05347ab4a0885080864677b85bf51072a Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Tue, 22 Nov 2016 10:15:51 +1100
-Subject: [PATCH 11/16] Make hrtimer granularity and minimum hrtimeout
- configurable in sysctl.
-
----
- kernel/sysctl.c           | 22 +++++++++++++++++++-
- kernel/time/clockevents.c |  8 ++------
- kernel/time/hrtimer.c     | 51 +++++++++++++++++++++++++++++++++++++++++++----
- 3 files changed, 70 insertions(+), 11 deletions(-)
-
 diff --git a/kernel/sysctl.c b/kernel/sysctl.c
 index 560806c9b299..a5037ef615b8 100644
 --- a/kernel/sysctl.c
@@ -2343,19 +2168,6 @@ index 66456c72bace..18127df38826 100644
  }
  
  EXPORT_SYMBOL(schedule_min_hrtimeout);
--- 
-2.11.0
-
-From 9e47a80f690080c12ce607158b96c305707543b8 Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Wed, 7 Dec 2016 21:23:01 +1100
-Subject: [PATCH 12/16] Reinstate default Hz of 100 in combination with MuQSS
- and -ck patches.
-
----
- kernel/Kconfig.hz | 25 ++++++++++++++++++-------
- 1 file changed, 18 insertions(+), 7 deletions(-)
-
 diff --git a/kernel/Kconfig.hz b/kernel/Kconfig.hz
 index 2a202a846757..1806fcac8f14 100644
 --- a/kernel/Kconfig.hz
@@ -2424,20 +2236,6 @@ index 2a202a846757..1806fcac8f14 100644
  
  config SCHED_HRTICK
  	def_bool HIGH_RES_TIMERS
--- 
-2.11.0
-
-From 5902b315d4061ebbe73a62c52e6d3b618066cebc Mon Sep 17 00:00:00 2001
-From: Con Kolivas <kernel@kolivas.org>
-Date: Wed, 7 Dec 2016 21:13:16 +1100
-Subject: [PATCH 13/16] Make threaded IRQs optionally the default which can be
- disabled.
-
----
- kernel/irq/Kconfig  | 14 ++++++++++++++
- kernel/irq/manage.c | 10 ++++++++++
- 2 files changed, 24 insertions(+)
-
 diff --git a/kernel/irq/Kconfig b/kernel/irq/Kconfig
 index a117adf7084b..0984c54fd4e9 100644
 --- a/kernel/irq/Kconfig
