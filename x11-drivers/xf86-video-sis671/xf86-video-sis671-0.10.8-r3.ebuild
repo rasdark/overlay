@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-EGIT_COMMIT="for-xorg-1.19"
+EGIT_COMMIT="2c8c3cbc43a0115a4aecea31fb8781adb1b7e1dd"
 EGIT_REPO_URI="https://github.com/rasdark/xf86-video-sis671.git"
 
 inherit git-r3 autotools
@@ -18,7 +18,7 @@ KEYWORDS="x86 amd64"
 
 DEPEND=">=x11-base/xorg-server-1.19
         >=x11-base/xorg-drivers-1.19
-        =sys-devel/automake-1.15.1"
+        >=sys-devel/automake-1.16"
 
 src_prepare() {
         eautoconf
