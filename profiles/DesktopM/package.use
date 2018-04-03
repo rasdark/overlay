@@ -127,3 +127,4 @@ dev-libs/json-c static-libs
 app-crypt/argon2 static-libs
 sys-boot/grub mount
 dev-libs/libpwquality static-libs
+dev-libs/fribidi abi_x86_32
