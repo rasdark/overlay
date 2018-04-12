@@ -3,12 +3,14 @@
 #?in(os_linux_pkglist, COBRA)!=#
 app-arch/xarchiver
 app-editors/gvim
+app-editors/vim
 app-vim/vim-spell-en
 app-vim/vim-spell-es
 app-vim/vim-spell-ru
 app-emulation/wine-any
 app-office/libreoffice
 app-office/osmo
+app-shells/fzf
 app-text/fbreader
 app-text/qpdfview
 dev-java/oracle-jre-bin

@@ -127,3 +127,7 @@ dev-libs/json-c static-libs
 app-crypt/argon2 static-libs
 sys-boot/grub mount
 dev-libs/libpwquality static-libs
+dev-libs/fribidi abi_x86_32
+app-editors/gvim python perl tcl session -aqua -gtk gtk3 -gnome -motif
+app-editors/vim python perl terminal
+app-shells/fzf bash-completion tmux vim -zsh-completion
