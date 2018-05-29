@@ -1,0 +1,14 @@
+# Calculate format=diff merge()>=9999
+--- src/plugins/CopyTitle/copytitle.cpp~	2018-05-29 07:14:06.043927283 +0300
++++ src/plugins/CopyTitle/copytitle.cpp	2018-05-29 07:15:51.912784620 +0300
+@@ -52,7 +52,9 @@
+     Q_UNUSED(state)
+     Q_UNUSED(settingsPath)
+ 
+-    QZ_REGISTER_EVENT_HANDLER(PluginProxy::MousePressHandler);
++	// Registering this plugin as a MousePressHandler.
++	// Otherwise mousePress() function will never be called
++	mApp->plugins()->registerAppEventHandler(PluginProxy::MousePressHandler, this)
+ }
+ 
+ void CopyTitle::unload()
