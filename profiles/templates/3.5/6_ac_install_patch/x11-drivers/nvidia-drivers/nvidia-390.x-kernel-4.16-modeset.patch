@@ -1,4 +1,4 @@
-# Calculate format=diff os_install_arch_machine==x86_64&&pkg(sys-kernel/calculate-sources)=>4.16,4.17&&merge(x11-drivers/nvidia-drivers)=>390,391
+# Calculate format=diff os_install_arch_machine==x86_64&&pkg(sys-kernel/calculate-sources)=>4.16&&merge(x11-drivers/nvidia-drivers)=>390,391
 diff -urp work.orig/kernel/common/inc/nv-linux.h work/kernel/common/inc/nv-linux.h
 --- work.orig/kernel/common/inc/nv-linux.h  2017-09-29 06:17:46.000000000 +0200
 +++ work/kernel/common/inc/nv-linux.h   2017-10-08 00:52:42.721523788 +0200
