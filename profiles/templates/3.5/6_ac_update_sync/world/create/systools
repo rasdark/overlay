@@ -44,8 +44,15 @@ app-arch/rar
 app-arch/unrar
 app-admin/keepassxc
 app-crypt/chntpw
+app-misc/neofetch
 dev-python/virtualenv
+dev-util/android-tools
 sys-block/gparted
+sys-fs/ddrescue
 app-forensics/scalpel
 x11-libs/gksu
+sys-fs/exfat-utils
+sys-fs/fuse-exfat
+sys-fs/ncdu
+
 #in#

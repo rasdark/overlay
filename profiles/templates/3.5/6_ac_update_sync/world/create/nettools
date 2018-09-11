@@ -9,6 +9,7 @@ net-analyzer/traceroute
 net-dns/bind-tools
 net-dialup/minicom
 net-firewall/iptables
+net-misc/aria2
 net-fs/samba
 net-ftp/ftp
 net-misc/whois
