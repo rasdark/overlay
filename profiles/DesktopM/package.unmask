@@ -1,7 +1,2 @@
 sys-auth/pam_keystore
-=sys-devel/gcc-6.4.0
-=app-emulation/wine-gecko-2.47-r1
-=app-eselect/eselect-wine-1.1
-=app-emulation/wine-mono-4.7.1
-=app-emulation/wine-desktop-common-20150204
-=app-emulation/wine-any-2.16
+sys-devel/gcc:4.9.4
