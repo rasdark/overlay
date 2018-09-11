@@ -102,7 +102,7 @@ virtual/udev static-libs
 www-client/dwb examples -gtk3
 www-client/firefox -custom-cflags -custom-optimization -minimal system-cairo -system-icu system-sqlite system-jpeg system-libevent system-libvpx pgo
 www-client/links -X
-www-client/palemoon alsa -oss -pulseaudio gtk2 -gtk3 -system-libs -jemalloc -optimize
+www-client/palemoon alsa -oss -pulseaudio gtk2 -gtk3 -system-libs -jemalloc -optimize devtools
 www-plugins/chrome-binary-plugins flash
 x11-libs/libdrm libkms
 x11-libs/libfm udisks
