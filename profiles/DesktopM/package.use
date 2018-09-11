@@ -131,3 +131,5 @@ dev-libs/fribidi abi_x86_32
 app-editors/gvim python perl tcl session -aqua -gtk gtk3 -gnome -motif
 app-editors/vim python perl terminal
 app-shells/fzf bash-completion tmux vim -zsh-completion
+sys-apps/lm_sensors abi_x86_32
+net-libs/zeromq drafts
