@@ -1,5 +1,6 @@
 # Calculate name=world format=world in(os_linux_pkglist,COBRA)!=
 
+gnome-extra/gucharmap
 x11-misc/gmrun
 x11-misc/light-locker
 x11-misc/obconf
@@ -12,3 +13,4 @@ x11-misc/gxkb
 x11-misc/screengrab
 x11-terms/rxvt-unicode
 x11-wm/openbox
+xfce-extra/xfce4-taskmanager

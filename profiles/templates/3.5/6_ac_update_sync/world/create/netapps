@@ -3,16 +3,16 @@
 #?in(os_linux_pkglist, COBRA)!=#
 gnome-extra/nm-applet
 net-analyzer/wireshark
-net-irc/kvirc
+net-irc/hexchat
 net-im/telegram-desktop-bin
 net-misc/remmina
-net-misc/dropbox
 net-misc/yandex-disk
-net-p2p/deluge
+net-p2p/transmission
 net-wireless/blueman
 #?os_arch_machine_gentoo==amd64#
-www-client/yandex-browser-beta
-www-plugins/chrome-binary-plugins
+www-client/palemoon
+www-plugins/adobe-flash
+www-plugins/mozplugger
 #os_arch_machine_gentoo#
 #?os_arch_machine_gentoo!=amd64#
 www-client/firefox

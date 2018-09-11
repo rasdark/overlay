@@ -3,5 +3,6 @@
 #?in(os_linux_pkglist, COBRA)!=#
 app-misc/xorg-meta
 x11-misc/lightdm-gtk-greeter
+x11-drivers/xf86-video-sis671
 #in#
 

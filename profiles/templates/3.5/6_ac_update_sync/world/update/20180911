@@ -1,0 +1,26 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<#-cut()-#
+
+#-ini(overlay-rasdark.world,#-cut()-#)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+!net-irc/kvirc
+net-irc/hexchat
+!net-misc/dropbox
+!net-p2p/deluge
+net-p2p/transmission
+!www-client/yandex-browser-beta
+!www-plugins/chrome-binary-plugins
+www-client/palemoon
+www-plugins/adobe-flash
+www-plugins/mozplugger
+net-misc/aria2
+gnome-extra/gucharmap
+xfce-extra/xfce4-taskmanager
+app-misc/neofetch
+dev-util/android-tools
+sys-fs/ddrescue
+sys-fs/exfat-utils
+sys-fs/fuse-exfat
+sys-fs/ncdu
+x11-drivers/xf86-video-sis671
+#in#
