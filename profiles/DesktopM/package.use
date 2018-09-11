@@ -133,3 +133,11 @@ app-editors/vim python perl terminal
 app-shells/fzf bash-completion tmux vim -zsh-completion
 sys-apps/lm_sensors abi_x86_32
 net-libs/zeromq drafts
+dev-libs/libaio static-libs
+app-text/asciidoc PYTHON_SINGLE_TARGET: -* python2_7
+sys-libs/cracklib static-libs
+app-editors/gvim -neXt -session
+media-libs/libsdl2 haptic
+net-nds/openldap sasl
+dev-java/oracle-jdk-bin -gtk2 gtk3
+
