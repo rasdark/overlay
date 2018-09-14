@@ -1,8 +1,0 @@
-# Calculate format=world name=world ini(overlay-rasdark.world)<29
-
-#-ini(overlay-rasdark.world,29)-#
-
-#?in(os_linux_pkglist, COBRA)!=#
-app-shells/fzf
-app-editors/vim
-#in#
