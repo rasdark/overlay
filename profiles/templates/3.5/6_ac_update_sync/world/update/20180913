@@ -1,0 +1,8 @@
+# Calculate format=world name=world ini(overlay-rasdark.world)<#-cut()-#
+
+#-ini(overlay-rasdark.world,#-cut()-#)-#
+
+#?in(os_linux_pkglist, COBRA)!=#
+!x11-misc/obshutdown
+x11-misc/oblogout
+#in#
