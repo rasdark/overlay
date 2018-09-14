@@ -1,8 +1,0 @@
-# Calculate format=world name=world ini(overlay-rasdark.world)<23
-
-#-ini(overlay-rasdark.world,23)-#
-
-#?in(os_linux_pkglist, COBRA)!=#
-!app-shells/zsh-completions
-!app-shells/gentoo-zsh-completions
-#in#

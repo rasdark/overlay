@@ -1,7 +1,0 @@
-# Calculate format=world name=world ini(overlay-rasdark.world)<19
-
-#-ini(overlay-rasdark.world,19)-#
-
-#?in(os_linux_pkglist, COBRA)!=#
-sys-auth/pam_update
-#in#
