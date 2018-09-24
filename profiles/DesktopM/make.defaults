@@ -4,7 +4,7 @@ USE="${USE} cdda -gstreamer -pulseaudio alsa"
 # Network protocols
 USE="${USE} rdesktop"
 # System
-USE="${USE} -dconf networkmanager udisks -systemd modemmanager -libav -qt3support qt4 qt5"
+USE="${USE} -dconf -networkmanager udisks -systemd modemmanager -libav -qt3support qt4 qt5 -jemalloc"
 # Window manager and specialities
 USE="${USE} -eds -gnome -kde infinality -wayland"
 #
