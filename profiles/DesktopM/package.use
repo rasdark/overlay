@@ -9,9 +9,10 @@ app-mobilephone/obexftp python
 app-office/libreoffice gtk -bluetooth opengl -vlc branding java pdfimport
 app-portage/layman git mercurial
 app-shells/zsh doc examples
-app-text/poppler qt4
+app-text/poppler qt4 qt5
 app-text/texlive extra -pdfannotextractor publishers science xetex
 dev-db/sqlite secure-delete
+dev-db/mysql extraengine -jemalloc
 dev-java/oracle-jre-bin fontconfig -jce nsplugin
 dev-lang/python sqlite tk wininst
 dev-libs/boost python
@@ -26,6 +27,7 @@ dev-libs/popt static-libs
 dev-lua/lpeg luajit
 dev-lua/mpack luajit
 dev-python/pyside -webkit
+dev-python/PyQt5 -webchannel -webengine
 dev-qt/designer -webkit
 dev-qt/qtgui accessibility gtkstyle
 dev-qt/qtsql -mysql sqlite
@@ -34,7 +36,7 @@ dev-vcs/git -gtk
 games-strategy/freeciv aimodules modpack sqlite
 gnome-extra/nm-applet bluetooth
 mail-client/claws-mail pdf rss smime webkit xface -libindicate
-mail-client/thunderbird custom-cflags custom-optimization minimal system-cairo system-icu system-jpeg system-sqlite
+mail-client/thunderbird custom-cflags custom-optimization minimal system-cairo system-icu system-jpeg system-sqlite lightning
 media-fonts/terminus-font X pcf
 media-gfx/nomacs raw tiff opencv
 media-gfx/viewnior wallpaper
@@ -63,6 +65,7 @@ media-video/mplayer2 lcms pvr yuv4mpeg
 media-video/smplayer qt4
 net-analyzer/nmap -lua ncat ndiff nmap-update nping zenmap
 net-analyzer/wireshark -adns geoip -gtk3 smi
+net-analyzer/hping tcl
 net-dns/avahi -qt4 utils
 net-dns/bind-tools ipv6 gost idn
 net-fs/cifs-utils -acl
@@ -72,6 +75,7 @@ net-irc/kvirc -audiofile -oss -theora -dcc_voice -phonon doc qt4 -webkit -dcc_vi
 net-libs/libpcap netlink
 net-libs/rb_libtorrent python
 net-libs/webkit-gtk -introspection -geoloc libsecret
+net-misc/android-file-transfer fuse -qt4 qt5 libusb
 net-misc/aria2 sqlite ssh tcmalloc
 net-misc/iputils -arping
 net-misc/openvpn pkcs11 examples down-root
@@ -104,11 +108,12 @@ www-client/firefox -custom-cflags -custom-optimization -minimal system-cairo -sy
 www-client/links -X
 www-client/palemoon alsa -oss -pulseaudio gtk2 -gtk3 -system-libs -jemalloc -optimize devtools
 www-plugins/chrome-binary-plugins flash
+x11-base/xcb-proto abi_x86_32
 x11-libs/libdrm libkms
 x11-libs/libfm udisks
 x11-misc/lightdm -introspection
 x11-misc/light-locker upower
-x11-misc/tint2 battery tint2conf themes
+x11-misc/tint2 battery tint2conf themes examples
 x11-misc/x11vnc fbcon
 x11-terms/rxvt-unicode -alt-font-width pixbuf -vanilla iso14755 unicode3 buffer-on-clear fading-colors blink
 x11-wm/openbox imlib xdg
@@ -128,7 +133,7 @@ app-crypt/argon2 static-libs
 sys-boot/grub mount
 dev-libs/libpwquality static-libs
 dev-libs/fribidi abi_x86_32
-app-editors/gvim python perl tcl session -aqua -gtk gtk3 -gnome -motif
+app-editors/gvim python perl tcl session -aqua -gtk gtk3 -gnome -motif -neXt
 app-editors/vim python perl terminal
 app-shells/fzf bash-completion tmux vim -zsh-completion
 sys-apps/lm_sensors abi_x86_32
@@ -140,4 +145,4 @@ app-editors/gvim -neXt -session
 media-libs/libsdl2 haptic
 net-nds/openldap sasl
 dev-java/oracle-jdk-bin -gtk2 gtk3
-
+dev-libs/xmlsec nss
