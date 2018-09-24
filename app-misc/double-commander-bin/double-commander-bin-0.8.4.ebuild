@@ -32,7 +32,8 @@ RDEPEND="sys-apps/dbus
 	x11-libs/libX11
 	gtk2? ( x11-libs/gtk+:2 )
 	qt4? ( dev-qt/qtgui:4 )
-    qt5? ( dev-qt/qtgui:5 )"
+    qt5? ( dev-qt/qtgui:5
+           dev-qt/qtx11extras:5 )"
 
 src_prepare(){
         # no save configs in Program Dir
