@@ -1,6 +1,6 @@
 # Calculate ini(hardware.model)==laptop_k50c
 LINGUAS="en es es_ES ru ru_RU"
-L10N="ru ru-RU es es-ES"
+L10N="ru ru-RU es es-ES en"
 INPUT_DEVICES="synaptics evdev"
 VIDEO_CARDS="sis671 vesa"
 CFLAGS="-march=core2 -mavx256-split-unaligned-load -mavx256-split-unaligned-store -Ofast -pipe"
