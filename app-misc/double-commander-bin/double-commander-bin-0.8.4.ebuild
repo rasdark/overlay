@@ -10,25 +10,29 @@ DESCRIPTION="Cross Platform file manager."
 HOMEPAGE="http://${ABBREV}.sourceforge.net/"
 
 SRC_URI="x86?   ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.i386.tar.xz )
-                  qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.i386.tar.xz ) )
+                  qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.i386.tar.xz )
+                  qt5?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt5.i386.tar.xz ) )
          amd64? ( gtk2? ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.gtk2.x86_64.tar.xz )
-                  qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.x86_64.tar.xz ) )"
+                  qt4?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt.x86_64.tar.xz )
+                  qt5?  ( mirror://sourceforge/${ABBREV}/${ABBREV}-${PV}.qt5.x86_64.tar.xz ) )"
 RESTRICT="mirror"
 S="${WORKDIR}/${ABBREV}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="qt4 gtk2"
-REQUIRED_USE=" ^^ ( qt4 gtk2 )"
+IUSE="qt4 gtk2 qt5"
+REQUIRED_USE=" ^^ ( qt4 gtk2 qt5 )"
 QA_PREBUILT="*/doublecmd
-             */libQt4Pas.so.5"
+             */libQt4Pas.so.5
+             */libQt5Pas.so.1"
 
 RDEPEND="sys-apps/dbus
 	dev-libs/glib
 	sys-libs/ncurses
 	x11-libs/libX11
 	gtk2? ( x11-libs/gtk+:2 )
-	qt4? ( dev-qt/qtgui:4 )"
+	qt4? ( dev-qt/qtgui:4 )
+    qt5? ( dev-qt/qtgui:5 )"
 
 src_prepare(){
         # no save configs in Program Dir
@@ -50,5 +54,8 @@ src_install(){
 
         if use qt4; then
                 newlib.so libQt4Pas.so.5 libQt4Pas.so.5
+        fi
+        if use qt5; then                                                                                                                                                
+                newlib.so libQt5Pas.so.1 libQt5Pas.so.1                                                                                                                 
         fi
 }
