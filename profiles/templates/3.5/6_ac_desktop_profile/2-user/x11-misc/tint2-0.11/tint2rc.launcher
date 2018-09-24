@@ -47,8 +47,8 @@ launcher_item_app = /usr/share/applications/calculate-im.desktop
 launcher_item_app = /usr/share/applications/io.github.Hexchat.desktop
 launcher_item_app = /usr/share/applications/transmission-gtk.desktop
 launcher_item_app = /usr/share/applications/remmina-file.desktop
-launcher_item_app = /usr/share/applications/org.keepassxc.desktop
-launcher_item_app = /usr/share/applications/subl3_%F-sublime-text-3.desktop
+launcher_item_app = /usr/share/applications/org.keepassxc.KeePassXC.desktop
+launcher_item_app = /usr/share/applications/subl.desktop
 launcher_item_app = /usr/share/applications/telegramdesktop.desktop
 
 # End of config
