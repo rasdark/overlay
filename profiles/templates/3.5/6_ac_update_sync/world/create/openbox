@@ -10,7 +10,7 @@ x11-misc/parcellite
 x11-misc/pcmanfm
 x11-misc/tint2
 x11-misc/gxkb
-x11-misc/screengrab
+media-gfx/gnome-screenshot
 x11-terms/rxvt-unicode
 x11-wm/openbox
 xfce-extra/xfce4-taskmanager
