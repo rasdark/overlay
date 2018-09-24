@@ -104,6 +104,7 @@ virtual/libgudev static-libs
 virtual/libudev static-libs
 virtual/udev static-libs
 www-client/dwb examples -gtk3
+www-client/w3m imlib
 www-client/firefox -custom-cflags -custom-optimization -minimal system-cairo -system-icu system-sqlite system-jpeg system-libevent system-libvpx pgo
 www-client/links -X
 www-client/palemoon alsa -oss -pulseaudio gtk2 -gtk3 -system-libs -jemalloc -optimize devtools
@@ -115,6 +116,7 @@ x11-misc/lightdm -introspection
 x11-misc/light-locker upower
 x11-misc/tint2 battery tint2conf themes examples
 x11-misc/x11vnc fbcon
+x11-misc/light-locker -upower
 x11-terms/rxvt-unicode -alt-font-width pixbuf -vanilla iso14755 unicode3 buffer-on-clear fading-colors blink
 x11-wm/openbox imlib xdg
 xfce-extra/xfce4-taskmanager gksu
