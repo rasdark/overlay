@@ -148,3 +148,4 @@ media-libs/libsdl2 haptic
 net-nds/openldap sasl
 dev-java/oracle-jdk-bin -gtk2 gtk3
 dev-libs/xmlsec nss
+app-misc/neofetch X
