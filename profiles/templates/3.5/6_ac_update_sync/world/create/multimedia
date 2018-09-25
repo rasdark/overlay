@@ -1,6 +1,6 @@
 # Calculate name=world format=world
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 app-cdr/pburn
 media-plugins/alsa-plugins
 media-sound/alsa-utils

@@ -2,6 +2,6 @@
 
 #-ini(overlay-rasdark.world,#-cut()-#)-#
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 !gnome-extra/nm-applet
 #in#

@@ -1,5 +1,5 @@
 # Calculate name=world format=world
-#?in(os_linux_pkglist, TOSS,COBRA)!=#
+#?in(os_linux_pkglist, TOSS,PDL)!=#
 app-admin/hddtemp
 app-admin/logrotate
 app-admin/pwgen
@@ -39,7 +39,7 @@ sys-apps/dmidecode
 app-i18n/enca
 #in#
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 app-arch/rar
 app-arch/unrar
 app-admin/keepassxc

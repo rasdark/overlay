@@ -1,6 +1,6 @@
 # Calculate name=world format=world
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 app-misc/xorg-meta
 x11-misc/lightdm-gtk-greeter
 x11-drivers/xf86-video-sis671

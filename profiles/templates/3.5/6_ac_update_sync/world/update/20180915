@@ -2,7 +2,7 @@
 
 #-ini(overlay-rasdark.world,#-cut()-#)-#
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 !x11-misc/screengrab
 media-gfx/gnome-screenshot
 #in#
