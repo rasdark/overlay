@@ -18,8 +18,8 @@ KERNELNAME="darkus"
 EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --ask --keep-going"
 ACCEPT_LICENSE="*"
 FEATURES="-getbinpkg buildpkg"
-PYTHON_TARGETS="python2_7 -python3_5 -python3_4 python3_6"
-PYTHON_SINGLE_TARGET="-python3_5 -python3_4 python3_6"
-RUBY_TARGETS="ruby25 ruby24 -ruby23 -ruby22"
-CPU_FLAGS_X86="3dnow 3dnowext mmx sse sse2 sse3  mmxext *"
 
+PYTHON_TARGETS="python2_7 -python3_4 -python3_5 python3_6"
+PYTHON_SINGLE_TARGET="-python3_4 -python3_5 python3_6"
+
+RUBY_TARGETS="ruby25 -ruby24 -ruby23 -ruby22"

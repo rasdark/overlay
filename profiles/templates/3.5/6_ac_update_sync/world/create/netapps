@@ -1,6 +1,6 @@
 # Calculate name=world format=world
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 net-analyzer/wireshark
 net-irc/hexchat
 net-im/telegram-desktop-bin

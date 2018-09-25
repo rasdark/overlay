@@ -1,5 +1,5 @@
 # Calculate name=world format=world
-#?in(os_linux_pkglist, TOSS,COBRA)!=#
+#?in(os_linux_pkglist, TOSS,PDL)!=#
 app-text/wgetpaste
 net-analyzer/mtr
 net-analyzer/netcat6
@@ -15,7 +15,7 @@ net-ftp/ftp
 net-misc/whois
 #in#
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 net-analyzer/arp-scan
 net-analyzer/hping
 net-misc/telnet-bsd

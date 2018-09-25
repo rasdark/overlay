@@ -1,6 +1,6 @@
 # Calculate name=world format=world
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 lxde-base/lxmenu-data
 media-fonts/infinality-ultimate-meta
 media-gfx/calculate-wallpapers

@@ -1,7 +1,8 @@
 # Calculate ini(hardware.model)==laptop_k50c
 LINGUAS="en es es_ES ru ru_RU"
 L10N="ru ru-RU es es-ES en"
-INPUT_DEVICES="synaptics evdev"
+INPUT_DEVICES="synaptics evdev mouse"
 VIDEO_CARDS="sis671 vesa"
+CPU_FLAGS_X86="mmx sse sse2 sse3"
 CFLAGS="-march=core2 -mavx256-split-unaligned-load -mavx256-split-unaligned-store -Ofast -pipe"
 CXXFLAGS="${CFLAGS}"

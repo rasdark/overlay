@@ -1,6 +1,6 @@
 # Calculate name=world format=world
 
-#?in(os_linux_pkglist, TOSS,COBRA)!=#
+#?in(os_linux_pkglist, TOSS,PDL)!=#
 app-admin/testdisk
 app-arch/p7zip
 app-editors/nano

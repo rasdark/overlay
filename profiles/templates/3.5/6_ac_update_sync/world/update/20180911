@@ -1,8 +1,8 @@
-# Calculate format=world name=world ini(overlay-rasdark.world)<#-cut()-#
+'# Calculate format=world name=world ini(overlay-rasdark.world)<#-cut()-#
 
 #-ini(overlay-rasdark.world,#-cut()-#)-#
 
-#?in(os_linux_pkglist, COBRA)!=#
+#?in(os_linux_pkglist, PDL)!=#
 !net-irc/kvirc
 net-irc/hexchat
 !net-misc/dropbox
