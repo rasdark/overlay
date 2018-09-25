@@ -1,7 +1,6 @@
 # Calculate name=world format=world
 
 #?in(os_linux_pkglist, COBRA)!=#
-gnome-extra/nm-applet
 net-analyzer/wireshark
 net-irc/hexchat
 net-im/telegram-desktop-bin

@@ -115,8 +115,8 @@
     <number>2</number>
     <firstdesk>1</firstdesk>
     <names>
-      <name>Main desktop</name>
-      <name>Reserverd desktop</name>
+      <name>Main</name>
+      <name>Reserved</name>
     </names>
     <popupTime>875</popupTime>
     <!-- The number of milliseconds to show the popup for when switching
@@ -295,12 +295,12 @@
     </keybind>
     <keybind key="Print">
       <action name="Execute">
-        <execute>screengrab --fullscreen</execute>
+        <execute>gnome-screenshot --interactive</execute>
       </action>
     </keybind>
     <keybind key="A-Print">
       <action name="Execute">
-        <execute>screengrab --active</execute>
+        <execute>gnome-screenshot</execute>
       </action>
     </keybind>
     <keybind key="C-Escape">
