@@ -38,7 +38,7 @@ background_color_pressed = #dddddd 4
 border_color_pressed = #eaeaea 62
 gradient_id_pressed = 2
 
-# Background 3:
+# Background 3: 
 rounded = 5
 border_width = 1
 border_sides = TBLR
@@ -181,7 +181,7 @@ systray_sort = right2left
 systray_icon_size = 22
 systray_icon_asb = 100 0 0
 systray_monitor = 1
-systray_name_filter =
+systray_name_filter = 
 
 #-------------------------------------
 # Launcher
@@ -202,19 +202,19 @@ launcher_item_app = /usr/share/applications/palemoon.desktop
 time1_format = %H:%M:%S
 time2_format = %a %d %b
 time1_font = Roboto Mono Medium for Powerline Bold 9
-time1_timezone =
-time2_timezone =
+time1_timezone = 
+time2_timezone = 
 time2_font = Roboto Mono Medium for Powerline Medium 7
 clock_font_color = #ffffff 100
 clock_padding = 1 0
 clock_background_id = 0
-clock_tooltip =
-clock_tooltip_timezone =
+clock_tooltip = 
+clock_tooltip_timezone = 
 clock_lclick_command = gsimplecal
 clock_rclick_command = osmo
-clock_mclick_command =
-clock_uwheel_command =
-clock_dwheel_command =
+clock_mclick_command = 
+clock_uwheel_command = 
+clock_dwheel_command = 
 
 #-------------------------------------
 # Battery
@@ -227,11 +227,11 @@ battery_font_color = #ffffff 100
 battery_padding = 2 2
 battery_background_id = 0
 battery_hide = 99
-battery_lclick_command =
-battery_rclick_command =
-battery_mclick_command =
-battery_uwheel_command =
-battery_dwheel_command =
+battery_lclick_command = 
+battery_rclick_command = 
+battery_mclick_command = 
+battery_uwheel_command = 
+battery_dwheel_command = 
 ac_connected_cmd = notify-send -i battery-low-charging -u normal "Адаптер подключен" "Внимание\!\nСетевой адаптер подключен\!"
 ac_disconnected_cmd = notify-send -i battery-caution -u critical "Адаптер отключен" "Внимание\!\nСетевой адаптер ОТКЛЮЧЕН\!"
 
@@ -262,4 +262,3 @@ tooltip_background_id = 5
 tooltip_font_color = #081046 100
 tooltip_font = Monaco 9
 
-# End of config
