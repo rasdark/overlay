@@ -25,6 +25,7 @@ DEPEND="
 	dev-qt/qtx11extras:5
 	dev-qt/qtsql:5
 	dev-qt/qtwebkit:5
+	dev-qt/qtwebsockets:5
 	dev-qt/qtquickcontrols:5
 	dev-qt/qtnetwork:5
 	dev-qt/qtxml:5
@@ -33,7 +34,7 @@ DEPEND="
 	dev-qt/qtconcurrent:5
 	dev-qt/qtmultimedia:5
 	dev-qt/qtprintsupport:5
-	=media-video/ffmpeg-2*
+	media-video/ffmpeg
 	media-libs/x264
 	media-libs/libvpx
 	media-sound/lame
