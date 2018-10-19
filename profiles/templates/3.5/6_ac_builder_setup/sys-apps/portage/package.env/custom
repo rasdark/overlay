@@ -2,3 +2,4 @@ x11-drivers/xf86-video-virtualbox opt2
 dev-db/sqlite opt2
 >=www-client/palemoon-26.2.0 opt2
 >=sys-libs/db-5 opt2
+media-libs/opus opt2
