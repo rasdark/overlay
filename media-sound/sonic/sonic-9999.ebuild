@@ -17,8 +17,3 @@ IUSE=""
 
 RDEPEND="sci-libs/fftw"
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-    cd "${WORKDIR}"/${P} || die
-	epatch "${FILESDIR}"/${P}-fix-lib.patch
-}
