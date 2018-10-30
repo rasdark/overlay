@@ -1,7 +1,12 @@
 # Calculate exec=/bin/bash
+DEST_ROOT=/usr/share/goldendict
+SRC_ROOT=/usr/share/apps/goldendict
 
-/bin/mkdir -p /usr/share/goldendict/locale
-/bin/cp -fr /usr/share/apps/goldendict/locale/* /usr/share/goldendict/locale/
-/bin/rm -rf /usr/share/apps/goldendict/locale
+/bin/mkdir -p ${DEST_ROOT}/locale
+/bin/cp -fr ${SRC_ROOT}/locale/* ${DEST_ROOT}/locale/
+/bin/rm -rf ${SRC_ROOT}/locale
+if [ ! "$(ls -A ${SRC_ROOT})" ]; then
+    /bin/rm -rf ${SRC_ROOT}
+fi
 
 exit 0
