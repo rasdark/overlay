@@ -1,6 +1,7 @@
 # Calculate exec=/bin/bash
 
-/bin/mv -f /usr/share/apps/goldendict/locale /usr/share/goldendict/
-/bin/rm -rf /usr/share/apps/goldendict
+/bin/mkdir -p /usr/share/goldendict/locale
+/bin/cp -fr /usr/share/apps/goldendict/locale/* /usr/share/goldendict/locale/
+/bin/rm -rf /usr/share/apps/goldendict/locale
 
 exit 0
