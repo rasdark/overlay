@@ -19,16 +19,16 @@ inherit calculate eutils kernel-2
 EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst
 
 
-REQUIRED_USE="minimal? ( vmlinuz )
-	grub? ( vmlinuz )"
+REQUIRED_USE="minimal? ( vmlinuz )"
 
 CDEPEND="vmlinuz? ( || ( app-arch/xz-utils app-arch/lzma-utils )
-		sys-apps/v86d
 		grub? ( sys-boot/grub )
 	)
 	firmware? ( sys-kernel/linux-firmware )"
 
 DEPEND="${CDEPEND}
+	>=sys-devel/bison-1.875
+	>=sys-devel/flex-2.5.4
 	themes? ( media-gfx/splash-themes-calculate )
 	!minimal? ( virtual/pkgconfig )
 	"
@@ -38,7 +38,7 @@ RDEPEND="${CDEPEND} vmlinuz? ( sys-kernel/dracut )"
 detect_version
 detect_arch
 
-IUSE="+vmlinuz uksm muqss pae minimal themes firmware +grub"
+IUSE="+vmlinuz desktop pae minimal themes firmware +grub"
 
 if [[ ${KV_MAJOR} -lt 3 ]]
 then
@@ -147,6 +147,8 @@ clean_for_minimal() {
 		scripts/Makefile.gcc-plugins \
 		Module.symvers \
 		scripts/Makefile.ubsan \
+		scripts/Makefile.kcov \
+		scripts/subarch.include \
 		scripts/Kbuild.include scripts/Makefile.modpost \
 		scripts/gcc-goto.sh scripts/Makefile.headersinst \
 		scripts/Makefile.build scripts/basic/fixdep \
