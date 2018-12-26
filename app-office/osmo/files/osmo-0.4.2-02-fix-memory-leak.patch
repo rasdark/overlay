@@ -1,0 +1,233 @@
+diff -Nuar osmo-0.4.2-orig/src/calendar.c osmo-0.4.2/src/calendar.c
+--- osmo-0.4.2-orig/src/calendar.c	2018-12-26 13:18:39.323692184 +0300
++++ osmo-0.4.2/src/calendar.c	2018-12-26 13:21:33.844707308 +0300
+@@ -92,7 +92,7 @@
+ 
+ #else
+ 
+-gchar *
++static gchar *
+ cal_get_moonphase_img (guint phase) {
+ 
+ gchar *outStr = NULL;
+@@ -676,11 +676,14 @@
+     output = utl_strconcat (output, "</tr><tr>", NULL);
+ 
+     if (config.di_show_moon_phase) {
++        gchar *img;
+         g_snprintf (tmpbuf, BUFFER_SIZE, "<th>%s:</th><td>", _("Moon phase"));
+         output = utl_strconcat (output, tmpbuf, NULL);
+-        g_snprintf (tmpbuf, BUFFER_SIZE, "%s (%s)", 
+-					cal_get_moonphase_img(utl_calc_moon_phase (date)),
++        img = cal_get_moonphase_img(utl_calc_moon_phase (date));
++        g_snprintf (tmpbuf, BUFFER_SIZE, "%s (%s)",
++					img,
+ 					utl_get_moon_phase_name (utl_calc_moon_phase (date)));
++        g_free(img);
+         output = utl_strconcat (output, tmpbuf, "</td>", NULL);
+     }
+ 
+diff -Nuar osmo-0.4.2-orig/src/contacts.c osmo-0.4.2/src/contacts.c
+--- osmo-0.4.2-orig/src/contacts.c	2017-09-22 14:07:54.000000000 +0300
++++ osmo-0.4.2/src/contacts.c	2018-12-26 13:25:39.559728602 +0300
+@@ -182,7 +182,7 @@
+     gint selection_size;
+     gboolean address_available = FALSE, additional_info = FALSE;
+     guint32 date;
+-    gchar *fname, *sname, *lname, *html, *text;
++    gchar *fname, *sname, *lname, *html, *photo;
+     gchar tmpbuf[BUFFER_SIZE], htmpbuf[BUFFER_SIZE];
+     gint i;
+ 
+@@ -233,7 +233,7 @@
+                 COLUMN_FIRST_NAME, &fname,
+                 COLUMN_SECOND_NAME, &sname,
+                 COLUMN_LAST_NAME, &lname,
+-                COLUMN_PHOTO, &text,
++                COLUMN_PHOTO, &photo,
+                 -1);
+ 
+         if (!fname) fname = g_strdup("");
+@@ -247,19 +247,19 @@
+         g_free(lname);
+ 
+         /* insert photo */
+-        if (text != NULL) {
++        if (photo != NULL) {
+ #ifdef HAVE_LIBWEBKIT
+-            g_snprintf(htmpbuf, BUFFER_SIZE, "<img src=\"file://%s\" alt=\"\" class=\"photo\">", text);
++            g_snprintf(htmpbuf, BUFFER_SIZE, "<img src=\"file://%s\" alt=\"\" class=\"photo\">", photo);
+ #endif  /* HAVE_LIBWEBKIT */
+             html = utl_strconcat(html, htmpbuf, NULL);
+-            g_free(text);
++            g_free(photo);
+         }
+ 
+         g_snprintf(htmpbuf, BUFFER_SIZE, "<table>\n");
+         html = utl_strconcat(html, htmpbuf, NULL);
+ 
+         for (i = 0; i < CONTACTS_NUM_COLUMNS; i++) {
+-
++            gchar *text;
+             if ((i == COLUMN_ID) ||
+                     (i == COLUMN_PHOTO) ||
+                     (i == COLUMN_FIRST_NAME) ||
+@@ -283,11 +283,13 @@
+                 gtk_tree_model_get(model, &iter, i, &text, -1);
+             }
+ 
+-            if (text == NULL || !strlen(text)) continue;
+-
++            if (text == NULL || !strlen(text)) {
++                g_free(text);
++                continue;
++            }
+             g_snprintf(htmpbuf, BUFFER_SIZE, "<tr>");
+             html = utl_strconcat(html, htmpbuf, NULL);
+-
++            g_free(text);
+             if ((i >= COLUMN_HOME_PHONE_2 && i <= COLUMN_HOME_PHONE_4) ||
+                     (i >= COLUMN_WORK_PHONE_2 && i <= COLUMN_WORK_PHONE_4) ||
+                     (i >= COLUMN_CELL_PHONE_2 && i <= COLUMN_CELL_PHONE_4) ||
+diff -Nuar osmo-0.4.2-orig/src/notes.c osmo-0.4.2/src/notes.c
+--- osmo-0.4.2-orig/src/notes.c	2017-09-22 14:07:55.000000000 +0300
++++ osmo-0.4.2/src/notes.c	2018-12-26 13:28:00.930740854 +0300
+@@ -163,19 +163,20 @@
+ 	if (appGUI->nte->encrypted == TRUE) {
+ 
+ #ifdef HAVE_LIBGRINGOTTS
+-	if (appGUI->nte->keyholder != NULL && appGUI->nte->context != NULL && appGUI->nte->filename != NULL) {
+-        grg_encrypt_file (appGUI->nte->context, appGUI->nte->keyholder,
+-						  (unsigned char*) notes_get_full_filename(appGUI->nte->filename, appGUI), 
+-						  (guchar *) text, -1);
+-
+-        grg_free (appGUI->nte->context, text, -1);
+-	}
++            if (appGUI->nte->keyholder != NULL && appGUI->nte->context != NULL && appGUI->nte->filename != NULL) {
++                grg_encrypt_file(appGUI->nte->context, appGUI->nte->keyholder,
++                        (unsigned char*) notes_get_full_filename(appGUI->nte->filename, appGUI),
++                        (guchar *) text, -1);
++                grg_free(appGUI->nte->context, text, -1);
++            } else {
++                g_free(text);
++            }
+ #endif /* HAVE_LIBGRINGOTTS */
+ 
+ 	} else {
+-
+-		g_file_set_contents (notes_get_full_filename(appGUI->nte->filename, appGUI), 
+-							 (gchar *) text, strlen((gchar *) text), NULL);
++            g_file_set_contents (notes_get_full_filename(appGUI->nte->filename, appGUI),
++                                                     (gchar *) text, strlen((gchar *) text), NULL);
++            g_free(text);
+ 	}
+ 
+ 	appGUI->nte->changed = FALSE;
+@@ -399,6 +400,7 @@
+ 			}
+ 		}
+ 	}
++    g_free(text);
+ }
+ 
+ /*------------------------------------------------------------------------------*/
+diff -Nuar osmo-0.4.2-orig/src/notes_items.c osmo-0.4.2/src/notes_items.c
+--- osmo-0.4.2-orig/src/notes_items.c	2017-05-21 09:52:45.000000000 +0300
++++ osmo-0.4.2/src/notes_items.c	2018-12-26 13:29:31.844748733 +0300
+@@ -844,6 +844,9 @@
+     utl_gui_text_buffer_set_text_with_tags(buffer, (const gchar *) txtnote, TRUE);
+     notes_show_selector_editor(EDITOR, appGUI);
+     appGUI->nte->buffer_check_modify_enable = TRUE;
++    if(txtnote) {
++        grg_free(appGUI->nte->context, txtnote, txtlen);
++    }
+ 
+     g_free(txtnote);
+     g_free(current_filename);
+@@ -1295,6 +1298,7 @@
+ 		utl_xml_put_int ("editor_line", editor_line, note_node);
+ 		utl_xml_put_int ("read_only", editor_readonly, note_node);
+ 		utl_xml_put_str ("fontname", note_fontname, note_node);
++        g_free (note_fontname);
+ 		utl_xml_put_str ("filename", note_filename, note_node);
+ 		g_free (note_filename);
+ 	}
+diff -Nuar osmo-0.4.2-orig/src/tasks_items.c osmo-0.4.2/src/tasks_items.c
+--- osmo-0.4.2-orig/src/tasks_items.c	2017-05-21 09:52:45.000000000 +0300
++++ osmo-0.4.2/src/tasks_items.c	2018-12-26 13:31:55.823761210 +0300
+@@ -124,10 +124,10 @@
+     item->repeat_month_interval = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(appGUI->tsk->rt_dp_month_spinbutton));
+     item->repeat_counter = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(appGUI->tsk->repeat_counter_spinbutton));
+ 
+-    item->priority = g_strdup(gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(appGUI->tsk->priority_combobox)));
+-    item->category = g_strdup(gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(appGUI->tsk->category_combobox)));
++    item->priority = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(appGUI->tsk->priority_combobox));
++    item->category = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(appGUI->tsk->category_combobox));
+     item->summary = g_strdup((gchar *) gtk_entry_get_text(GTK_ENTRY(appGUI->tsk->summary_entry)));
+-    item->desc = g_strdup(gtk_text_buffer_get_text(GTK_TEXT_BUFFER(text_buffer), &iter_a, &iter_b, TRUE));
++    item->desc = gtk_text_buffer_get_text(GTK_TEXT_BUFFER(text_buffer), &iter_a, &iter_b, TRUE);
+ 
+ 	if (g_date_valid_julian (item->due_date_julian)) {
+ 		cdate = g_date_new_julian (item->due_date_julian);
+@@ -629,6 +629,7 @@
+     GtkWidget *label;
+     GtkWidget *select_date_button;
+     GtkWidget *scrolledwindow;
++    gchar *category;
+ 
+     grid = gtk_grid_new();
+     gtk_grid_set_row_spacing(GTK_GRID(grid), 6);
+@@ -669,10 +670,10 @@
+     gtk_grid_attach(GTK_GRID(grid), appGUI->tsk->category_combobox, 1, 2, 2, 1);
+     utl_gui_create_category_combobox(GTK_COMBO_BOX(appGUI->tsk->category_combobox),
+             appGUI->opt->tasks_category_store, TRUE);
++    category = gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(appGUI->tsk->cf_combobox));
+     gtk_combo_box_set_active(GTK_COMBO_BOX(appGUI->tsk->category_combobox),
+-            utl_gui_list_store_get_text_index(appGUI->opt->tasks_category_store,
+-            gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(appGUI->tsk->cf_combobox))));
+-
++                             utl_gui_list_store_get_text_index(appGUI->opt->tasks_category_store, category));
++    g_free(category);
+     label = create_styled_label("<b>%s:</b>", _("Priority"));
+     gtk_widget_set_halign(label, GTK_ALIGN_START);
+     gtk_grid_attach(GTK_GRID(grid), label, 3, 2, 1, 1);
+diff -Nuar osmo-0.4.2-orig/src/tasks_preferences_gui.c osmo-0.4.2/src/tasks_preferences_gui.c
+--- osmo-0.4.2-orig/src/tasks_preferences_gui.c	2017-03-28 23:27:38.000000000 +0300
++++ osmo-0.4.2/src/tasks_preferences_gui.c	2018-12-26 13:34:01.385772091 +0300
+@@ -525,13 +525,13 @@
+ /* ========================================================================== */
+ 
+ static gint
+-global_notification_entry_changed_cb (GtkEditable *editable, GUI *appGUI)
+-{
+-	utl_gui_update_command_status (editable, appGUI->opt->global_notification_valid_image, appGUI);
+-	g_strlcpy (config.global_notification_command, gtk_editable_get_chars (editable, 0, -1), MAXHELPERCMD);
+-
+-	return FALSE;
+-}
++global_notification_entry_changed_cb(GtkEditable *editable, GUI *appGUI) {
++    gchar *text = gtk_editable_get_chars(editable, 0, -1);
++    utl_gui_update_command_status(editable, appGUI->opt->global_notification_valid_image, appGUI);
++    g_strlcpy(config.global_notification_command, text, MAXHELPERCMD);
++    g_free(text);
++    return FALSE;
++ }
+ 
+ /* ========================================================================== */
+ 
+diff -Nuar osmo-0.4.2-orig/src/utils_gui.c osmo-0.4.2/src/utils_gui.c
+--- osmo-0.4.2-orig/src/utils_gui.c	2017-09-22 14:07:55.000000000 +0300
++++ osmo-0.4.2/src/utils_gui.c	2018-12-26 13:35:57.562782159 +0300
+@@ -647,10 +647,8 @@
+ gchar *cmd;
+ gint i;
+ 
+-    if (strlen(gtk_editable_get_chars(editable, 0, -1))) {
+-
+-        cmd = g_strdup(gtk_editable_get_chars(editable, 0, -1));
+-
++    cmd = gtk_editable_get_chars(editable, 0, -1);
++    if (cmd) {
+         for (i=0; i < strlen(cmd); i++) {
+             if (cmd[i] == ' ') cmd[i] = 0;
+         }
