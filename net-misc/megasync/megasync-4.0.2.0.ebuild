@@ -5,23 +5,13 @@ EAPI=6
 
 CMAKE_USE_DIR="${S}/src/MEGAShellExtDolphin"
 CMAKE_IN_SOURCE_BUILD=y
-inherit gnome2 cmake-utils qmake-utils
-if [[ -z ${PV%%*9999} ]]; then
-	inherit git-r3
-	EGIT_REPO_URI="https://github.com/meganz/${PN}.git"
-	EGIT_SUBMODULES=( -src/MEGASync/mega )
-	SRC_URI=
-else
-	inherit vcs-snapshot
-	MY_PV="455e6a3"
-	SRC_URI="
-		mirror://githubcl/meganz/${PN}/tar.gz/${MY_PV}
-		-> ${P}.tar.gz
-	"
-	RESTRICT="primaryuri"
-	KEYWORDS="~amd64 ~x86"
-fi
 
+inherit gnome2 cmake-utils qmake-utils git-r3
+
+EGIT_REPO_URI="https://github.com/meganz/MEGAsync.git"
+EGIT_COMMIT="v${PV}_Linux"
+
+KEYWORDS="~amd64 ~x86"
 DESCRIPTION="Easy automated syncing with MEGA Cloud Drive"
 HOMEPAGE="https://github.com/meganz/MEGAsync"
 
