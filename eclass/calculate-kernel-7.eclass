@@ -24,12 +24,14 @@ REQUIRED_USE="minimal? ( vmlinuz )"
 CDEPEND="vmlinuz? ( || ( app-arch/xz-utils app-arch/lzma-utils )
 		grub? ( sys-boot/grub )
 	)
-	firmware? ( sys-kernel/linux-firmware )"
+	firmware? ( || ( sys-kernel/linux-firmware
+		sys-firmware/eth-firmware ) )"
 
 DEPEND="${CDEPEND}
 	>=sys-devel/bison-1.875
 	>=sys-devel/flex-2.5.4
-	themes? ( media-gfx/splash-themes-calculate )
+	themes? ( || ( media-gfx/splash-themes-calculate
+		sys-boot/plymouth-calculate-plugin ) )
 	!minimal? ( virtual/pkgconfig )
 	"
 
