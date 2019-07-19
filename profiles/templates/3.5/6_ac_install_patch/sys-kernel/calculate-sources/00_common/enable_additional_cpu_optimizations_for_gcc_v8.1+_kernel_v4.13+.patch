@@ -1,4 +1,4 @@
-# Calculate format=diff pkg(sys-devel/gcc)>=8.1
+# Calculate format=diff merge(sys-kernel/calculate-sources)>=4.13&&pkg(sys-devel/gcc)=>8.1,9.1
 WARNING
 This patch works with gcc versions 8.1+ and with kernel version 4.13+ and should
 NOT be applied when compiling on older versions of gcc due to key name changes
