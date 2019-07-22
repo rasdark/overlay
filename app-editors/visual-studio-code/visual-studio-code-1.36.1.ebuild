@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 inherit eutils pax-utils
 
@@ -9,14 +9,13 @@ DESCRIPTION="Multiplatform Visual Studio Code from Microsoft"
 HOMEPAGE="https://code.visualstudio.com"
 BASE_URI="https://vscode-update.azurewebsites.net/${PV}"
 SRC_URI="
-	x86? ( ${BASE_URI}/linux-ia32/stable ->  ${P}-x86.tar.gz )
 	amd64? ( ${BASE_URI}/linux-x64/stable -> ${P}-amd64.tar.gz )
 	"
 RESTRICT="mirror strip bindist"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64"
 IUSE="libsecret"
 
 DEPEND="
