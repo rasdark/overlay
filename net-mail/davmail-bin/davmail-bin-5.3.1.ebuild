@@ -1,17 +1,14 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI="6"
+EAPI=6
 
 inherit eutils java-pkg-2 user
 
-MY_REV="2438"
+MY_REV="3079"
 MY_PN="davmail"
 
-SRC_URI="
-	x86?   ( mirror://sourceforge/${MY_PN}/${MY_PN}-linux-x86-${PV}-${MY_REV}.tgz -> ${P}.tgz )
-        amd64? ( mirror://sourceforge/${MY_PN}/${MY_PN}-linux-x86_64-${PV}-${MY_REV}.tgz -> ${P}.tgz )"
+SRC_URI="mirror://sourceforge/${MY_PN}/${MY_PN}-${PV}-${MY_REV}.zip"
 
 DESCRIPTION="POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway"
 HOMEPAGE="http://davmail.sourceforge.net/"
@@ -19,17 +16,17 @@ RESTRICT="mirror"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~x86 -*"
 IUSE="server"
 
 DEPEND="|| (
-	>=virtual/jre-1.6:=
-	>=virtual/jdk-1.6:=
+	>=virtual/jre-1.6:*
+	>=virtual/jdk-1.6:*
 	)
-	!mail-client/davmail"
+	!net-mail/davmail"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${MY_P}-${PV}-${MY_REV}"
+S="${WORKDIR}"
 
 pkg_setup() {
 	if use server ; then
@@ -37,9 +34,11 @@ pkg_setup() {
 	fi
 }
 
-src_install() {
-	#cd "${S}"
+java-pkg-2_src_compile() {
+	einfo ""
+}
 
+src_install() {
 	# libraries
 	java-pkg_dojar lib/*.jar
 	java-pkg_dojar ${MY_PN}.jar
