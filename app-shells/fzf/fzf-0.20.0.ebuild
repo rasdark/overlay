@@ -34,7 +34,7 @@ RESTRICT="mirror network-sandbox"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="amd64 ~arm ~arm64 x86" # Untested: arm arm64 x86
+KEYWORDS="~amd64 ~arm ~arm64 ~x86" # Untested: arm arm64 x86
 IUSE="debug tmux"
 
 RDEPEND="tmux? ( app-misc/tmux )"
