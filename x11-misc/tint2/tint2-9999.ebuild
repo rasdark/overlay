@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/tint2/tint2-0.11-r1.ebuild,v 1.3 2011/04/25 13:52:51 tomka Exp $
 
-EAPI="5"
+EAPI="6"
 
-inherit cmake-utils gnome2-utils git-2
+inherit cmake-utils gnome2-utils git-r3
 
 DESCRIPTION="A lightweight panel/taskbar"
 HOMEPAGE="https://gitlab.com/o9000/tint2.git"

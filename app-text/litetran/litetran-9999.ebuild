@@ -1,8 +1,8 @@
 # Copyright 2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-EAPI="5"
-inherit cmake-utils fdo-mime git-2
+EAPI="6"
+inherit cmake-utils fdo-mime git-r3
 
 DESCRIPTION="Very simple GUI for text translation (like google translate)."
 HOMEPAGE="http://gfarniev.bitbucket.org/litetran/"
@@ -18,12 +18,3 @@ RDEPEND=">=dev-util/cmake-2.8.10
 		dev-qt/linguist-tools:5
 		dev-qt/qtx11extras:5"
 DEPEND="${RDEPEND}"
-#PATCHES=( "${FILESDIR}/${P}_gcc47.patch" )
-
-pkg_postinst() {
-	fdo-mime_desktop_database_update
-}
-
-pkg_postrm() {
-	fdo-mime_desktop_database_update
-}
