@@ -2,13 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 EGIT_BRANCH="master"
 EGIT_PROJECT="xf86-video-sismedia"
 EGIT_REPO_URI="git://github.com/hellnest/xf86-video-sismedia-0.9.1.git"
 
-inherit git-2
+inherit git-r3
 
 DESCRIPTION="Xorg video driver for SIS M671/M672"
 HOMEPAGE="has no url"
