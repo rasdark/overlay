@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI=6
 ETYPE="sources"
 
 inherit calculate-kernel-7 eutils
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.calculate-linux.org"
 
 SRC_URI="${KERNEL_URI} ${ARCH_URI}"
 
-IUSE="uksm muqss"
+IUSE="uksm muqss fsync"
 
 src_unpack() {
 	calculate-kernel-7_src_unpack
