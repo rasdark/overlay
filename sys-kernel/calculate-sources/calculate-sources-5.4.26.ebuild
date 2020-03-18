@@ -2,18 +2,18 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=6
+EAPI=5
 ETYPE="sources"
 
 inherit calculate-kernel-7 eutils
 
 DESCRIPTION="Calculate Linux kernel image"
-KEYWORDS="amd64 x86"
+KEYWORDS="~amd64 ~x86"
 HOMEPAGE="http://www.calculate-linux.org"
 
 SRC_URI="${KERNEL_URI} ${ARCH_URI}"
 
-IUSE="uksm muqss fsync"
+IUSE="muqss uksm fsync"
 
 src_unpack() {
 	calculate-kernel-7_src_unpack
