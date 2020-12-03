@@ -6,7 +6,7 @@
 # Original Author: © 2007-2009 Mir Calculate, Ltd. 
 # Purpose: Installing linux-desktop, linux-server. 
 # Build the kernel from source.
-# @ECLASS: calculate-kernel-7.eclass
+# @ECLASS: calculate-kernel-8.eclass
 # @MAINTAINER:
 # support@calculate.ru
 # @AUTHOR:
@@ -25,7 +25,8 @@ CDEPEND="vmlinuz? ( || ( app-arch/xz-utils app-arch/lzma-utils )
 		grub? ( sys-boot/grub )
 	)
 	firmware? ( || ( sys-kernel/linux-firmware
-		sys-firmware/eth-firmware ) )"
+		sys-firmware/eth-firmware ) )
+	sys-apps/kmod[zstd]"
 
 DEPEND="${CDEPEND}
 	>=sys-devel/bison-1.875
@@ -53,14 +54,14 @@ KV_FULL="${PV}${EXTRAVERSION}"
 
 S="${WORKDIR}/linux-${KV_FULL}"
 
-calculate-kernel-7_pkg_setup() {
+calculate-kernel-8_pkg_setup() {
 	kernel-2_pkg_setup
 	eqawarn "!!! WARNING !!!  WARNING !!!  WARNING !!!  WARNING !!!"
 	eqawarn "After the kernel assemble perform command to update modules:"
 	eqawarn "  emerge @modules-rebuild"
 }
 
-calculate-kernel-7_src_unpack() {
+calculate-kernel-8_src_unpack() {
 	kernel-2_src_unpack
 	cd ${S}
 	local GENTOOARCH="${ARCH}"
@@ -87,7 +88,7 @@ vmlinuz_src_compile() {
 	ARCH="${GENTOOARCH}"
 }
 
-calculate-kernel-7_src_compile() {
+calculate-kernel-8_src_compile() {
 	use vmlinuz && vmlinuz_src_compile
 }
 
@@ -99,7 +100,27 @@ vmlinuz_src_install() {
 	INSTALL_PATH=${D}/usr/share/${PN}/${PV}/boot emake install
 	INSTALL_MOD_PATH=${D} emake modules_install
 	/sbin/depmod -b ${D} ${KV_FULL}
-	/usr/bin/dracut --xz -a calculate $PLYMOUTH -a video -k ${D}/lib/modules/${KV_FULL} \
+
+	if use themes
+	then
+		PLYMOUTH="-a plymouth"
+	else
+		PLYMOUTH="-o plymouth"
+	fi
+
+	if grep -q CONFIG_RD_ZSTD=y .config &>/dev/null
+	then
+		RDARCH="--zstd"
+	elif grep -q CONFIG_RD_GZIP=y .config &>/dev/null
+	then
+		RDARCH="--gzip"
+	elif grep -q CONFIG_RD_XZ=y .config &>/dev/null
+	then
+		RDARCH="--xz"
+	else
+		RDARCH=""
+	fi
+	/usr/bin/dracut $RDARCH -a calculate $PLYMOUTH -a video -k ${D}/lib/modules/${KV_FULL} \
 		--kver ${KV_FULL} \
 		${D}/usr/share/${PN}/${PV}/boot/initramfs-${KV_FULL}
 	# move firmware to share, because /lib/firmware installation does collisions
@@ -144,6 +165,7 @@ clean_for_minimal() {
 		scripts/gcc-version.sh scripts/Makefile.help \
 		scripts/Makefile.modinst scripts/Makefile.asm-generic \
 		scripts/Makefile.modbuiltin scripts/Makefile.fwinst \
+		scripts/Makefile.modfinal \
 		scripts/Makefile.extrawarn scripts/Makefile.kasan \
 		scripts/depmod.sh scripts/Makefile.host \
 		scripts/Makefile.gcc-plugins \
@@ -167,7 +189,7 @@ clean_for_minimal() {
 	rm -r Documentation
 }
 
-calculate-kernel-7_src_install() {
+calculate-kernel-8_src_install() {
 	use vmlinuz && vmlinuz_src_install
 	use minimal && clean_for_minimal
 	kernel-2_src_install
@@ -181,7 +203,7 @@ calculate-kernel-7_src_install() {
 }
 
 vmlinuz_pkg_postinst() {
-    # install kernel into /boot
+	# install kernel into /boot
 	calculate_update_ver /boot vmlinuz ${KV_FULL} /usr/share/${PN}/${PV}/boot/vmlinuz-${KV_FULL}
 	calculate_update_ver /boot config ${KV_FULL} /usr/share/${PN}/${PV}/boot/config-${KV_FULL}
 	calculate_update_ver /boot initramfs ${KV_FULL} /usr/share/${PN}/${PV}/boot/initramfs-${KV_FULL} .img
@@ -193,7 +215,7 @@ vmlinuz_pkg_postinst() {
 	calculate_update_modules
 }
 
-calculate-kernel-7_pkg_postinst() {
+calculate-kernel-8_pkg_postinst() {
 	kernel-2_pkg_postinst
 
 	KV_OUT_DIR=${ROOT}/usr/src/linux-${KV_FULL}
