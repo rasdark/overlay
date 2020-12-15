@@ -1,7 +1,7 @@
 # Copyright 1999-22019 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 inherit linux-mod
 
 COMMIT="e9fbf5c051453941bbc029810b893a6c010714e6"
@@ -22,6 +22,8 @@ S="${WORKDIR}/rtl8812au-${COMMIT}"
 MODULE_NAMES="88XXau(net/wireless)"
 BUILD_TARGETS="all"
 BUILD_TARGET_ARCH="${ARCH}"
+
+PATCHES=( "${FILESDIR}"/linux-5.10.patch )
 
 src_unpack() {
 	unpack "${A}"
