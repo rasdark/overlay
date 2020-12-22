@@ -5,7 +5,7 @@ EAPI=6
 
 inherit eutils java-pkg-2 user
 
-MY_REV="3079"
+MY_REV="3299"
 MY_PN="davmail"
 
 SRC_URI="mirror://sourceforge/${MY_PN}/${MY_PN}-${PV}-${MY_REV}.zip"

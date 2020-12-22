@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 EAPI="6"
-inherit cmake-utils fdo-mime git-r3
+inherit cmake-utils git-r3
 
 DESCRIPTION="Very simple GUI for text translation (like google translate)."
 HOMEPAGE="http://gfarniev.bitbucket.org/litetran/"
