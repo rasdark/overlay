@@ -1,0 +1,35 @@
+#!/sbin/openrc-run
+# Copyright 1999-2013 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/zabbix/files/2.0/init.d/zabbix-agentd,v 1.5 2013/01/18 23:58:34 mattm Exp $
+
+
+
+depend() {
+	need net
+}
+
+
+start() {
+    ebegin "Starting Kerio Control VPN client"
+    mkdir -p $LIBDIR
+    mkdir -p /var/log/kerio-kvc
+    [ -L /var/log/kerio-kvc/kerio-kvc ] && rm /var/log/kerio-kvc/kerio-kvc.
+    ln -s -f -n /var/log/kerio-kvc $LIBDIR/logs
+
+    if [ ! -f "$CFGFILE" ]; then
+	eerror "Configuration file not found, configure with /var/lib/kerio-control-vpnclient/kvpnc_conf configure"
+	return 1
+    fi
+	
+	start-stop-daemon --start  \
+		--user root --group root --exec "$BINSVC" "$LIBDIR" > /dev/null
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping Kerio Control VPN client"
+	start-stop-daemon  --stop --exec "$BINSVC"
+	eend $?
+}
+
