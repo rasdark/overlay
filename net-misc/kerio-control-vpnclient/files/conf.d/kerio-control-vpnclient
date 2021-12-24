@@ -1,0 +1,7 @@
+# Kerio Control VPN Client configuration
+
+BINSVC="/usr/sbin/kvpncsvc"
+LIBDIR="/var/lib/kerio-control-vpnclient"
+LOGDIR="/var/log/kerio-kvc"
+CFGFILE="/etc/kerio-kvc.conf"
+PIDFILE="/var/run/kvpncsvc.pid"
