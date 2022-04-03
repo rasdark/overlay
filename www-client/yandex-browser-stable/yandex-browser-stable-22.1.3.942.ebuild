@@ -63,7 +63,7 @@ DEPEND="
 
 QA_PREBUILT="*"
 S=${WORKDIR}
-YANDEX_HOME="opt/${PN/-//}"
+YANDEX_HOME="opt/yandex/browser"
 
 pkg_setup() {
 	chromium_suid_sandbox_check_kernel_config
