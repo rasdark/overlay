@@ -95,7 +95,7 @@ src_prepare() {
 		-e 's|\[(NewWindow)|\[X-\1|g' \
 		-e 's|\[(NewIncognito)|\[X-\1|g' \
 		-e 's|^TargetEnvironment|X-&|g' \
-		-i usr/share/applications/${PN}.desktop || die
+		-i usr/share/applications/yandex-browser.desktop || die
 
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser-sandbox" || die "Failed to fix library rpath (yandex_browser-sandbox)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser" || die "Failed to fix library rpath (yandex_browser)"
