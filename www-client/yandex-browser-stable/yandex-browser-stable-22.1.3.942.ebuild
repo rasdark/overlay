@@ -17,7 +17,7 @@ SRC_URI="
 	amd64? ( https://repo.yandex.ru/yandex-browser/deb/pool/main/y/${PN}/${PN}_${MY_PV}-1_amd64.deb -> ${P}.deb )
 	amd64? ( http://gpo.ws54.tk/gentoo-distfiles/${P}.deb -> ${P}.deb )
 "
-KEYWORDS="~amd64"
+KEYWORDS="amd64"
 IUSE="ffmpeg-codecs"
 
 RDEPEND="
