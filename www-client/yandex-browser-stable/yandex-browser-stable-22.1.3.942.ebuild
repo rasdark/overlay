@@ -21,6 +21,7 @@ KEYWORDS="amd64"
 IUSE="ffmpeg-codecs"
 
 RDEPEND="
+	!!www-client/yandex-browser-beta
 	dev-libs/expat
 	dev-libs/glib:2
 	dev-libs/nspr
