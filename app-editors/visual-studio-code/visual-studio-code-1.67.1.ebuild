@@ -15,7 +15,7 @@ SRC_URI="amd64? ( https://update.code.visualstudio.com/${PV}/linux-x64/stable ->
 LICENSE="MIT Microsoft-VSCode"
 SLOT="0"
 KEYWORDS="-* ~amd64"
-IUSE="gnome-keyring qt5"
+IUSE="gnome-keyring qt5 globalmenu"
 RESTRICT="bindist mirror"
 
 RDEPEND="app-accessibility/at-spi2-atk:2[${MULTILIB_USEDEP}]
@@ -46,7 +46,8 @@ RDEPEND="app-accessibility/at-spi2-atk:2[${MULTILIB_USEDEP}]
 	x11-libs/libXtst:0[${MULTILIB_USEDEP}]
 	x11-libs/pango:0[${MULTILIB_USEDEP}]
 	gnome-keyring? ( app-crypt/libsecret:0[${MULTILIB_USEDEP}] )
-	qt5? ( dev-libs/libdbusmenu-qt )"
+	qt5? ( dev-libs/libdbusmenu-qt )
+	globalmenu? ( dev-libs/libdbusmenu )"
 
 QA_PREBUILT="opt/visual-studio-code/resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/rg
 	opt/visual-studio-code/resources/app/node_modules.asar.unpacked/vsda/build/Release/vsda.node
