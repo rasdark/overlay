@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/tint2/tint2-0.11-r1.ebuild,v 1.3 2011/04/25 13:52:51 tomka Exp $
 
-EAPI="6"
+EAPI="8"
 
-inherit cmake-utils gnome2-utils git-r3
+inherit cmake gnome2-utils git-r3
 
 DESCRIPTION="A lightweight panel/taskbar"
 HOMEPAGE="https://gitlab.com/o9000/tint2.git"
@@ -47,11 +47,11 @@ src_configure() {
 
                 "-DDOCDIR=/usr/share/doc/${PF}"
         )
-        cmake-utils_src_configure
+        cmake_src_configure
 }
 
 src_install() {
-        cmake-utils_src_install
+        cmake_src_install
         if use tint2conf ; then
                 gnome2_icon_cache_update
         fi
