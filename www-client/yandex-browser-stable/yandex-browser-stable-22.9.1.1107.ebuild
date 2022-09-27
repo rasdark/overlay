@@ -122,6 +122,8 @@ src_install() {
 	fowners root:root "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	fperms 4711 "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
+
+	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-stable"
 }
 
 pkg_postinst() {
