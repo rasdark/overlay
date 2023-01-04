@@ -1,8 +1,8 @@
 # Copyright 2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-EAPI="6"
-inherit cmake-utils git-r3
+EAPI="8"
+inherit cmake git-r3
 
 DESCRIPTION="Very simple GUI for text translation (like google translate)."
 HOMEPAGE="http://gfarniev.bitbucket.org/litetran/"

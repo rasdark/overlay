@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI="6"
 
 EGIT_COMMIT="f208648902d5f969db8b69abfd0f4cfcfdfac582"
 EGIT_REPO_URI="https://github.com/rasdark/xf86-video-sis671.git"

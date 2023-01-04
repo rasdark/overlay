@@ -21,10 +21,16 @@ start() {
 	eerror "Configuration file not found, configure with /var/lib/kerio-control-vpnclient/kvpnc_conf configure"
 	return 1
     fi
-	
+
 	start-stop-daemon --start  \
 		--user root --group root --exec "$BINSVC" "$LIBDIR" > /dev/null
 	eend $?
+}
+
+start_post() {
+    ebegin "replace mac"
+    /bin/ip link set dev kvnet address "$(awk '/VPN driver opened/ {print $NF}' /var/lib/kerio-control-vpnclient/logs/debug.log | tail -n1 | sed 's/-/:/g')"
+    eend $?
 }
 
 stop() {
