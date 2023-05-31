@@ -27,7 +27,6 @@ RDEPEND="
 	dev-libs/nspr
 	dev-libs/nss
 	>=dev-libs/openssl-1.0.1:0
-	gnome-base/gconf:2
 	media-libs/alsa-lib
 	media-libs/fontconfig
 	media-libs/freetype
