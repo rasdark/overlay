@@ -1,26 +1,27 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 CHROMIUM_LANGS="cs de en-US es fr it ja pt-BR pt-PT ru tr uk zh-CN zh-TW"
-inherit chromium-2 unpacker pax-utils xdg-utils
+inherit desktop chromium-2 unpacker pax-utils xdg wrapper
 
 RESTRICT="bindist mirror strip"
 
 MY_PV="${PV/_p/-}"
 
 DESCRIPTION="The web browser from Yandex"
-HOMEPAGE="https://browser.yandex.ru/beta/"
+HOMEPAGE="https://browser.yandex.ru/"
 LICENSE="Yandex-EULA"
 SLOT="0"
 SRC_URI="
-	amd64? ( https://repo.yandex.ru/yandex-browser/deb/pool/main/y/yandex-browser-beta/yandex-browser-beta_${MY_PV}-1_amd64.deb -> ${P}.deb )
-	amd64? ( http://gpo.ws54.tk/gentoo-distfiles/${P}.deb -> ${P}.deb )
+	amd64? ( https://repo.yandex.ru/yandex-browser/deb/pool/main/y/${PN}/${PN}_${MY_PV}-1_amd64.deb -> ${P}.deb )
 "
-KEYWORDS="~amd64"
-IUSE="ffmpeg-codecs"
+KEYWORDS="amd64"
+IUSE=""
 
 RDEPEND="
+	!!www-client/yandex-browser-beta
+	!!www-client/yandex-browser-corporate
 	dev-libs/expat
 	dev-libs/glib:2
 	dev-libs/nspr
@@ -51,9 +52,6 @@ RDEPEND="
 	x11-libs/pango[X]
 	x11-misc/xdg-utils
 	sys-libs/libudev-compat
-	ffmpeg-codecs? (
-		=www-plugins/yandex-browser-ffmpeg-codecs-${PV/%_p*/}
-	)
 "
 DEPEND="
 	>=dev-util/patchelf-0.9
@@ -61,7 +59,7 @@ DEPEND="
 
 QA_PREBUILT="*"
 S=${WORKDIR}
-YANDEX_HOME="opt/${PN/-//}"
+YANDEX_HOME="opt/yandex/browser"
 
 pkg_setup() {
 	chromium_suid_sandbox_check_kernel_config
@@ -81,7 +79,13 @@ src_prepare() {
 	gunzip usr/share/doc/${PN}/changelog.gz || die
 	gunzip usr/share/man/man1/${PN}.1.gz || die
 
+	rm usr/share/man/man1/*.gz
+
 	mv usr/share/doc/${PN} usr/share/doc/${PF} || die
+
+	mkdir usr/share/metainfo
+	mv usr/share/appdata/*.xml usr/share/metainfo/
+	rm -r usr/share/appdata
 
 	pushd "${YANDEX_HOME}/locales" > /dev/null || die
 	chromium_remove_language_paks
@@ -93,7 +97,7 @@ src_prepare() {
 		-e 's|\[(NewWindow)|\[X-\1|g' \
 		-e 's|\[(NewIncognito)|\[X-\1|g' \
 		-e 's|^TargetEnvironment|X-&|g' \
-		-i usr/share/applications/${PN}.desktop || die
+		-i usr/share/applications/yandex-browser.desktop || die
 
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser-sandbox" || die "Failed to fix library rpath (yandex_browser-sandbox)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser" || die "Failed to fix library rpath (yandex_browser)"
@@ -114,25 +118,23 @@ src_install() {
 		size="${icon##*/product_logo_}"
 		size=${size%.png}
 		dodir "/usr/share/icons/hicolor/${size}x${size}/apps"
-		newicon -s "${size}" "$icon" "yandex-browser-beta.png"
+		newicon -s "${size}" "$icon" "yandex-browser-stable.png"
 	done
 
 	fowners root:root "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	fperms 4711 "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
 
-	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-beta"
+	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-stable"
 }
 
 pkg_postinst() {
-	xdg_desktop_database_update
-	if ! use ffmpeg-codecs; then
-		ewarn "For a complete support of video\audio in the HTML5 format"
-		ewarn "emerge an ebuild 'www-plugins/yandex-browser-ffmpeg-codec'."
-		ewarn "For more info see: https://yandex.ru/support/browser-beta/working-with-files/video.html#problems__video-linux"
-	fi
+	xdg_icon_cache_update
+	ewarn "For a complete support of video\audio in the HTML5 format"
+	ewarn "Run: ${EPREFIX}/${YANDEX_HOME}/update-ffmpeg"
+	ewarn "For more info see: https://yandex.ru/support/browser-beta/working-with-files/video.html#problems__video-linux"
 }
 
 pkg_postrm() {
-	xdg_desktop_database_update
+	xdg_icon_cache_update
 }
