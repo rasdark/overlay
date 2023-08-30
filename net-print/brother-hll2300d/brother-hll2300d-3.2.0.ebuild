@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=7
-inherit eutils unpacker
+EAPI=8
+inherit unpacker
 
 DESCRIPTION="Cups ppd and filters for Brother HL-L2300D"
 HOMEPAGE="http://www.brother.ru/printers/laser/hl-l2300dr#downloads"
