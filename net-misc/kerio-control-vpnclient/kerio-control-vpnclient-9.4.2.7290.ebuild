@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=7
-inherit eutils unpacker
+EAPI=8
+inherit unpacker
 
 MY_PV=$(ver_rs 3 -)
 

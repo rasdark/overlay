@@ -2,10 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=7
+EAPI=8
 ETYPE="sources"
 
-inherit calculate-kernel-8 eutils
+inherit calculate-kernel-8
 
 DESCRIPTION="Calculate Linux kernel image"
 KEYWORDS="~amd64"
