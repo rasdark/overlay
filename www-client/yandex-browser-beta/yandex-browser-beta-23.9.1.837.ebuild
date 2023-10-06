@@ -10,18 +10,16 @@ RESTRICT="bindist mirror strip"
 MY_PV="${PV/_p/-}"
 
 DESCRIPTION="The web browser from Yandex"
-HOMEPAGE="https://browser.yandex.ru/"
+HOMEPAGE="https://browser.yandex.ru/beta/"
 LICENSE="Yandex-EULA"
 SLOT="0"
 SRC_URI="
-	amd64? ( https://repo.yandex.ru/yandex-browser/deb/pool/main/y/${PN}/${PN}_${MY_PV}-1_amd64.deb -> ${P}.deb )
-	amd64? ( http://gpo.ws54.tk/gentoo-distfiles/${P}.deb -> ${P}.deb )
+	amd64? ( https://repo.yandex.ru/yandex-browser/deb/pool/main/y/yandex-browser-beta/yandex-browser-beta_${MY_PV}-1_amd64.deb -> ${P}.deb )
 "
-KEYWORDS="amd64"
+KEYWORDS="~amd64"
 IUSE="ffmpeg-codecs"
 
 RDEPEND="
-	!!www-client/yandex-browser-beta
 	dev-libs/expat
 	dev-libs/glib:2
 	dev-libs/nspr
@@ -62,7 +60,7 @@ DEPEND="
 
 QA_PREBUILT="*"
 S=${WORKDIR}
-YANDEX_HOME="opt/yandex/browser"
+YANDEX_HOME="opt/${PN/-//}"
 
 pkg_setup() {
 	chromium_suid_sandbox_check_kernel_config
@@ -94,7 +92,7 @@ src_prepare() {
 		-e 's|\[(NewWindow)|\[X-\1|g' \
 		-e 's|\[(NewIncognito)|\[X-\1|g' \
 		-e 's|^TargetEnvironment|X-&|g' \
-		-i usr/share/applications/yandex-browser.desktop || die
+		-i usr/share/applications/${PN}.desktop || die
 
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser-sandbox" || die "Failed to fix library rpath (yandex_browser-sandbox)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser" || die "Failed to fix library rpath (yandex_browser)"
@@ -115,14 +113,14 @@ src_install() {
 		size="${icon##*/product_logo_}"
 		size=${size%.png}
 		dodir "/usr/share/icons/hicolor/${size}x${size}/apps"
-		newicon -s "${size}" "$icon" "yandex-browser-stable.png"
+		newicon -s "${size}" "$icon" "yandex-browser-beta.png"
 	done
 
 	fowners root:root "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	fperms 4711 "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
 
-	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-stable"
+	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-beta"
 }
 
 pkg_postinst() {
