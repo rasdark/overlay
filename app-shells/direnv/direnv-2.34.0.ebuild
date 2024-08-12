@@ -10,8 +10,8 @@ EGO_SUM=(
 	"github.com/BurntSushi/toml v1.3.2/go.mod"
 	"github.com/mattn/go-isatty v0.0.20"
 	"github.com/mattn/go-isatty v0.0.20/go.mod"
-	"golang.org/x/mod v0.13.0"
-	"golang.org/x/mod v0.13.0/go.mod"
+	"golang.org/x/mod v0.15.0"
+	"golang.org/x/mod v0.15.0/go.mod"
 	"golang.org/x/sys v0.6.0"
 	"golang.org/x/sys v0.6.0/go.mod"
 	)

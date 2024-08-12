@@ -44,7 +44,8 @@ RDEPEND="
 "
 
 QA_PREBUILT="
-	opt/balenaEtcher/*
+	usr/lib/balena-etcher/balena-etcher
+	usr/lib/balena-etcher/resources/etcher-util
 "
 
 src_unpack() {
@@ -56,7 +57,7 @@ src_install() {
 
 	rm -rd "${D}/usr/share/doc/balena-etcher" || die
 
-	fperms 0755 /opt/balenaEtcher/balena-etcher || die
+	# fperms 0755 /opt/balenaEtcher/balena-etcher || die
 }
 
 pkg_postinst() {
