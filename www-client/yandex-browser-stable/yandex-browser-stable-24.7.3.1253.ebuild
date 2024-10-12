@@ -124,6 +124,6 @@ src_install() {
 	fperms 4711 "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
 
-	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-stable"
+	dosym "${EPREFIX}/${YANDEX_HOME}/yandex-browser" "${EPREFIX}/usr/bin/yandex-browser-stable"
 }
 
