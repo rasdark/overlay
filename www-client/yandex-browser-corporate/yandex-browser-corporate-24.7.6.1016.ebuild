@@ -2,8 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-CHROMIUM_LANGS="cs de en-US es fr it ja pt-BR pt-PT ru tr uk zh-CN zh-TW"
-inherit desktop chromium-2 unpacker pax-utils xdg wrapper
+CHROMIUM_LANGS="cs de en-US es fr it ja kk pt-BR pt-PT ru tr uk uz zh-CN zh-TW"
+inherit chromium-2 unpacker desktop wrapper pax-utils xdg
 
 RESTRICT="bindist mirror strip"
 
@@ -17,7 +17,9 @@ SRC_URI="
 	amd64? ( https://repo.yandex.ru/yandex-browser/deb/pool/main/y/${PN}/${PN}_${MY_PV}-1_amd64.deb -> ${P}.deb )
 "
 KEYWORDS="amd64"
-IUSE=""
+IUSE="ffmpeg-codecs"
+
+FFMPEG="126"
 
 RDEPEND="
 	!!www-client/yandex-browser-beta
@@ -52,6 +54,7 @@ RDEPEND="
 	x11-libs/pango[X]
 	x11-misc/xdg-utils
 	sys-libs/libudev-compat
+	ffmpeg-codecs? ( media-video/ffmpeg-chromium:${FFMPEG} )
 "
 DEPEND="
 	>=dev-util/patchelf-0.9
@@ -70,21 +73,18 @@ src_unpack() {
 }
 
 src_prepare() {
-	rm usr/bin/${PN} || die
+	rm usr/bin/${PN} || die "Failed to remove bundled wrapper"
 
-	rm -r etc || die
+	rm -r etc || die "Failed to remove etc"
 
-	rm -r "${YANDEX_HOME}/cron" || die
+	rm -r "${YANDEX_HOME}/cron" || die "Failed ro remove cron hook"
 
-	gunzip usr/share/doc/${PN}/changelog.gz || die
+	mv usr/share/doc/${PN} usr/share/doc/${PF} || die "Failed to move docdir"
+
+	gunzip usr/share/doc/${P}/changelog.gz || die
 	gunzip usr/share/man/man1/${PN}.1.gz || die
 
-	rm usr/share/man/man1/*.gz
-
-	mv usr/share/doc/${PN} usr/share/doc/${PF} || die
-
-	mkdir usr/share/metainfo
-	mv usr/share/appdata/*.xml usr/share/metainfo/
+	mv usr/share/appdata/* usr/share/metainfo/
 	rm -r usr/share/appdata
 
 	pushd "${YANDEX_HOME}/locales" > /dev/null || die
@@ -102,7 +102,6 @@ src_prepare() {
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser-sandbox" || die "Failed to fix library rpath (yandex_browser-sandbox)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser" || die "Failed to fix library rpath (yandex_browser)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/find_ffmpeg" || die "Failed to fix library rpath (find_ffmpeg)"
-	# patchelf --remove-rpath "${S}/${YANDEX_HOME}/nacl_helper" || die "Failed to fix library rpath (nacl_helper)"
 }
 
 src_install() {
@@ -111,14 +110,15 @@ src_install() {
 	make_wrapper "${PN}" "./${PN}" "${EPREFIX}/${YANDEX_HOME}" "${EPREFIX}/usr/$(get_libdir)/${PN}/lib"
 
 	# yandex_browser binary loads libudev.so.0 at runtime
-	dosym "${EPREFIX}/usr/$(get_libdir)/libudev.so.0" "${EPREFIX}/usr/$(get_libdir)/${PN}/lib/libudev.so.0"
+	# dosym "${EPREFIX}/usr/$(get_libdir)/libudev.so.0" "${EPREFIX}/usr/$(get_libdir)/${PN}/lib/libudev.so.0"
+	dosym "../../../usr/$(get_libdir)/chromium/libffmpeg.so.${FFMPEG}" "${YANDEX_HOME}/libffmpeg.so"
 
 	keepdir "${EPREFIX}/${YANDEX_HOME}"
 	for icon in "${D}/${YANDEX_HOME}/product_logo_"*.png; do
 		size="${icon##*/product_logo_}"
 		size=${size%.png}
 		dodir "/usr/share/icons/hicolor/${size}x${size}/apps"
-		newicon -s "${size}" "$icon" "yandex-browser-corporate.png"
+		newicon -s "${size}" "$icon" "yandex-browser-stable.png"
 	done
 
 	fowners root:root "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
@@ -126,15 +126,4 @@ src_install() {
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
 
 	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-corporate"
-}
-
-pkg_postinst() {
-	xdg_icon_cache_update
-	ewarn "For a complete support of video\audio in the HTML5 format"
-	ewarn "Run: ${EPREFIX}/${YANDEX_HOME}/update-ffmpeg"
-	ewarn "For more info see: https://yandex.ru/support/browser-beta/working-with-files/video.html#problems__video-linux"
-}
-
-pkg_postrm() {
-	xdg_icon_cache_update
 }

@@ -50,7 +50,8 @@ RDEPEND="app-accessibility/at-spi2-atk:2[${MULTILIB_USEDEP}]
 	globalmenu? ( dev-libs/libdbusmenu )"
 
 QA_PREBUILT="opt/visual-studio-code/resources/app/node_modules.asar.unpacked/vsda/build/Release/vsda.node
-	opt/visual-studio-code/resources/app/extensions/node_modules/esbuild/bin/esbuild
+	opt/visual-studio-code/bin/code
+	opt/visual-studio-code/bin/code-tunnel
 	opt/visual-studio-code/code
 	opt/visual-studio-code/libffmpeg.so
 	opt/visual-studio-code/libGLESv2.so
@@ -77,8 +78,8 @@ src_install() {
 	fperms 4711 /opt/${PN}/chrome-sandbox
 	fperms 755 /opt/${PN}/resources/app/extensions/git/dist/{askpass,git-editor,ssh-askpass}{,-empty}.sh
 	fperms -R +x /opt/${PN}/resources/app/out/vs/base/node
-	# fperms +x /opt/${PN}/bin/code-tunnel
-	# fperms +x /opt/${PN}/resources/app/node_modules.asar.unpacked/@vscode/ripgrep/bin/rg
+	fperms +x /opt/${PN}/bin/code-tunnel
+	fperms +x /opt/${PN}/resources/app/node_modules/@vscode/ripgrep/bin/rg
 	dodir /opt/bin
 	dosym ../visual-studio-code/bin/code opt/bin/code
 
