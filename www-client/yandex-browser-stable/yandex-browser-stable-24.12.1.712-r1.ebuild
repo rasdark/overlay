@@ -19,7 +19,7 @@ SRC_URI="
 KEYWORDS="amd64"
 IUSE="ffmpeg-codecs"
 
-FFMPEG="131"
+FFMPEG="130"
 
 RDEPEND="
 	!!www-client/yandex-browser-beta
@@ -80,7 +80,7 @@ src_prepare() {
 
 	mv usr/share/doc/${PN} usr/share/doc/${PF} || die "Failed to move docdir"
 
-	gunzip usr/share/doc/${P}/changelog.gz || die
+	gunzip usr/share/doc/${PF}/changelog.gz || die
 	gunzip usr/share/man/man1/${PN}.1.gz || die
 
 	mv usr/share/appdata/* usr/share/metainfo/
