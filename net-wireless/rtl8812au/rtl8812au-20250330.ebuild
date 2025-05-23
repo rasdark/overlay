@@ -4,7 +4,7 @@
 EAPI=7
 inherit linux-mod
 
-COMMIT="f23979f0d20aafb563ac71b56fcbc74268c798c2"
+COMMIT="c3fb89a2f7066f4bf4e4d9d85d84f9791f14c83e"
 
 DESCRIPTION="Realtek 8812AU USB WiFi module for Linux kernel"
 HOMEPAGE="https://github.com/aircrack-ng/rtl8812au"
