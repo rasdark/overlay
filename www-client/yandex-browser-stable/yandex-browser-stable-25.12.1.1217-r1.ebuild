@@ -9,7 +9,7 @@ RESTRICT="bindist mirror strip"
 
 MY_PV="${PV/_p/-}"
 
-DESCRIPTION="The web browser from Yandex (Corporate version)"
+DESCRIPTION="The web browser from Yandex"
 HOMEPAGE="https://browser.yandex.ru/"
 LICENSE="Yandex-EULA"
 SLOT="0"
@@ -19,11 +19,10 @@ SRC_URI="
 KEYWORDS="amd64"
 IUSE="ffmpeg-codecs"
 
-FFMPEG="138"
+FFMPEG="142"
 
 RDEPEND="
 	!!www-client/yandex-browser-beta
-	!!www-client/yandex-browser-stable
 	dev-libs/expat
 	dev-libs/glib:2
 	dev-libs/nspr
@@ -81,7 +80,7 @@ src_prepare() {
 
 	mv usr/share/doc/${PN} usr/share/doc/${PF} || die "Failed to move docdir"
 
-	gunzip usr/share/doc/${P}/changelog.gz || die
+	gunzip usr/share/doc/${PF}/changelog.gz || die
 	gunzip usr/share/man/man1/${PN}.1.gz || die
 
 	mv usr/share/appdata/* usr/share/metainfo/
@@ -125,5 +124,6 @@ src_install() {
 	fperms 4711 "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
 
-	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-corporate"
+	dosym "${EPREFIX}/${YANDEX_HOME}/yandex-browser" "${EPREFIX}/usr/bin/yandex-browser-stable"
 }
+
