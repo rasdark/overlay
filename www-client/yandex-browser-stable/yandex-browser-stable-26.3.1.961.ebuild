@@ -98,6 +98,8 @@ src_prepare() {
 		-e 's|^TargetEnvironment|X-&|g' \
 		-i usr/share/applications/yandex-browser.desktop || die
 
+	sed -i 's/Icon=yandex-browser/Icon=yandex-browser-stable/' usr/share/applications/yandex-browser.desktop || die
+
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser-sandbox" || die "Failed to fix library rpath (yandex_browser-sandbox)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser" || die "Failed to fix library rpath (yandex_browser)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/find_ffmpeg" || die "Failed to fix library rpath (find_ffmpeg)"
