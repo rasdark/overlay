@@ -1,9 +1,9 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-CHROMIUM_LANGS="cs de en-US es fr it ja pt-BR pt-PT ru tr uk zh-CN zh-TW"
-inherit chromium-2 unpacker pax-utils xdg-utils
+EAPI=8
+CHROMIUM_LANGS="cs de en-US es fr it ja kk pt-BR pt-PT ru tr uk uz zh-CN zh-TW"
+inherit chromium-2 unpacker desktop wrapper pax-utils xdg
 
 RESTRICT="bindist mirror strip"
 
@@ -19,7 +19,10 @@ SRC_URI="
 KEYWORDS="~amd64"
 IUSE="ffmpeg-codecs"
 
+FFMPEG="144"
+
 RDEPEND="
+    !!www-client/yandex-browser-stable
 	dev-libs/expat
 	dev-libs/glib:2
 	dev-libs/nspr
@@ -50,9 +53,7 @@ RDEPEND="
 	x11-libs/pango[X]
 	x11-misc/xdg-utils
 	sys-libs/libudev-compat
-	ffmpeg-codecs? (
-		=www-plugins/yandex-browser-ffmpeg-codecs-${PV/%_p*/}
-	)
+	ffmpeg-codecs? ( media-video/ffmpeg-chromium:${FFMPEG} )
 "
 DEPEND="
 	>=dev-util/patchelf-0.9
@@ -70,17 +71,21 @@ src_unpack() {
 	unpack_deb ${A}
 }
 
+
 src_prepare() {
-	rm usr/bin/${PN} || die
+	rm usr/bin/${PN} || die "Failed to remove bundled wrapper"
 
-	rm -r etc || die
+	rm -r etc || die "Failed to remove etc"
 
-	rm -r "${YANDEX_HOME}/cron" || die
+	rm -r "${YANDEX_HOME}/cron" || die "Failed ro remove cron hook"
 
-	gunzip usr/share/doc/${PN}/changelog.gz || die
+	mv usr/share/doc/${PN} usr/share/doc/${PF} || die "Failed to move docdir"
+
+	gunzip usr/share/doc/${PF}/changelog.gz || die
 	gunzip usr/share/man/man1/${PN}.1.gz || die
 
-	mv usr/share/doc/${PN} usr/share/doc/${PF} || die
+	mv usr/share/appdata/* usr/share/metainfo/
+	rm -r usr/share/appdata
 
 	pushd "${YANDEX_HOME}/locales" > /dev/null || die
 	chromium_remove_language_paks
@@ -92,12 +97,13 @@ src_prepare() {
 		-e 's|\[(NewWindow)|\[X-\1|g' \
 		-e 's|\[(NewIncognito)|\[X-\1|g' \
 		-e 's|^TargetEnvironment|X-&|g' \
-		-i usr/share/applications/${PN}.desktop || die
+		-i usr/share/applications/yandex-browser.desktop || die
+
+	sed -i 's/Icon=yandex-browser/Icon=yandex-browser-beta/' usr/share/applications/yandex-browser.desktop || die
 
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser-sandbox" || die "Failed to fix library rpath (yandex_browser-sandbox)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/yandex_browser" || die "Failed to fix library rpath (yandex_browser)"
 	patchelf --remove-rpath "${S}/${YANDEX_HOME}/find_ffmpeg" || die "Failed to fix library rpath (find_ffmpeg)"
-	# patchelf --remove-rpath "${S}/${YANDEX_HOME}/nacl_helper" || die "Failed to fix library rpath (nacl_helper)"
 }
 
 src_install() {
@@ -106,7 +112,8 @@ src_install() {
 	make_wrapper "${PN}" "./${PN}" "${EPREFIX}/${YANDEX_HOME}" "${EPREFIX}/usr/$(get_libdir)/${PN}/lib"
 
 	# yandex_browser binary loads libudev.so.0 at runtime
-	dosym "${EPREFIX}/usr/$(get_libdir)/libudev.so.0" "${EPREFIX}/usr/$(get_libdir)/${PN}/lib/libudev.so.0"
+	# dosym "${EPREFIX}/usr/$(get_libdir)/libudev.so.0" "${EPREFIX}/usr/$(get_libdir)/${PN}/lib/libudev.so.0"
+	dosym "../../../usr/$(get_libdir)/chromium/libffmpeg.so.${FFMPEG}" "${YANDEX_HOME}/libffmpeg.so"
 
 	keepdir "${EPREFIX}/${YANDEX_HOME}"
 	for icon in "${D}/${YANDEX_HOME}/product_logo_"*.png; do
@@ -120,18 +127,5 @@ src_install() {
 	fperms 4711 "${EPREFIX}/${YANDEX_HOME}/yandex_browser-sandbox"
 	pax-mark m "${ED}${YANDEX_HOME}/yandex_browser-sandbox"
 
-	dosym "${EPREFIX}/${YANDEX_HOME}/yandex_browser" "${EPREFIX}/usr/bin/yandex-browser-beta"
-}
-
-pkg_postinst() {
-	xdg_desktop_database_update
-	if ! use ffmpeg-codecs; then
-		ewarn "For a complete support of video\audio in the HTML5 format"
-		ewarn "emerge an ebuild 'www-plugins/yandex-browser-ffmpeg-codec'."
-		ewarn "For more info see: https://yandex.ru/support/browser-beta/working-with-files/video.html#problems__video-linux"
-	fi
-}
-
-pkg_postrm() {
-	xdg_desktop_database_update
+	dosym "${EPREFIX}/${YANDEX_HOME}/yandex-browser" "${EPREFIX}/usr/bin/yandex-browser-beta"
 }
