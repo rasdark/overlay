@@ -79,7 +79,7 @@ src_install() {
 	fperms 755 /opt/${PN}/resources/app/extensions/git/dist/{askpass,git-editor,ssh-askpass}{,-empty}.sh
 	fperms -R +x /opt/${PN}/resources/app/out/vs/base/node
 	fperms +x /opt/${PN}/bin/code-tunnel
-	fperms +x /opt/${PN}/resources/app/node_modules/@vscode/ripgrep/bin/rg
+	fperms +x /opt/${PN}/resources/app/node_modules/@vscode/ripgrep-universal/bin/linux-x64/rg
 	dodir /opt/bin
 	dosym ../visual-studio-code/bin/code opt/bin/code
 
