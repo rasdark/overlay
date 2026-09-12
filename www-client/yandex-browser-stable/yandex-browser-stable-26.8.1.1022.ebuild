@@ -19,7 +19,7 @@ SRC_URI="
 KEYWORDS="amd64"
 IUSE="ffmpeg-codecs"
 
-FFMPEG="149"
+FFMPEG="151"
 
 RDEPEND="
 	!!www-client/yandex-browser-beta
