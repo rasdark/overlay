@@ -14,6 +14,12 @@ RDEPEND="!app-shells/direnv"
 
 RESTRICT="test strip"
 
+S="${WORKDIR}"
+
+src_unpack() {
+	cp "${DISTDIR}/${P}" "${WORKDIR}/${P}" || die "Failed to copy binary to WORKDIR"
+}
+
 src_install() {
 	newbin "${WORKDIR}/${P}" "${MY_PN}"
 }
